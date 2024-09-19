@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "boba.user.v1;userv1";
+
+import "google/protobuf/field_mask.proto";
+
+service UserService {
+    // Получение информации о пользователе
+    rpc GetUser (UserRequest) returns (UserResponse);
+    
+    // Частичное обновление данных пользователя
+    rpc PartialUpdateUser (PartialUpdateUserRequest) returns (PartialUpdateUserResponse);
+}
+
+message UserRequest {
+    int64 user_id = 1; // Идентификатор пользователя
+}
+
+message UserResponse {
+    User user_data = 1; // Информация о пользователе
+}
+
+message PartialUpdateUserRequest {
+    int64 user_id = 1; // Идентификатор пользователя
+    User user_data = 2; // Данные пользователя для обновления
+    google.protobuf.FieldMask update_mask = 3; // Указание полей для обновления
+}
+
+message PartialUpdateUserResponse {
+    User updated_user = 1; // Обновленные данные пользователя
+}
+
+message User {
+    int64 id = 1;
+    int64 telegram_id = 2;
+    string telegram_username = 3;
+    string telegram_first_name = 4;
+    string telegram_last_name = 5;
+    string telegram_avatar_url = 6;
+    string language_code = 7;
+    bool is_premium = 8;
+}
