@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package tasks;
+
+option go_package = "boba.tasks.v1;tasksv1";
+
+// Service for managing tasks
+service Tasks {
+    // Get all tasks with pagination
+    rpc GetAllTasks (GetAllTasksRequest) returns (GetAllTasksResponse);
+
+    // Check if a task is completed
+    rpc IsTaskCompleted (IsTaskCompletedRequest) returns (IsTaskCompletedResponse);
+
+    // Get the number of consecutive days a user completed tasks
+    rpc GetTasksDaysStreak (GetTasksDaysStreakRequest) returns (GetTasksDaysStreakResponse);
+}
+
+// Request to get all tasks with pagination
+message GetAllTasksRequest {
+    int64 user_id = 1;          // ID of the user
+    int32 page = 2;             // Page number for pagination
+    int32 page_size = 3;        // Number of tasks per page
+}
+
+// Response with a paginated list of tasks
+message GetAllTasksResponse {
+    repeated Task tasks = 1;    // List of tasks
+    int32 total_count = 2;      // Total number of tasks
+}
+
+// Task structure
+message Task {
+    string title = 1;           // Title of the task
+    string description = 2;     // Description of the task
+    string task_type = 3;       // Type of the task
+    int32 reward = 4;           // Reward for the task
+    bool is_completed = 5;      // Indicates if the task is completed
+}
+
+// Request to check if a task is completed
+message IsTaskCompletedRequest {
+    int64 user_id = 1;          // ID of the user
+    int64 task_id = 2;          // ID of the task
+}
+
+// Response to indicate if the task is completed
+message IsTaskCompletedResponse {
+    bool is_completed = 1;      // Indicates if the task is completed
+}
+
+// Request to get the number of consecutive days tasks were completed
+message GetTasksDaysStreakRequest {
+    int64 user_id = 1;          // ID of the user
+}
+
+// Response with the number of consecutive days
+message GetTasksDaysStreakResponse {
+    int32 consecutive_days = 1; // Number of consecutive days
+}

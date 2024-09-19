@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package mining;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "boba.mining.v1;miningv1";
+
+// Service for managing the mining process
+service Mining {
+    // Returns the current mining status
+    rpc GetMiningStatus (GetMiningStatusRequest) returns (GetMiningStatusResponse);
+
+    // Starts the mining process
+    rpc StartMining (StartMiningRequest) returns (StartMiningResponse);
+
+    // Collects mined coins
+    rpc CollectCoins (CollectCoinsRequest) returns (CollectCoinsResponse);
+}
+
+// Request to get the current mining status
+message GetMiningStatusRequest {
+    int64 user_id = 1;
+}
+
+// Response with the current mining status
+message GetMiningStatusResponse {
+    bool is_mining_active = 1;      // Indicates if mining is currently active
+    google.protobuf.Timestamp starts_at = 2;   // Time when mining started (if applicable)
+    google.protobuf.Timestamp finish_at = 3;   // Time when mining finished (if applicable)
+    bool can_claim = 4;             // Indicates if the user can claim the mined coins
+    bool is_claim_expired = 5;      // Indicates if the claim window has expired
+    int64 coins_mined = 7;          // Number of coins mined (if applicable)
+}
+
+// Request to start mining
+message StartMiningRequest {
+    int64 user_id = 1;
+}
+
+// Response when mining has been started
+message StartMiningResponse {
+    bool success = 1;           // Indicates if mining was successfully started
+}
+
+// Request to collect mined coins
+message CollectCoinsRequest {
+    bool success = 1;   
+}
+
+// Response after collecting mined coins
+message CollectCoinsResponse {
+    int64 coins_collected = 1;  // Number of coins collected
+    bool success = 2;           // Indicates if the coins were successfully collected
+}

@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package referral;
+
+option go_package = "boba.referral.v1;referralv1";
+
+// Service for managing the referral system
+service Referral {
+    // Make a user a referral
+    rpc MakeUserReferral (MakeUserReferralRequest) returns (MakeUserReferralResponse);
+
+    // Create a referral link for a user
+    rpc CreateReferralLink (CreateReferralLinkRequest) returns (CreateReferralLinkResponse);
+
+    // Get a list of user's referrals with pagination
+    rpc GetReferralsList (GetReferralsListRequest) returns (GetReferralsListResponse);
+
+    // Get the count of user's referrals
+    rpc GetReferralCount (GetReferralCountRequest) returns (GetReferralCountResponse);
+
+    // Get the referrer of a user
+    rpc GetReferrer (GetReferrerRequest) returns (GetReferrerResponse);
+
+    // Clame referral bonuse 
+    rpc Claim (ClaimRequest) returns (ClaimResponse);
+}
+
+// Request to create a referral relationship
+message MakeUserReferralRequest {
+    int64 user_id = 1;           // ID of the user becoming a referral
+    string referrer_key = 2;      // Referral key of the referrer
+}
+
+// Response for creating a referral relationship
+message MakeUserReferralResponse {
+    bool success = 1;             // Operation success status
+}
+
+// Request to create a referral link
+message CreateReferralLinkRequest {
+    int64 user_id = 1;            // ID of the user for whom the link is created
+}
+
+// Response for creating a referral link
+message CreateReferralLinkResponse {
+    string referral_link = 1;     // Created referral link
+}
+
+// Request to get the list of a user's referrals
+message GetReferralsListRequest {
+    int64 user_id = 1;            // ID of the user
+    int32 page = 2;               // Page number for pagination
+    int32 page_size = 3;          // Number of records per page
+}
+
+// Response with the list of user's referrals
+message GetReferralsListResponse {
+    repeated ReferralInfo referrals = 1;   // List of referrals
+    int32 total_count = 2;                 // Total number of referrals
+}
+
+// Information about a referral
+message ReferralInfo {
+    int64 user_id = 1;            // ID of the referral
+    string username = 2;          // Username of the referral
+    string joined_at = 3;         // Join date
+}
+
+// Request to get the count of a user's referrals
+message GetReferralCountRequest {
+    int64 user_id = 1;            // ID of the user
+}
+
+// Response with the number of referrals
+message GetReferralCountResponse {
+    int32 count = 1;              // Number of referrals
+}
+
+// Request to get the referrer of a user
+message GetReferrerRequest {
+    int64 user_id = 1;            // ID of the user
+}
+
+// Response with the referrer's information
+message GetReferrerResponse {
+    int64 referrer_id = 1;        // ID of the referrer
+    string referrer_username = 2; // Username of the referrer
+}
+
+// Request to claim the referral tokens
+message ClaimRequest {
+    int64 user_id = 1;            // ID of the user
+}
+
+// Response with the claiming information
+message ClaimResponse {
+    int64 coins_collected = 1;  // Number of coins collected
+    bool success = 2;           // Indicates if the coins were successfully collected
+}

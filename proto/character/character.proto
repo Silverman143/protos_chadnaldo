@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package character;
+
+option go_package = "boba.character.v1;characterv1";
+
+// Service for managing characters
+service Character {
+    // Get current character stats
+    rpc GetCharacterStats (GetCharacterStatsRequest) returns (GetCharacterStatsResponse);
+
+    // Get the character's level
+    rpc GetCharacterLevel (GetCharacterLevelRequest) returns (GetCharacterLevelResponse);
+
+    // Get the character's mining level
+    rpc GetMiningRate (GetMiningRateRequest) returns (GetMiningRateResponse);
+
+    // Get the list of all characters
+    rpc GetAllSkins (GetAllSkinsRequest) returns (GetAllSkinsResponse);
+
+    // Increase the character's level
+    rpc LevelUpCharacter (LevelUpCharacterRequest) returns (LevelUpCharacterResponse);
+
+    // Select the active character
+    rpc SelectActiveSkin (SelectActiveSkinRequest) returns (SelectActiveSkinResponse);
+}
+
+// Request to get the current character stats
+message GetCharacterStatsRequest {
+    int64 user_id = 1;   // ID of the user
+}
+
+// Response with the current character stats
+message GetCharacterStatsResponse {
+    string name = 1;           // Name of the character
+    int32 level = 2;           // Level of the character
+    int32 mining_rate = 3;    // Mining rate of the character
+    string current_skin = 4;    // Selected skin 
+}
+
+// Request to get the character's level
+message GetCharacterLevelRequest {
+    int64 user_id = 1;   // ID of the user
+}
+
+// Response with the character's level
+message GetCharacterLevelResponse {
+    int32 level = 1;          // Level of the character
+}
+
+// Request to get the character's mining level
+message GetMiningRateRequest {
+    int64 user_id = 1;   // ID of the user
+}
+
+// Response with the character's mining level
+message GetMiningRateResponse {
+    int32 mining_rate = 1;   // Mining level of the character
+}
+
+// Request to get the list of all characters
+message GetAllSkinsRequest {
+    int64 user_id = 1;  // List of all skin
+    int32 page = 2;               // Page number for pagination
+    int32 page_size = 3;          // Number of records per page
+}
+
+// Response with the list of all characters
+message GetAllSkinsResponse {
+    repeated SkinInfo characters = 1;  // List of all characters
+}
+
+// Information about a character
+message SkinInfo {
+    int64 skin_id = 1;      // ID of the skin
+    string image_url = 2;   // URL of skin image
+    string name = 3;        // Name of the character
+    int32 level = 4;        // Level of the character
+    int32 price = 5;        // Skin price
+    bool bought = 6;        // Is user bought this skin
+
+}
+
+// Request to level up a character
+message LevelUpCharacterRequest {
+    int64 user_id = 1;   // ID of the user
+}
+
+// Response after leveling up the character
+message LevelUpCharacterResponse {
+    bool success = 1;         // Indicates if the level-up was successful
+    int32 new_level = 2;      // The new level of the character
+}
+
+// Request to select the active character
+message SelectActiveSkinRequest {
+    int64 user_id = 1;  // ID of the user
+    int64 skin_id = 2;  // ID of the skin to set as active    
+}
+
+// Response after selecting the active character
+message SelectActiveSkinResponse {
+    bool success = 1;         // Indicates if the character was successfully set as active
+    string message = 2;       // Optional message about the operation
+}

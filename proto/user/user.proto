@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "boba.user.v1;userv1";
-
 import "google/protobuf/field_mask.proto";
+
+option go_package = "boba.user.v1;userv1";
 
 service UserService {
     // Получение информации о пользователе
