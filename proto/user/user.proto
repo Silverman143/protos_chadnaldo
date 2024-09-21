@@ -7,10 +7,13 @@ import "google/protobuf/field_mask.proto";
 option go_package = "boba.user.v1;userv1";
 
 service User{
-    // Получение информации о пользователе
+    // Get user data
     rpc GetUser (UserRequest) returns (UserResponse);
+
+    // Create new user in database
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
     
-    // Частичное обновление данных пользователя
+    // Partial data update user data
     rpc PartialUpdateUser (PartialUpdateUserRequest) returns (PartialUpdateUserResponse);
 }
 
@@ -20,6 +23,14 @@ message UserRequest {
 
 message UserResponse {
     UserData user_data = 1; // Информация о пользователе
+}
+
+message CreateUserRequest {
+    UserData user_data = 1;  // User data
+}
+
+message CreateUserResponse{
+    bool success = 1;           // Indicates if creation of user was successful 
 }
 
 message PartialUpdateUserRequest {
