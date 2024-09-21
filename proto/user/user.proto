@@ -8,7 +8,7 @@ option go_package = "boba.user.v1;userv1";
 
 service User{
     // Get user data
-    rpc GetUser (UserRequest) returns (UserResponse);
+    rpc GetUserData (GetUserRequest) returns (GetUserResponse);
 
     // Create new user in database
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
@@ -17,11 +17,11 @@ service User{
     rpc PartialUpdateUser (PartialUpdateUserRequest) returns (PartialUpdateUserResponse);
 }
 
-message UserRequest {
+message GetUserRequest {
     int64 user_id = 1; // Идентификатор пользователя
 }
 
-message UserResponse {
+message GetUserResponse {
     UserData user_data = 1; // Информация о пользователе
 }
 
