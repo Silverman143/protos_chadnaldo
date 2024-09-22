@@ -6,6 +6,9 @@ option go_package = "boba.character.v1;characterv1";
 
 // Service for managing characters
 service Character {
+    // Create character for user
+    rpc CreateCharacter (CreateCharacterRequest) returns (CreateCharacterResponse);
+
     // Get current character stats
     rpc GetCharacterStats (GetCharacterStatsRequest) returns (GetCharacterStatsResponse);
 
@@ -23,6 +26,16 @@ service Character {
 
     // Select the active character
     rpc SelectActiveSkin (SelectActiveSkinRequest) returns (SelectActiveSkinResponse);
+}
+
+// Request to create character
+message CreateCharacterRequest {
+    int64 user_id = 1;   // ID of the user
+}
+
+// Response for create character
+message CreateCharacterResponse {
+    bool success = 1;         // Indicates if the character created successful
 }
 
 // Request to get the current character stats
