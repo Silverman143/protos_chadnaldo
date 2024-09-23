@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Character_CreateCharacter_FullMethodName   = "/character.Character/CreateCharacter"
-	Character_GetCharacterStats_FullMethodName = "/character.Character/GetCharacterStats"
+	Character_GetCharacter_FullMethodName      = "/character.Character/GetCharacter"
 	Character_GetCharacterLevel_FullMethodName = "/character.Character/GetCharacterLevel"
 	Character_GetMiningRate_FullMethodName     = "/character.Character/GetMiningRate"
 	Character_GetAllSkins_FullMethodName       = "/character.Character/GetAllSkins"
@@ -36,8 +36,8 @@ const (
 type CharacterClient interface {
 	// Create character for user
 	CreateCharacter(ctx context.Context, in *CreateCharacterRequest, opts ...grpc.CallOption) (*CreateCharacterResponse, error)
-	// Get current character stats
-	GetCharacterStats(ctx context.Context, in *GetCharacterStatsRequest, opts ...grpc.CallOption) (*GetCharacterStatsResponse, error)
+	// Get current character
+	GetCharacter(ctx context.Context, in *GetCharacterRequest, opts ...grpc.CallOption) (*GetCharacterResponse, error)
 	// Get the character's level
 	GetCharacterLevel(ctx context.Context, in *GetCharacterLevelRequest, opts ...grpc.CallOption) (*GetCharacterLevelResponse, error)
 	// Get the character's mining level
@@ -68,10 +68,10 @@ func (c *characterClient) CreateCharacter(ctx context.Context, in *CreateCharact
 	return out, nil
 }
 
-func (c *characterClient) GetCharacterStats(ctx context.Context, in *GetCharacterStatsRequest, opts ...grpc.CallOption) (*GetCharacterStatsResponse, error) {
+func (c *characterClient) GetCharacter(ctx context.Context, in *GetCharacterRequest, opts ...grpc.CallOption) (*GetCharacterResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCharacterStatsResponse)
-	err := c.cc.Invoke(ctx, Character_GetCharacterStats_FullMethodName, in, out, cOpts...)
+	out := new(GetCharacterResponse)
+	err := c.cc.Invoke(ctx, Character_GetCharacter_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,8 +136,8 @@ func (c *characterClient) SelectActiveSkin(ctx context.Context, in *SelectActive
 type CharacterServer interface {
 	// Create character for user
 	CreateCharacter(context.Context, *CreateCharacterRequest) (*CreateCharacterResponse, error)
-	// Get current character stats
-	GetCharacterStats(context.Context, *GetCharacterStatsRequest) (*GetCharacterStatsResponse, error)
+	// Get current character
+	GetCharacter(context.Context, *GetCharacterRequest) (*GetCharacterResponse, error)
 	// Get the character's level
 	GetCharacterLevel(context.Context, *GetCharacterLevelRequest) (*GetCharacterLevelResponse, error)
 	// Get the character's mining level
@@ -161,8 +161,8 @@ type UnimplementedCharacterServer struct{}
 func (UnimplementedCharacterServer) CreateCharacter(context.Context, *CreateCharacterRequest) (*CreateCharacterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCharacter not implemented")
 }
-func (UnimplementedCharacterServer) GetCharacterStats(context.Context, *GetCharacterStatsRequest) (*GetCharacterStatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCharacterStats not implemented")
+func (UnimplementedCharacterServer) GetCharacter(context.Context, *GetCharacterRequest) (*GetCharacterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCharacter not implemented")
 }
 func (UnimplementedCharacterServer) GetCharacterLevel(context.Context, *GetCharacterLevelRequest) (*GetCharacterLevelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCharacterLevel not implemented")
@@ -218,20 +218,20 @@ func _Character_CreateCharacter_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Character_GetCharacterStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCharacterStatsRequest)
+func _Character_GetCharacter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCharacterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CharacterServer).GetCharacterStats(ctx, in)
+		return srv.(CharacterServer).GetCharacter(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Character_GetCharacterStats_FullMethodName,
+		FullMethod: Character_GetCharacter_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CharacterServer).GetCharacterStats(ctx, req.(*GetCharacterStatsRequest))
+		return srv.(CharacterServer).GetCharacter(ctx, req.(*GetCharacterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -338,8 +338,8 @@ var Character_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Character_CreateCharacter_Handler,
 		},
 		{
-			MethodName: "GetCharacterStats",
-			Handler:    _Character_GetCharacterStats_Handler,
+			MethodName: "GetCharacter",
+			Handler:    _Character_GetCharacter_Handler,
 		},
 		{
 			MethodName: "GetCharacterLevel",

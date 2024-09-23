@@ -9,8 +9,8 @@ service Character {
     // Create character for user
     rpc CreateCharacter (CreateCharacterRequest) returns (CreateCharacterResponse);
 
-    // Get current character stats
-    rpc GetCharacterStats (GetCharacterStatsRequest) returns (GetCharacterStatsResponse);
+    // Get current character
+    rpc GetCharacter (GetCharacterRequest) returns (GetCharacterResponse);
 
     // Get the character's level
     rpc GetCharacterLevel (GetCharacterLevelRequest) returns (GetCharacterLevelResponse);
@@ -39,16 +39,17 @@ message CreateCharacterResponse {
 }
 
 // Request to get the current character stats
-message GetCharacterStatsRequest {
+message GetCharacterRequest {
     int64 user_id = 1;   // ID of the user
 }
 
 // Response with the current character stats
-message GetCharacterStatsResponse {
+message GetCharacterResponse {
     string name = 1;           // Name of the character
     int32 level = 2;           // Level of the character
     int32 mining_rate = 3;    // Mining rate of the character
-    string current_skin = 4;    // Selected skin 
+    int32 current_skin_id = 4;    // Selected skin id
+    string current_skin_image_url = 5; // skin image url
 }
 
 // Request to get the character's level
