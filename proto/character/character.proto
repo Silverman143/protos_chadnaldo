@@ -115,6 +115,7 @@ message LevelUpCharacterRequest {
 message LevelUpCharacterResponse {
     bool success = 1;         // Indicates if the level-up was successful
     int32 new_level = 2;      // The new level of the character
+    int32 coins_balance = 3;      // Gold balance of user
 }
 
 // Request to select the active character
