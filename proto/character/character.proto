@@ -45,11 +45,12 @@ message GetCharacterRequest {
 
 // Response with the current character stats
 message GetCharacterResponse {
-    string name = 1;           // Name of the character
-    int32 level = 2;           // Level of the character
-    int32 mining_rate = 3;    // Mining rate of the character
-    int32 current_skin_id = 4;    // Selected skin id
-    string current_skin_image_url = 5; // skin image url
+    string name = 1;            // Name of the character
+    int32 level = 2;            // Level of the character
+    int32 mining_rate = 3;      // Mining rate of the character
+    int32 mining_duration = 4;  // Mining duration of the character
+    int32 current_skin_id = 5;    // Selected skin id
+    string current_skin_image_url = 6; // skin image url
 }
 
 // Request to get the character's level
