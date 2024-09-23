@@ -87,12 +87,14 @@ message GetAllSkinsResponse {
 
 // Information about a character
 message SkinInfo {
-    int64 skin_id = 1;      // ID of the skin
-    string image_url = 2;   // URL of skin image
-    string name = 3;        // Name of the character
-    int32 level = 4;        // Level of the character
-    int32 price = 5;        // Skin price
-    bool bought = 6;        // Is user bought this skin
+    int64 skin_id = 1;              // ID of the skin
+    string image_url = 2;           // URL of skin image
+    string name = 3;                // Name of the character
+    int32 level = 4;                // Level of the character
+    int32 price = 5;                // Skin price
+    int32 referrals_to_buy = 6;     // Ref to buy
+    int32 referrals_to_open = 7;    // Ref to open without buying
+    bool bought = 8;                // Is user bought this skin
 
 }
 
