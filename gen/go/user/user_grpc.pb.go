@@ -22,6 +22,8 @@ const (
 	User_GetUserData_FullMethodName       = "/user.User/GetUserData"
 	User_CreateUser_FullMethodName        = "/user.User/CreateUser"
 	User_PartialUpdateUser_FullMethodName = "/user.User/PartialUpdateUser"
+	User_InitiatePayment_FullMethodName   = "/user.User/InitiatePayment"
+	User_FinalizePayment_FullMethodName   = "/user.User/FinalizePayment"
 )
 
 // UserClient is the client API for User service.
@@ -34,6 +36,10 @@ type UserClient interface {
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	// Partial data update user data
 	PartialUpdateUser(ctx context.Context, in *PartialUpdateUserRequest, opts ...grpc.CallOption) (*PartialUpdateUserResponse, error)
+	// Reserve user coins for a potential payment
+	InitiatePayment(ctx context.Context, in *InitiatePaymentRequest, opts ...grpc.CallOption) (*InitiatePaymentResponse, error)
+	// Finalize the payment, either completing the payment or releasing the reserve
+	FinalizePayment(ctx context.Context, in *FinalizePaymentRequest, opts ...grpc.CallOption) (*FinalizePaymentResponse, error)
 }
 
 type userClient struct {
@@ -74,6 +80,26 @@ func (c *userClient) PartialUpdateUser(ctx context.Context, in *PartialUpdateUse
 	return out, nil
 }
 
+func (c *userClient) InitiatePayment(ctx context.Context, in *InitiatePaymentRequest, opts ...grpc.CallOption) (*InitiatePaymentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InitiatePaymentResponse)
+	err := c.cc.Invoke(ctx, User_InitiatePayment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) FinalizePayment(ctx context.Context, in *FinalizePaymentRequest, opts ...grpc.CallOption) (*FinalizePaymentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FinalizePaymentResponse)
+	err := c.cc.Invoke(ctx, User_FinalizePayment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -84,6 +110,10 @@ type UserServer interface {
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	// Partial data update user data
 	PartialUpdateUser(context.Context, *PartialUpdateUserRequest) (*PartialUpdateUserResponse, error)
+	// Reserve user coins for a potential payment
+	InitiatePayment(context.Context, *InitiatePaymentRequest) (*InitiatePaymentResponse, error)
+	// Finalize the payment, either completing the payment or releasing the reserve
+	FinalizePayment(context.Context, *FinalizePaymentRequest) (*FinalizePaymentResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -102,6 +132,12 @@ func (UnimplementedUserServer) CreateUser(context.Context, *CreateUserRequest) (
 }
 func (UnimplementedUserServer) PartialUpdateUser(context.Context, *PartialUpdateUserRequest) (*PartialUpdateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PartialUpdateUser not implemented")
+}
+func (UnimplementedUserServer) InitiatePayment(context.Context, *InitiatePaymentRequest) (*InitiatePaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiatePayment not implemented")
+}
+func (UnimplementedUserServer) FinalizePayment(context.Context, *FinalizePaymentRequest) (*FinalizePaymentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinalizePayment not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -178,6 +214,42 @@ func _User_PartialUpdateUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_InitiatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitiatePaymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).InitiatePayment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_InitiatePayment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).InitiatePayment(ctx, req.(*InitiatePaymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_FinalizePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinalizePaymentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).FinalizePayment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_FinalizePayment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).FinalizePayment(ctx, req.(*FinalizePaymentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +268,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PartialUpdateUser",
 			Handler:    _User_PartialUpdateUser_Handler,
+		},
+		{
+			MethodName: "InitiatePayment",
+			Handler:    _User_InitiatePayment_Handler,
+		},
+		{
+			MethodName: "FinalizePayment",
+			Handler:    _User_FinalizePayment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

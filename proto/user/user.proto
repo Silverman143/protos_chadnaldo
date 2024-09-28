@@ -15,6 +15,14 @@ service User{
     
     // Partial data update user data
     rpc PartialUpdateUser (PartialUpdateUserRequest) returns (PartialUpdateUserResponse);
+
+    // Reserve user coins for a potential payment
+    rpc InitiatePayment (InitiatePaymentRequest) returns (InitiatePaymentResponse);
+
+    // Finalize the payment, either completing the payment or releasing the reserve
+    rpc FinalizePayment (FinalizePaymentRequest) returns (FinalizePaymentResponse);
+
+    
 }
 
 message GetUserRequest {
@@ -52,4 +60,25 @@ message UserData {
     string telegram_avatar_url = 6;
     string language_code = 7;
     bool is_premium = 8;
+}
+
+message InitiatePaymentRequest {
+    int64 user_id = 1;
+    int64 amount = 2;
+    string transaction_id = 3;
+}
+
+message InitiatePaymentResponse {
+    bool success = 1;
+    string error_message = 2;
+}
+
+message FinalizePaymentRequest {
+    string transaction_id = 1;
+    bool complete = 2;  // true to complete the transaction, false to cancel
+}
+
+message FinalizePaymentResponse {
+    bool success = 1;
+    string error_message = 2;
 }
