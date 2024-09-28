@@ -74,7 +74,7 @@ message InitiatePaymentResponse {
 }
 
 message FinalizePaymentRequest {
-    string transaction_id = 1;
+    string payment_id = 1;
     bool complete = 2;  // true to complete the transaction, false to cancel
 }
 
