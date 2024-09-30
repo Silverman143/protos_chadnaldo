@@ -47,7 +47,7 @@ message GetCharacterRequest {
 message GetCharacterResponse {
     string name = 1;            // Name of the character
     int32 level = 2;            // Level of the character
-    int32 mining_rate = 3;      // Mining rate of the character
+    int64 mining_rate = 3;      // Mining rate of the character
     int32 mining_duration = 4;  // Mining duration of the character
     int32 current_skin_id = 5;    // Selected skin id
     string current_skin_image_url = 6; // skin image url
@@ -70,7 +70,7 @@ message GetMiningRateRequest {
 
 // Response with the character's mining level
 message GetMiningRateResponse {
-    int32 mining_rate = 1;   // Mining level of the character
+    int64 mining_rate = 1;   // Mining level of the character
 }
 
 // Request to get the list of all characters
@@ -92,7 +92,7 @@ message SkinInfo {
     string name = 3;                // Name of the character
     string lore = 4;                // Skin character lore
     int32 level = 5;                // Level of the character
-    int32 price = 6;                // Skin price
+    int64 price = 6;                // Skin price
     int32 referrals_to_buy = 7;     // Ref to buy
     int32 referrals_to_open = 8;    // Ref to open without buying
     bool bought = 9;                // Is user bought this skin
@@ -103,7 +103,7 @@ message SkinInfo {
 message SkinStats {
     int32 games_played = 1;
     int32 hours_played = 2;
-    int32 coins_earned = 3;
+    int64 coins_earned = 3;
 }
 
 // Request to level up a character
@@ -115,7 +115,7 @@ message LevelUpCharacterRequest {
 message LevelUpCharacterResponse {
     bool success = 1;         // Indicates if the level-up was successful
     int32 new_level = 2;      // The new level of the character
-    int32 coins_balance = 3;      // Gold balance of user
+    int64 coins_balance = 3;      // Gold balance of user
 }
 
 // Request to select the active character
