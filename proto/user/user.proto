@@ -13,6 +13,9 @@ service User{
     // Create new user in database
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
     
+    // Get coins balance
+    rpc GetUserCoinsBalance (GetUserCoinsBalanceRequest) returns (GetUserCoinsBalanceResponse);
+
     // Partial data update user data
     rpc PartialUpdateUser (PartialUpdateUserRequest) returns (PartialUpdateUserResponse);
 
@@ -39,6 +42,14 @@ message CreateUserRequest {
 
 message CreateUserResponse{
     bool success = 1;           // Indicates if creation of user was successful 
+}
+
+message GetUserCoinsBalanceRequest {
+    int64 user_id = 1; // User ID
+}
+
+message GetUserCoinsBalanceResponse {
+    int64 coins = 1; // User coins balance
 }
 
 message PartialUpdateUserRequest {
