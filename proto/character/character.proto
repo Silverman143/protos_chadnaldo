@@ -121,7 +121,7 @@ message LevelUpCharacterResponse {
 // Request to select the active character
 message SelectActiveSkinRequest {
     int64 user_id = 1;  // ID of the user
-    int64 skin_id = 2;  // ID of the skin to set as active    
+    int32 skin_id = 2;  // ID of the skin to set as active    
 }
 
 // Response after selecting the active character
