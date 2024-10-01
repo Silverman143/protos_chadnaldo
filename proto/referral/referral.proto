@@ -10,7 +10,7 @@ service Referral {
     rpc MakeUserReferral (MakeUserReferralRequest) returns (MakeUserReferralResponse);
 
     // Create a referral link for a user
-    rpc CreateReferralLink (CreateReferralLinkRequest) returns (CreateReferralLinkResponse);
+    rpc GetReferralCode (GetReferralCodeRequest) returns (GetReferralCodeResponse);
 
     // Get a list of user's referrals with pagination
     rpc GetReferralsList (GetReferralsListRequest) returns (GetReferralsListResponse);
@@ -37,13 +37,13 @@ message MakeUserReferralResponse {
 }
 
 // Request to create a referral link
-message CreateReferralLinkRequest {
+message GetReferralCodeRequest {
     int64 user_id = 1;            // ID of the user for whom the link is created
 }
 
 // Response for creating a referral link
-message CreateReferralLinkResponse {
-    string referral_link = 1;     // Created referral link
+message GetReferralCodeResponse {
+    string referral_code = 1;     // Created referral link
 }
 
 // Request to get the list of a user's referrals

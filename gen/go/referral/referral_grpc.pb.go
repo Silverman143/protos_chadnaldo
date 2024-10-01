@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Referral_MakeUserReferral_FullMethodName   = "/referral.Referral/MakeUserReferral"
-	Referral_CreateReferralLink_FullMethodName = "/referral.Referral/CreateReferralLink"
-	Referral_GetReferralsList_FullMethodName   = "/referral.Referral/GetReferralsList"
-	Referral_GetReferralCount_FullMethodName   = "/referral.Referral/GetReferralCount"
-	Referral_GetReferrer_FullMethodName        = "/referral.Referral/GetReferrer"
-	Referral_Claim_FullMethodName              = "/referral.Referral/Claim"
+	Referral_MakeUserReferral_FullMethodName = "/referral.Referral/MakeUserReferral"
+	Referral_GetReferralCode_FullMethodName  = "/referral.Referral/GetReferralCode"
+	Referral_GetReferralsList_FullMethodName = "/referral.Referral/GetReferralsList"
+	Referral_GetReferralCount_FullMethodName = "/referral.Referral/GetReferralCount"
+	Referral_GetReferrer_FullMethodName      = "/referral.Referral/GetReferrer"
+	Referral_Claim_FullMethodName            = "/referral.Referral/Claim"
 )
 
 // ReferralClient is the client API for Referral service.
@@ -36,7 +36,7 @@ type ReferralClient interface {
 	// Make a user a referral
 	MakeUserReferral(ctx context.Context, in *MakeUserReferralRequest, opts ...grpc.CallOption) (*MakeUserReferralResponse, error)
 	// Create a referral link for a user
-	CreateReferralLink(ctx context.Context, in *CreateReferralLinkRequest, opts ...grpc.CallOption) (*CreateReferralLinkResponse, error)
+	GetReferralCode(ctx context.Context, in *GetReferralCodeRequest, opts ...grpc.CallOption) (*GetReferralCodeResponse, error)
 	// Get a list of user's referrals with pagination
 	GetReferralsList(ctx context.Context, in *GetReferralsListRequest, opts ...grpc.CallOption) (*GetReferralsListResponse, error)
 	// Get the count of user's referrals
@@ -65,10 +65,10 @@ func (c *referralClient) MakeUserReferral(ctx context.Context, in *MakeUserRefer
 	return out, nil
 }
 
-func (c *referralClient) CreateReferralLink(ctx context.Context, in *CreateReferralLinkRequest, opts ...grpc.CallOption) (*CreateReferralLinkResponse, error) {
+func (c *referralClient) GetReferralCode(ctx context.Context, in *GetReferralCodeRequest, opts ...grpc.CallOption) (*GetReferralCodeResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateReferralLinkResponse)
-	err := c.cc.Invoke(ctx, Referral_CreateReferralLink_FullMethodName, in, out, cOpts...)
+	out := new(GetReferralCodeResponse)
+	err := c.cc.Invoke(ctx, Referral_GetReferralCode_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ type ReferralServer interface {
 	// Make a user a referral
 	MakeUserReferral(context.Context, *MakeUserReferralRequest) (*MakeUserReferralResponse, error)
 	// Create a referral link for a user
-	CreateReferralLink(context.Context, *CreateReferralLinkRequest) (*CreateReferralLinkResponse, error)
+	GetReferralCode(context.Context, *GetReferralCodeRequest) (*GetReferralCodeResponse, error)
 	// Get a list of user's referrals with pagination
 	GetReferralsList(context.Context, *GetReferralsListRequest) (*GetReferralsListResponse, error)
 	// Get the count of user's referrals
@@ -146,8 +146,8 @@ type UnimplementedReferralServer struct{}
 func (UnimplementedReferralServer) MakeUserReferral(context.Context, *MakeUserReferralRequest) (*MakeUserReferralResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MakeUserReferral not implemented")
 }
-func (UnimplementedReferralServer) CreateReferralLink(context.Context, *CreateReferralLinkRequest) (*CreateReferralLinkResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateReferralLink not implemented")
+func (UnimplementedReferralServer) GetReferralCode(context.Context, *GetReferralCodeRequest) (*GetReferralCodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReferralCode not implemented")
 }
 func (UnimplementedReferralServer) GetReferralsList(context.Context, *GetReferralsListRequest) (*GetReferralsListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReferralsList not implemented")
@@ -200,20 +200,20 @@ func _Referral_MakeUserReferral_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Referral_CreateReferralLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateReferralLinkRequest)
+func _Referral_GetReferralCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReferralCodeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ReferralServer).CreateReferralLink(ctx, in)
+		return srv.(ReferralServer).GetReferralCode(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Referral_CreateReferralLink_FullMethodName,
+		FullMethod: Referral_GetReferralCode_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReferralServer).CreateReferralLink(ctx, req.(*CreateReferralLinkRequest))
+		return srv.(ReferralServer).GetReferralCode(ctx, req.(*GetReferralCodeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -302,8 +302,8 @@ var Referral_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Referral_MakeUserReferral_Handler,
 		},
 		{
-			MethodName: "CreateReferralLink",
-			Handler:    _Referral_CreateReferralLink_Handler,
+			MethodName: "GetReferralCode",
+			Handler:    _Referral_GetReferralCode_Handler,
 		},
 		{
 			MethodName: "GetReferralsList",
