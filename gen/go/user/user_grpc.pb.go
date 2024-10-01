@@ -25,6 +25,7 @@ const (
 	User_PartialUpdateUser_FullMethodName   = "/user.User/PartialUpdateUser"
 	User_InitiatePayment_FullMethodName     = "/user.User/InitiatePayment"
 	User_FinalizePayment_FullMethodName     = "/user.User/FinalizePayment"
+	User_GetReferralsInfo_FullMethodName    = "/user.User/GetReferralsInfo"
 )
 
 // UserClient is the client API for User service.
@@ -43,6 +44,7 @@ type UserClient interface {
 	InitiatePayment(ctx context.Context, in *InitiatePaymentRequest, opts ...grpc.CallOption) (*InitiatePaymentResponse, error)
 	// Finalize the payment, either completing the payment or releasing the reserve
 	FinalizePayment(ctx context.Context, in *FinalizePaymentRequest, opts ...grpc.CallOption) (*FinalizePaymentResponse, error)
+	GetReferralsInfo(ctx context.Context, in *GetReferralsInfoRequest, opts ...grpc.CallOption) (*GetReferralsInfoResponse, error)
 }
 
 type userClient struct {
@@ -113,6 +115,16 @@ func (c *userClient) FinalizePayment(ctx context.Context, in *FinalizePaymentReq
 	return out, nil
 }
 
+func (c *userClient) GetReferralsInfo(ctx context.Context, in *GetReferralsInfoRequest, opts ...grpc.CallOption) (*GetReferralsInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetReferralsInfoResponse)
+	err := c.cc.Invoke(ctx, User_GetReferralsInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -129,6 +141,7 @@ type UserServer interface {
 	InitiatePayment(context.Context, *InitiatePaymentRequest) (*InitiatePaymentResponse, error)
 	// Finalize the payment, either completing the payment or releasing the reserve
 	FinalizePayment(context.Context, *FinalizePaymentRequest) (*FinalizePaymentResponse, error)
+	GetReferralsInfo(context.Context, *GetReferralsInfoRequest) (*GetReferralsInfoResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -156,6 +169,9 @@ func (UnimplementedUserServer) InitiatePayment(context.Context, *InitiatePayment
 }
 func (UnimplementedUserServer) FinalizePayment(context.Context, *FinalizePaymentRequest) (*FinalizePaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FinalizePayment not implemented")
+}
+func (UnimplementedUserServer) GetReferralsInfo(context.Context, *GetReferralsInfoRequest) (*GetReferralsInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReferralsInfo not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -286,6 +302,24 @@ func _User_FinalizePayment_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_GetReferralsInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReferralsInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetReferralsInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetReferralsInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetReferralsInfo(ctx, req.(*GetReferralsInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -316,6 +350,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FinalizePayment",
 			Handler:    _User_FinalizePayment_Handler,
+		},
+		{
+			MethodName: "GetReferralsInfo",
+			Handler:    _User_GetReferralsInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -3,6 +3,7 @@ syntax = "proto3";
 package user;
 
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "boba.user.v1;userv1";
 
@@ -25,6 +26,7 @@ service User{
     // Finalize the payment, either completing the payment or releasing the reserve
     rpc FinalizePayment (FinalizePaymentRequest) returns (FinalizePaymentResponse);
 
+    rpc GetReferralsInfo (GetReferralsInfoRequest) returns (GetReferralsInfoResponse);
     
 }
 
@@ -92,4 +94,19 @@ message FinalizePaymentRequest {
 message FinalizePaymentResponse {
     bool success = 1;
     string error_message = 2;
+}
+
+message GetReferralsInfoRequest {
+    repeated int64 referrals_ids = 1;
+}
+
+message GetReferralsInfoResponse {
+    repeated ReferralInfo referrals_info = 1;
+}
+
+message ReferralInfo {
+    int64 user_id = 1;
+    string user_name = 2;
+    string avatar_url = 3;
+    google.protobuf.Timestamp last_active = 4;
 }
