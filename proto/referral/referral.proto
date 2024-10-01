@@ -57,13 +57,15 @@ message GetReferralsListRequest {
 message GetReferralsListResponse {
     repeated ReferralInfo referrals = 1;   // List of referrals
     int32 total_count = 2;                 // Total number of referrals
+    int32 current_page = 3;                // Current page
 }
 
 // Information about a referral
 message ReferralInfo {
     int64 user_id = 1;            // ID of the referral
     string username = 2;          // Username of the referral
-    string joined_at = 3;         // Join date
+    string avatar_url = 3;         // Join date
+    bool is_active = 4;
 }
 
 // Request to get the count of a user's referrals
