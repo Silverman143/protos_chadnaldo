@@ -85,8 +85,9 @@ message GetReferrerRequest {
 
 // Response with the referrer's information
 message GetReferrerResponse {
-    int64 referrer_id = 1;        // ID of the referrer
-    string referrer_username = 2; // Username of the referrer
+    bool referrer_exists = 1;
+    optional int64 referrer_id = 2;        // ID of the referrer
+    optional string referrer_username = 3; // Username of the referrer
 }
 
 // Request to claim the referral tokens
