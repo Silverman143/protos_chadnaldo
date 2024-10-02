@@ -16,7 +16,7 @@ service Referral {
     rpc GetReferralsList (GetReferralsListRequest) returns (GetReferralsListResponse);
 
     // Get the count of user's referrals
-    rpc GetReferralCount (GetReferralCountRequest) returns (GetReferralCountResponse);
+    rpc GetReferralsCount (GetReferralCountRequest) returns (GetReferralCountResponse);
 
     // Get the referrer of a user
     rpc GetReferrer (GetReferrerRequest) returns (GetReferrerResponse);
