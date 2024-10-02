@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Referral_MakeUserReferral_FullMethodName = "/referral.Referral/MakeUserReferral"
-	Referral_GetReferralCode_FullMethodName  = "/referral.Referral/GetReferralCode"
-	Referral_GetReferralsList_FullMethodName = "/referral.Referral/GetReferralsList"
-	Referral_GetReferralCount_FullMethodName = "/referral.Referral/GetReferralCount"
-	Referral_GetReferrer_FullMethodName      = "/referral.Referral/GetReferrer"
-	Referral_Claim_FullMethodName            = "/referral.Referral/Claim"
+	Referral_MakeUserReferral_FullMethodName  = "/referral.Referral/MakeUserReferral"
+	Referral_GetReferralCode_FullMethodName   = "/referral.Referral/GetReferralCode"
+	Referral_GetReferralsList_FullMethodName  = "/referral.Referral/GetReferralsList"
+	Referral_GetReferralsCount_FullMethodName = "/referral.Referral/GetReferralsCount"
+	Referral_GetReferrer_FullMethodName       = "/referral.Referral/GetReferrer"
+	Referral_Claim_FullMethodName             = "/referral.Referral/Claim"
 )
 
 // ReferralClient is the client API for Referral service.
@@ -40,7 +40,7 @@ type ReferralClient interface {
 	// Get a list of user's referrals with pagination
 	GetReferralsList(ctx context.Context, in *GetReferralsListRequest, opts ...grpc.CallOption) (*GetReferralsListResponse, error)
 	// Get the count of user's referrals
-	GetReferralCount(ctx context.Context, in *GetReferralCountRequest, opts ...grpc.CallOption) (*GetReferralCountResponse, error)
+	GetReferralsCount(ctx context.Context, in *GetReferralCountRequest, opts ...grpc.CallOption) (*GetReferralCountResponse, error)
 	// Get the referrer of a user
 	GetReferrer(ctx context.Context, in *GetReferrerRequest, opts ...grpc.CallOption) (*GetReferrerResponse, error)
 	// Clame referral bonuse
@@ -85,10 +85,10 @@ func (c *referralClient) GetReferralsList(ctx context.Context, in *GetReferralsL
 	return out, nil
 }
 
-func (c *referralClient) GetReferralCount(ctx context.Context, in *GetReferralCountRequest, opts ...grpc.CallOption) (*GetReferralCountResponse, error) {
+func (c *referralClient) GetReferralsCount(ctx context.Context, in *GetReferralCountRequest, opts ...grpc.CallOption) (*GetReferralCountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetReferralCountResponse)
-	err := c.cc.Invoke(ctx, Referral_GetReferralCount_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Referral_GetReferralsCount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -128,7 +128,7 @@ type ReferralServer interface {
 	// Get a list of user's referrals with pagination
 	GetReferralsList(context.Context, *GetReferralsListRequest) (*GetReferralsListResponse, error)
 	// Get the count of user's referrals
-	GetReferralCount(context.Context, *GetReferralCountRequest) (*GetReferralCountResponse, error)
+	GetReferralsCount(context.Context, *GetReferralCountRequest) (*GetReferralCountResponse, error)
 	// Get the referrer of a user
 	GetReferrer(context.Context, *GetReferrerRequest) (*GetReferrerResponse, error)
 	// Clame referral bonuse
@@ -152,8 +152,8 @@ func (UnimplementedReferralServer) GetReferralCode(context.Context, *GetReferral
 func (UnimplementedReferralServer) GetReferralsList(context.Context, *GetReferralsListRequest) (*GetReferralsListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReferralsList not implemented")
 }
-func (UnimplementedReferralServer) GetReferralCount(context.Context, *GetReferralCountRequest) (*GetReferralCountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetReferralCount not implemented")
+func (UnimplementedReferralServer) GetReferralsCount(context.Context, *GetReferralCountRequest) (*GetReferralCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReferralsCount not implemented")
 }
 func (UnimplementedReferralServer) GetReferrer(context.Context, *GetReferrerRequest) (*GetReferrerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReferrer not implemented")
@@ -236,20 +236,20 @@ func _Referral_GetReferralsList_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Referral_GetReferralCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Referral_GetReferralsCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetReferralCountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ReferralServer).GetReferralCount(ctx, in)
+		return srv.(ReferralServer).GetReferralsCount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Referral_GetReferralCount_FullMethodName,
+		FullMethod: Referral_GetReferralsCount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReferralServer).GetReferralCount(ctx, req.(*GetReferralCountRequest))
+		return srv.(ReferralServer).GetReferralsCount(ctx, req.(*GetReferralCountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -310,8 +310,8 @@ var Referral_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Referral_GetReferralsList_Handler,
 		},
 		{
-			MethodName: "GetReferralCount",
-			Handler:    _Referral_GetReferralCount_Handler,
+			MethodName: "GetReferralsCount",
+			Handler:    _Referral_GetReferralsCount_Handler,
 		},
 		{
 			MethodName: "GetReferrer",
