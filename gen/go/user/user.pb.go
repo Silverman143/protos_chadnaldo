@@ -910,6 +910,108 @@ func (x *ReferralInfo) GetLastActive() *timestamppb.Timestamp {
 	return nil
 }
 
+type AddCoinsToUserRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId      int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CoinsAmount int64 `protobuf:"varint,2,opt,name=coins_amount,json=coinsAmount,proto3" json:"coins_amount,omitempty"`
+}
+
+func (x *AddCoinsToUserRequest) Reset() {
+	*x = AddCoinsToUserRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_user_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCoinsToUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCoinsToUserRequest) ProtoMessage() {}
+
+func (x *AddCoinsToUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCoinsToUserRequest.ProtoReflect.Descriptor instead.
+func (*AddCoinsToUserRequest) Descriptor() ([]byte, []int) {
+	return file_user_user_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *AddCoinsToUserRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *AddCoinsToUserRequest) GetCoinsAmount() int64 {
+	if x != nil {
+		return x.CoinsAmount
+	}
+	return 0
+}
+
+type AddCoinsToUserResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CoinsTotal int64 `protobuf:"varint,1,opt,name=coins_total,json=coinsTotal,proto3" json:"coins_total,omitempty"`
+}
+
+func (x *AddCoinsToUserResponse) Reset() {
+	*x = AddCoinsToUserResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_user_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddCoinsToUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddCoinsToUserResponse) ProtoMessage() {}
+
+func (x *AddCoinsToUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddCoinsToUserResponse.ProtoReflect.Descriptor instead.
+func (*AddCoinsToUserResponse) Descriptor() ([]byte, []int) {
+	return file_user_user_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *AddCoinsToUserResponse) GetCoinsTotal() int64 {
+	if x != nil {
+		return x.CoinsTotal
+	}
+	return 0
+}
+
 var File_user_user_proto protoreflect.FileDescriptor
 
 var file_user_user_proto_rawDesc = []byte{
@@ -1017,7 +1119,16 @@ var file_user_user_proto_rawDesc = []byte{
 	0x5f, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
 	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
 	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0a, 0x6c, 0x61, 0x73, 0x74, 0x41,
-	0x63, 0x74, 0x69, 0x76, 0x65, 0x32, 0xa8, 0x04, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x3a,
+	0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x53, 0x0a, 0x15, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x69, 0x6e,
+	0x73, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17,
+	0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x69, 0x6e, 0x73,
+	0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x63,
+	0x6f, 0x69, 0x6e, 0x73, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x39, 0x0a, 0x16, 0x41, 0x64,
+	0x64, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x63, 0x6f, 0x69, 0x6e, 0x73, 0x5f, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x63, 0x6f, 0x69, 0x6e, 0x73,
+	0x54, 0x6f, 0x74, 0x61, 0x6c, 0x32, 0xf5, 0x04, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x3a,
 	0x0a, 0x0b, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x14, 0x2e,
 	0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x55, 0x73,
@@ -1052,8 +1163,13 @@ var file_user_user_proto_rawDesc = []byte{
 	0x72, 0x72, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x1e, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x66, 0x65, 0x72,
 	0x72, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x42, 0x15, 0x5a, 0x13, 0x62, 0x6f, 0x62, 0x61, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x76, 0x31,
-	0x3b, 0x75, 0x73, 0x65, 0x72, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x4b, 0x0a, 0x0e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x54, 0x6f, 0x55, 0x73,
+	0x65, 0x72, 0x12, 0x1b, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x69,
+	0x6e, 0x73, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x1c, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x41, 0x64, 0x64, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x54,
+	0x6f, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x15, 0x5a,
+	0x13, 0x62, 0x6f, 0x62, 0x61, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x76, 0x31, 0x3b, 0x75, 0x73,
+	0x65, 0x72, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1068,7 +1184,7 @@ func file_user_user_proto_rawDescGZIP() []byte {
 	return file_user_user_proto_rawDescData
 }
 
-var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_user_user_proto_goTypes = []any{
 	(*GetUserRequest)(nil),              // 0: user.GetUserRequest
 	(*GetUserResponse)(nil),             // 1: user.GetUserResponse
@@ -1086,17 +1202,19 @@ var file_user_user_proto_goTypes = []any{
 	(*GetReferralsInfoRequest)(nil),     // 13: user.GetReferralsInfoRequest
 	(*GetReferralsInfoResponse)(nil),    // 14: user.GetReferralsInfoResponse
 	(*ReferralInfo)(nil),                // 15: user.ReferralInfo
-	(*fieldmaskpb.FieldMask)(nil),       // 16: google.protobuf.FieldMask
-	(*timestamppb.Timestamp)(nil),       // 17: google.protobuf.Timestamp
+	(*AddCoinsToUserRequest)(nil),       // 16: user.AddCoinsToUserRequest
+	(*AddCoinsToUserResponse)(nil),      // 17: user.AddCoinsToUserResponse
+	(*fieldmaskpb.FieldMask)(nil),       // 18: google.protobuf.FieldMask
+	(*timestamppb.Timestamp)(nil),       // 19: google.protobuf.Timestamp
 }
 var file_user_user_proto_depIdxs = []int32{
 	8,  // 0: user.GetUserResponse.user_data:type_name -> user.UserData
 	8,  // 1: user.CreateUserRequest.user_data:type_name -> user.UserData
 	8,  // 2: user.PartialUpdateUserRequest.user_data:type_name -> user.UserData
-	16, // 3: user.PartialUpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
+	18, // 3: user.PartialUpdateUserRequest.update_mask:type_name -> google.protobuf.FieldMask
 	8,  // 4: user.PartialUpdateUserResponse.updated_user:type_name -> user.UserData
 	15, // 5: user.GetReferralsInfoResponse.referrals_info:type_name -> user.ReferralInfo
-	17, // 6: user.ReferralInfo.last_active:type_name -> google.protobuf.Timestamp
+	19, // 6: user.ReferralInfo.last_active:type_name -> google.protobuf.Timestamp
 	0,  // 7: user.User.GetUserData:input_type -> user.GetUserRequest
 	2,  // 8: user.User.CreateUser:input_type -> user.CreateUserRequest
 	4,  // 9: user.User.GetUserCoinsBalance:input_type -> user.GetUserCoinsBalanceRequest
@@ -1104,15 +1222,17 @@ var file_user_user_proto_depIdxs = []int32{
 	9,  // 11: user.User.InitiatePayment:input_type -> user.InitiatePaymentRequest
 	11, // 12: user.User.FinalizePayment:input_type -> user.FinalizePaymentRequest
 	13, // 13: user.User.GetReferralsInfo:input_type -> user.GetReferralsInfoRequest
-	1,  // 14: user.User.GetUserData:output_type -> user.GetUserResponse
-	3,  // 15: user.User.CreateUser:output_type -> user.CreateUserResponse
-	5,  // 16: user.User.GetUserCoinsBalance:output_type -> user.GetUserCoinsBalanceResponse
-	7,  // 17: user.User.PartialUpdateUser:output_type -> user.PartialUpdateUserResponse
-	10, // 18: user.User.InitiatePayment:output_type -> user.InitiatePaymentResponse
-	12, // 19: user.User.FinalizePayment:output_type -> user.FinalizePaymentResponse
-	14, // 20: user.User.GetReferralsInfo:output_type -> user.GetReferralsInfoResponse
-	14, // [14:21] is the sub-list for method output_type
-	7,  // [7:14] is the sub-list for method input_type
+	16, // 14: user.User.AddCoinsToUser:input_type -> user.AddCoinsToUserRequest
+	1,  // 15: user.User.GetUserData:output_type -> user.GetUserResponse
+	3,  // 16: user.User.CreateUser:output_type -> user.CreateUserResponse
+	5,  // 17: user.User.GetUserCoinsBalance:output_type -> user.GetUserCoinsBalanceResponse
+	7,  // 18: user.User.PartialUpdateUser:output_type -> user.PartialUpdateUserResponse
+	10, // 19: user.User.InitiatePayment:output_type -> user.InitiatePaymentResponse
+	12, // 20: user.User.FinalizePayment:output_type -> user.FinalizePaymentResponse
+	14, // 21: user.User.GetReferralsInfo:output_type -> user.GetReferralsInfoResponse
+	17, // 22: user.User.AddCoinsToUser:output_type -> user.AddCoinsToUserResponse
+	15, // [15:23] is the sub-list for method output_type
+	7,  // [7:15] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
 	7,  // [7:7] is the sub-list for extension extendee
 	0,  // [0:7] is the sub-list for field type_name
@@ -1316,6 +1436,30 @@ func file_user_user_proto_init() {
 				return nil
 			}
 		}
+		file_user_user_proto_msgTypes[16].Exporter = func(v any, i int) any {
+			switch v := v.(*AddCoinsToUserRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_user_proto_msgTypes[17].Exporter = func(v any, i int) any {
+			switch v := v.(*AddCoinsToUserResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1323,7 +1467,7 @@ func file_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_user_user_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

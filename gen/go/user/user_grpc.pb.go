@@ -26,6 +26,7 @@ const (
 	User_InitiatePayment_FullMethodName     = "/user.User/InitiatePayment"
 	User_FinalizePayment_FullMethodName     = "/user.User/FinalizePayment"
 	User_GetReferralsInfo_FullMethodName    = "/user.User/GetReferralsInfo"
+	User_AddCoinsToUser_FullMethodName      = "/user.User/AddCoinsToUser"
 )
 
 // UserClient is the client API for User service.
@@ -44,7 +45,10 @@ type UserClient interface {
 	InitiatePayment(ctx context.Context, in *InitiatePaymentRequest, opts ...grpc.CallOption) (*InitiatePaymentResponse, error)
 	// Finalize the payment, either completing the payment or releasing the reserve
 	FinalizePayment(ctx context.Context, in *FinalizePaymentRequest, opts ...grpc.CallOption) (*FinalizePaymentResponse, error)
+	// Get usersID and returning referral infp
 	GetReferralsInfo(ctx context.Context, in *GetReferralsInfoRequest, opts ...grpc.CallOption) (*GetReferralsInfoResponse, error)
+	// Add coins to user
+	AddCoinsToUser(ctx context.Context, in *AddCoinsToUserRequest, opts ...grpc.CallOption) (*AddCoinsToUserResponse, error)
 }
 
 type userClient struct {
@@ -125,6 +129,16 @@ func (c *userClient) GetReferralsInfo(ctx context.Context, in *GetReferralsInfoR
 	return out, nil
 }
 
+func (c *userClient) AddCoinsToUser(ctx context.Context, in *AddCoinsToUserRequest, opts ...grpc.CallOption) (*AddCoinsToUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddCoinsToUserResponse)
+	err := c.cc.Invoke(ctx, User_AddCoinsToUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -141,7 +155,10 @@ type UserServer interface {
 	InitiatePayment(context.Context, *InitiatePaymentRequest) (*InitiatePaymentResponse, error)
 	// Finalize the payment, either completing the payment or releasing the reserve
 	FinalizePayment(context.Context, *FinalizePaymentRequest) (*FinalizePaymentResponse, error)
+	// Get usersID and returning referral infp
 	GetReferralsInfo(context.Context, *GetReferralsInfoRequest) (*GetReferralsInfoResponse, error)
+	// Add coins to user
+	AddCoinsToUser(context.Context, *AddCoinsToUserRequest) (*AddCoinsToUserResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -172,6 +189,9 @@ func (UnimplementedUserServer) FinalizePayment(context.Context, *FinalizePayment
 }
 func (UnimplementedUserServer) GetReferralsInfo(context.Context, *GetReferralsInfoRequest) (*GetReferralsInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReferralsInfo not implemented")
+}
+func (UnimplementedUserServer) AddCoinsToUser(context.Context, *AddCoinsToUserRequest) (*AddCoinsToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCoinsToUser not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -320,6 +340,24 @@ func _User_GetReferralsInfo_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_AddCoinsToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCoinsToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).AddCoinsToUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_AddCoinsToUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).AddCoinsToUser(ctx, req.(*AddCoinsToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -354,6 +392,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetReferralsInfo",
 			Handler:    _User_GetReferralsInfo_Handler,
+		},
+		{
+			MethodName: "AddCoinsToUser",
+			Handler:    _User_AddCoinsToUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

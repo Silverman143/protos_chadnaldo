@@ -26,7 +26,11 @@ service User{
     // Finalize the payment, either completing the payment or releasing the reserve
     rpc FinalizePayment (FinalizePaymentRequest) returns (FinalizePaymentResponse);
 
+    // Get usersID and returning referral infp
     rpc GetReferralsInfo (GetReferralsInfoRequest) returns (GetReferralsInfoResponse);
+
+    // Add coins to user
+    rpc AddCoinsToUser (AddCoinsToUserRequest) returns (AddCoinsToUserResponse);
     
 }
 
@@ -109,4 +113,13 @@ message ReferralInfo {
     string user_name = 2;
     string avatar_url = 3;
     google.protobuf.Timestamp last_active = 4;
+}
+
+message AddCoinsToUserRequest {
+    int64 user_id = 1;
+    int64 coins_amount = 2;
+}
+
+message AddCoinsToUserResponse {
+    int64 coins_total = 1;
 }
