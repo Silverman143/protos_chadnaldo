@@ -24,6 +24,7 @@ const (
 	Referral_GetReferralsList_FullMethodName  = "/referral.Referral/GetReferralsList"
 	Referral_GetReferralsCount_FullMethodName = "/referral.Referral/GetReferralsCount"
 	Referral_GetReferrer_FullMethodName       = "/referral.Referral/GetReferrer"
+	Referral_CollectibleTokens_FullMethodName = "/referral.Referral/CollectibleTokens"
 	Referral_Claim_FullMethodName             = "/referral.Referral/Claim"
 )
 
@@ -43,6 +44,8 @@ type ReferralClient interface {
 	GetReferralsCount(ctx context.Context, in *GetReferralsCountRequest, opts ...grpc.CallOption) (*GetReferralsCountResponse, error)
 	// Get the referrer of a user
 	GetReferrer(ctx context.Context, in *GetReferrerRequest, opts ...grpc.CallOption) (*GetReferrerResponse, error)
+	// Return amount of tokens
+	CollectibleTokens(ctx context.Context, in *CollectibleTokensRequest, opts ...grpc.CallOption) (*CollectibleTokensResponse, error)
 	// Clame referral bonuse
 	Claim(ctx context.Context, in *ClaimRequest, opts ...grpc.CallOption) (*ClaimResponse, error)
 }
@@ -105,6 +108,16 @@ func (c *referralClient) GetReferrer(ctx context.Context, in *GetReferrerRequest
 	return out, nil
 }
 
+func (c *referralClient) CollectibleTokens(ctx context.Context, in *CollectibleTokensRequest, opts ...grpc.CallOption) (*CollectibleTokensResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CollectibleTokensResponse)
+	err := c.cc.Invoke(ctx, Referral_CollectibleTokens_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *referralClient) Claim(ctx context.Context, in *ClaimRequest, opts ...grpc.CallOption) (*ClaimResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ClaimResponse)
@@ -131,6 +144,8 @@ type ReferralServer interface {
 	GetReferralsCount(context.Context, *GetReferralsCountRequest) (*GetReferralsCountResponse, error)
 	// Get the referrer of a user
 	GetReferrer(context.Context, *GetReferrerRequest) (*GetReferrerResponse, error)
+	// Return amount of tokens
+	CollectibleTokens(context.Context, *CollectibleTokensRequest) (*CollectibleTokensResponse, error)
 	// Clame referral bonuse
 	Claim(context.Context, *ClaimRequest) (*ClaimResponse, error)
 	mustEmbedUnimplementedReferralServer()
@@ -157,6 +172,9 @@ func (UnimplementedReferralServer) GetReferralsCount(context.Context, *GetReferr
 }
 func (UnimplementedReferralServer) GetReferrer(context.Context, *GetReferrerRequest) (*GetReferrerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetReferrer not implemented")
+}
+func (UnimplementedReferralServer) CollectibleTokens(context.Context, *CollectibleTokensRequest) (*CollectibleTokensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CollectibleTokens not implemented")
 }
 func (UnimplementedReferralServer) Claim(context.Context, *ClaimRequest) (*ClaimResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Claim not implemented")
@@ -272,6 +290,24 @@ func _Referral_GetReferrer_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Referral_CollectibleTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CollectibleTokensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReferralServer).CollectibleTokens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Referral_CollectibleTokens_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReferralServer).CollectibleTokens(ctx, req.(*CollectibleTokensRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Referral_Claim_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClaimRequest)
 	if err := dec(in); err != nil {
@@ -316,6 +352,10 @@ var Referral_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetReferrer",
 			Handler:    _Referral_GetReferrer_Handler,
+		},
+		{
+			MethodName: "CollectibleTokens",
+			Handler:    _Referral_CollectibleTokens_Handler,
 		},
 		{
 			MethodName: "Claim",

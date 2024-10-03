@@ -21,6 +21,9 @@ service Referral {
     // Get the referrer of a user
     rpc GetReferrer (GetReferrerRequest) returns (GetReferrerResponse);
 
+    // Return amount of tokens 
+    rpc CollectibleTokens (CollectibleTokensRequest) returns (CollectibleTokensResponse);
+
     // Clame referral bonuse 
     rpc Claim (ClaimRequest) returns (ClaimResponse);
 }
@@ -99,4 +102,12 @@ message ClaimRequest {
 message ClaimResponse {
     int64 coins_collected = 1;  // Number of coins collected
     bool success = 2;           // Indicates if the coins were successfully collected
+}
+
+message CollectibleTokensRequest {
+    int64 user_id = 1;   
+}
+
+message CollectibleTokensResponse {
+    int64 coins_amount = 1; 
 }
