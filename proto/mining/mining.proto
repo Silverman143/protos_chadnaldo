@@ -50,7 +50,7 @@ message StartMiningResponse {
 
 // Request to collect mined coins
 message CollectCoinsRequest {
-    bool success = 1;   
+    int64 user_id = 1;
 }
 
 // Response after collecting mined coins
