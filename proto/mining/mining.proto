@@ -25,11 +25,9 @@ message GetMiningStatusRequest {
 
 // Response with the current mining status
 message GetMiningStatusResponse {
-    bool is_mining_active = 1;      // Indicates if mining is currently active
+    string mining_status = 1;      // Indicates if mining is currently active
     google.protobuf.Timestamp starts_at = 2;   // Time when mining started (if applicable)
     google.protobuf.Timestamp finish_at = 3;   // Time when mining finished (if applicable)
-    bool can_claim = 4;             // Indicates if the user can claim the mined coins
-    bool is_claim_expired = 5;      // Indicates if the claim window has expired
     int64 coins = 7;          // Number of coins mined (if applicable)
 }
 
