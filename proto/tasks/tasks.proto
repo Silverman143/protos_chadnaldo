@@ -63,30 +63,11 @@ message Task {
     int64 id = 1;
     string title = 2;
     string description = 3;
-    TaskType task_type = 4;
+    string task_type = 4;
     int64 reward = 5;
-    TaskStatus status = 6;
+    string status = 6;
     google.protobuf.Timestamp created_at = 7;
     google.protobuf.Timestamp updated_at = 8;
-}
-
-// Task type enum
-enum TaskType {
-    TASK_TYPE_UNSPECIFIED = 0;
-    TASK_TYPE_ON_CHAIN = 1;
-    TASK_TYPE_SOCIAL = 2;
-    TASK_TYPE_FRIEND = 3;
-    TASK_TYPE_FARMING = 4;
-    TASK_TYPE_GAME = 5;
-}
-
-// Task status enum
-enum TaskStatus {
-    TASK_STATUS_UNSPECIFIED = 0;
-    TASK_STATUS_NOT_STARTED = 1;
-    TASK_STATUS_ACTIVE = 2;
-    TASK_STATUS_COMPLETED = 3;
-    TASK_STATUS_PAID = 4;
 }
 
 // Response with the number of consecutive days
