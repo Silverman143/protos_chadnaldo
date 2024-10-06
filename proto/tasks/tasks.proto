@@ -44,16 +44,11 @@ message TaskActionResponse {
 // Request to get all tasks for a user
 message GetAllTasksRequest {
     int64 user_id = 1;
-    int32 page = 2;         // For pagination
-    int32 page_size = 3;    // For pagination
 }
 
 // Response with a list of tasks
 message GetAllTasksResponse {
     repeated Task tasks = 1;
-    int32 total_count = 2;  // Total number of tasks
-    int32 page = 3;         // Current page
-    int32 page_size = 4;    // Page size
 }
 
 // Response for claiming a task reward
