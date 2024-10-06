@@ -1,60 +1,100 @@
 syntax = "proto3";
 
-package tasks;
+package tasks.v1;
 
 option go_package = "boba.tasks.v1;tasksv1";
 
+import "google/protobuf/timestamp.proto";
+
 // Service for managing tasks
 service Tasks {
-    // Get all tasks with pagination
+    // Get all tasks for a user
     rpc GetAllTasks (GetAllTasksRequest) returns (GetAllTasksResponse);
 
-    // Check if a task is completed
-    rpc IsTaskCompleted (IsTaskCompletedRequest) returns (IsTaskCompletedResponse);
+    // Start a task for a user
+    rpc StartTask (TaskActionRequest) returns (TaskActionResponse);
+
+    // Complete a task for a user
+    rpc CompleteTask (TaskActionRequest) returns (TaskActionResponse);
+
+    // Claim reward for a completed task
+    rpc ClaimTaskReward (TaskActionRequest) returns (ClaimTaskRewardResponse);
 
     // Get the number of consecutive days a user completed tasks
-    rpc GetTasksDaysStreak (GetTasksDaysStreakRequest) returns (GetTasksDaysStreakResponse);
+    rpc GetTasksDaysStreak (UserRequest) returns (GetTasksDaysStreakResponse);
 }
 
-// Request to get all tasks with pagination
+// Common request structure for user-related requests
+message UserRequest {
+    int64 user_id = 1;
+}
+
+// Common request structure for task actions
+message TaskActionRequest {
+    int64 user_id = 1;
+    int64 task_id = 2;
+}
+
+// Common response structure for task actions
+message TaskActionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Request to get all tasks for a user
 message GetAllTasksRequest {
-    int64 user_id = 1;          // ID of the user
-    int32 page = 2;             // Page number for pagination
-    int32 page_size = 3;        // Number of tasks per page
+    int64 user_id = 1;
+    int32 page = 2;         // For pagination
+    int32 page_size = 3;    // For pagination
 }
 
-// Response with a paginated list of tasks
+// Response with a list of tasks
 message GetAllTasksResponse {
-    repeated Task tasks = 1;    // List of tasks
-    int32 total_count = 2;      // Total number of tasks
+    repeated Task tasks = 1;
+    int32 total_count = 2;  // Total number of tasks
+    int32 page = 3;         // Current page
+    int32 page_size = 4;    // Page size
+}
+
+// Response for claiming a task reward
+message ClaimTaskRewardResponse {
+    bool success = 1;
+    int64 amount = 2;
+    string message = 3;
 }
 
 // Task structure
 message Task {
-    string title = 1;           // Title of the task
-    string description = 2;     // Description of the task
-    string task_type = 3;       // Type of the task
-    int32 reward = 4;           // Reward for the task
-    bool is_completed = 5;      // Indicates if the task is completed
+    int64 id = 1;
+    string title = 2;
+    string description = 3;
+    TaskType task_type = 4;
+    int64 reward = 5;
+    TaskStatus status = 6;
+    google.protobuf.Timestamp created_at = 7;
+    google.protobuf.Timestamp updated_at = 8;
 }
 
-// Request to check if a task is completed
-message IsTaskCompletedRequest {
-    int64 user_id = 1;          // ID of the user
-    int64 task_id = 2;          // ID of the task
+// Task type enum
+enum TaskType {
+    TASK_TYPE_UNSPECIFIED = 0;
+    TASK_TYPE_ON_CHAIN = 1;
+    TASK_TYPE_SOCIAL = 2;
+    TASK_TYPE_FRIEND = 3;
+    TASK_TYPE_FARMING = 4;
+    TASK_TYPE_GAME = 5;
 }
 
-// Response to indicate if the task is completed
-message IsTaskCompletedResponse {
-    bool is_completed = 1;      // Indicates if the task is completed
-}
-
-// Request to get the number of consecutive days tasks were completed
-message GetTasksDaysStreakRequest {
-    int64 user_id = 1;          // ID of the user
+// Task status enum
+enum TaskStatus {
+    TASK_STATUS_UNSPECIFIED = 0;
+    TASK_STATUS_NOT_STARTED = 1;
+    TASK_STATUS_ACTIVE = 2;
+    TASK_STATUS_COMPLETED = 3;
+    TASK_STATUS_PAID = 4;
 }
 
 // Response with the number of consecutive days
 message GetTasksDaysStreakResponse {
-    int32 consecutive_days = 1; // Number of consecutive days
+    int32 consecutive_days = 1;
 }

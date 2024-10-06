@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Tasks_GetAllTasks_FullMethodName        = "/tasks.Tasks/GetAllTasks"
-	Tasks_IsTaskCompleted_FullMethodName    = "/tasks.Tasks/IsTaskCompleted"
-	Tasks_GetTasksDaysStreak_FullMethodName = "/tasks.Tasks/GetTasksDaysStreak"
+	Tasks_GetAllTasks_FullMethodName        = "/tasks.v1.Tasks/GetAllTasks"
+	Tasks_StartTask_FullMethodName          = "/tasks.v1.Tasks/StartTask"
+	Tasks_CompleteTask_FullMethodName       = "/tasks.v1.Tasks/CompleteTask"
+	Tasks_ClaimTaskReward_FullMethodName    = "/tasks.v1.Tasks/ClaimTaskReward"
+	Tasks_GetTasksDaysStreak_FullMethodName = "/tasks.v1.Tasks/GetTasksDaysStreak"
 )
 
 // TasksClient is the client API for Tasks service.
@@ -30,12 +32,16 @@ const (
 //
 // Service for managing tasks
 type TasksClient interface {
-	// Get all tasks with pagination
+	// Get all tasks for a user
 	GetAllTasks(ctx context.Context, in *GetAllTasksRequest, opts ...grpc.CallOption) (*GetAllTasksResponse, error)
-	// Check if a task is completed
-	IsTaskCompleted(ctx context.Context, in *IsTaskCompletedRequest, opts ...grpc.CallOption) (*IsTaskCompletedResponse, error)
+	// Start a task for a user
+	StartTask(ctx context.Context, in *TaskActionRequest, opts ...grpc.CallOption) (*TaskActionResponse, error)
+	// Complete a task for a user
+	CompleteTask(ctx context.Context, in *TaskActionRequest, opts ...grpc.CallOption) (*TaskActionResponse, error)
+	// Claim reward for a completed task
+	ClaimTaskReward(ctx context.Context, in *TaskActionRequest, opts ...grpc.CallOption) (*ClaimTaskRewardResponse, error)
 	// Get the number of consecutive days a user completed tasks
-	GetTasksDaysStreak(ctx context.Context, in *GetTasksDaysStreakRequest, opts ...grpc.CallOption) (*GetTasksDaysStreakResponse, error)
+	GetTasksDaysStreak(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*GetTasksDaysStreakResponse, error)
 }
 
 type tasksClient struct {
@@ -56,17 +62,37 @@ func (c *tasksClient) GetAllTasks(ctx context.Context, in *GetAllTasksRequest, o
 	return out, nil
 }
 
-func (c *tasksClient) IsTaskCompleted(ctx context.Context, in *IsTaskCompletedRequest, opts ...grpc.CallOption) (*IsTaskCompletedResponse, error) {
+func (c *tasksClient) StartTask(ctx context.Context, in *TaskActionRequest, opts ...grpc.CallOption) (*TaskActionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(IsTaskCompletedResponse)
-	err := c.cc.Invoke(ctx, Tasks_IsTaskCompleted_FullMethodName, in, out, cOpts...)
+	out := new(TaskActionResponse)
+	err := c.cc.Invoke(ctx, Tasks_StartTask_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *tasksClient) GetTasksDaysStreak(ctx context.Context, in *GetTasksDaysStreakRequest, opts ...grpc.CallOption) (*GetTasksDaysStreakResponse, error) {
+func (c *tasksClient) CompleteTask(ctx context.Context, in *TaskActionRequest, opts ...grpc.CallOption) (*TaskActionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TaskActionResponse)
+	err := c.cc.Invoke(ctx, Tasks_CompleteTask_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tasksClient) ClaimTaskReward(ctx context.Context, in *TaskActionRequest, opts ...grpc.CallOption) (*ClaimTaskRewardResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ClaimTaskRewardResponse)
+	err := c.cc.Invoke(ctx, Tasks_ClaimTaskReward_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tasksClient) GetTasksDaysStreak(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*GetTasksDaysStreakResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTasksDaysStreakResponse)
 	err := c.cc.Invoke(ctx, Tasks_GetTasksDaysStreak_FullMethodName, in, out, cOpts...)
@@ -82,12 +108,16 @@ func (c *tasksClient) GetTasksDaysStreak(ctx context.Context, in *GetTasksDaysSt
 //
 // Service for managing tasks
 type TasksServer interface {
-	// Get all tasks with pagination
+	// Get all tasks for a user
 	GetAllTasks(context.Context, *GetAllTasksRequest) (*GetAllTasksResponse, error)
-	// Check if a task is completed
-	IsTaskCompleted(context.Context, *IsTaskCompletedRequest) (*IsTaskCompletedResponse, error)
+	// Start a task for a user
+	StartTask(context.Context, *TaskActionRequest) (*TaskActionResponse, error)
+	// Complete a task for a user
+	CompleteTask(context.Context, *TaskActionRequest) (*TaskActionResponse, error)
+	// Claim reward for a completed task
+	ClaimTaskReward(context.Context, *TaskActionRequest) (*ClaimTaskRewardResponse, error)
 	// Get the number of consecutive days a user completed tasks
-	GetTasksDaysStreak(context.Context, *GetTasksDaysStreakRequest) (*GetTasksDaysStreakResponse, error)
+	GetTasksDaysStreak(context.Context, *UserRequest) (*GetTasksDaysStreakResponse, error)
 	mustEmbedUnimplementedTasksServer()
 }
 
@@ -101,10 +131,16 @@ type UnimplementedTasksServer struct{}
 func (UnimplementedTasksServer) GetAllTasks(context.Context, *GetAllTasksRequest) (*GetAllTasksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllTasks not implemented")
 }
-func (UnimplementedTasksServer) IsTaskCompleted(context.Context, *IsTaskCompletedRequest) (*IsTaskCompletedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IsTaskCompleted not implemented")
+func (UnimplementedTasksServer) StartTask(context.Context, *TaskActionRequest) (*TaskActionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartTask not implemented")
 }
-func (UnimplementedTasksServer) GetTasksDaysStreak(context.Context, *GetTasksDaysStreakRequest) (*GetTasksDaysStreakResponse, error) {
+func (UnimplementedTasksServer) CompleteTask(context.Context, *TaskActionRequest) (*TaskActionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CompleteTask not implemented")
+}
+func (UnimplementedTasksServer) ClaimTaskReward(context.Context, *TaskActionRequest) (*ClaimTaskRewardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClaimTaskReward not implemented")
+}
+func (UnimplementedTasksServer) GetTasksDaysStreak(context.Context, *UserRequest) (*GetTasksDaysStreakResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTasksDaysStreak not implemented")
 }
 func (UnimplementedTasksServer) mustEmbedUnimplementedTasksServer() {}
@@ -146,26 +182,62 @@ func _Tasks_GetAllTasks_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Tasks_IsTaskCompleted_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IsTaskCompletedRequest)
+func _Tasks_StartTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskActionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TasksServer).IsTaskCompleted(ctx, in)
+		return srv.(TasksServer).StartTask(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Tasks_IsTaskCompleted_FullMethodName,
+		FullMethod: Tasks_StartTask_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TasksServer).IsTaskCompleted(ctx, req.(*IsTaskCompletedRequest))
+		return srv.(TasksServer).StartTask(ctx, req.(*TaskActionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tasks_CompleteTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskActionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TasksServer).CompleteTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tasks_CompleteTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TasksServer).CompleteTask(ctx, req.(*TaskActionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tasks_ClaimTaskReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskActionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TasksServer).ClaimTaskReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tasks_ClaimTaskReward_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TasksServer).ClaimTaskReward(ctx, req.(*TaskActionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Tasks_GetTasksDaysStreak_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTasksDaysStreakRequest)
+	in := new(UserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -177,7 +249,7 @@ func _Tasks_GetTasksDaysStreak_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: Tasks_GetTasksDaysStreak_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TasksServer).GetTasksDaysStreak(ctx, req.(*GetTasksDaysStreakRequest))
+		return srv.(TasksServer).GetTasksDaysStreak(ctx, req.(*UserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -186,7 +258,7 @@ func _Tasks_GetTasksDaysStreak_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Tasks_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tasks.Tasks",
+	ServiceName: "tasks.v1.Tasks",
 	HandlerType: (*TasksServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -194,8 +266,16 @@ var Tasks_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Tasks_GetAllTasks_Handler,
 		},
 		{
-			MethodName: "IsTaskCompleted",
-			Handler:    _Tasks_IsTaskCompleted_Handler,
+			MethodName: "StartTask",
+			Handler:    _Tasks_StartTask_Handler,
+		},
+		{
+			MethodName: "CompleteTask",
+			Handler:    _Tasks_CompleteTask_Handler,
+		},
+		{
+			MethodName: "ClaimTaskReward",
+			Handler:    _Tasks_ClaimTaskReward_Handler,
 		},
 		{
 			MethodName: "GetTasksDaysStreak",
