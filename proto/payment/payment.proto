@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "boba.payment.v1;paymentv1";
+
+service PaymentService {
+  rpc CreateTelegramStarsPayment (TelegramStarsPaymentRequest) returns (TelegramStarsPaymentResponse);
+  rpc CreateTonPayment (TonPaymentRequest) returns (TonPaymentResponse);
+  rpc GetPaymentStatus (GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+}
+
+message TelegramStarsPaymentRequest {
+  string user_id = 1;
+  int64 item_id = 2;
+}
+
+message TelegramStarsPaymentResponse {
+  string invoice_link = 1;
+  string payment_id = 2;
+}
+
+message TonPaymentRequest {
+  string user_id = 1;
+  int64 item_id = 2;
+}
+
+message TonPaymentResponse {
+  string payment_id = 1;
+  string wallet_address = 2;
+}
+
+message GetPaymentStatusRequest {
+  string payment_id = 1;
+}
+
+message GetPaymentStatusResponse {
+  PaymentInfo payment_info = 1;
+}
+
+message PaymentInfo {
+  string payment_id = 1;
+  string user_id = 2;
+  int64 item_id = 3;
+  double amount = 4;
+  string currency = 5;
+  PaymentType type = 6;
+  PaymentStatus status = 7;
+  string created_at = 8;
+}
+
+enum PaymentType {
+  PAYMENT_TYPE_UNSPECIFIED = 0;
+  PAYMENT_TYPE_TELEGRAM_STARS = 1;
+  PAYMENT_TYPE_TON = 2;
+}
+
+enum PaymentStatus {
+  PAYMENT_STATUS_UNSPECIFIED = 0;
+  PAYMENT_STATUS_PENDING = 1;
+  PAYMENT_STATUS_COMPLETED = 2;
+  PAYMENT_STATUS_FAILED = 3;
+}
