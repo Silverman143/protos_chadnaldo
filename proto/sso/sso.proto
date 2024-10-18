@@ -6,16 +6,26 @@ option go_package = "boba.sso.v1;ssov1";
 
 service Auth {
     rpc Login (LoginRequest) returns (LoginResponse);
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
 }
 
 message LoginRequest {
-    string telegramInitData = 1;
+    string telegram_init_data = 1;
     int32 app_id = 2;
 }
 
 message LoginResponse {
     string token = 1;
+}
+
+message ValidateTokenRequest {
+    string token = 1;
+}
+
+message ValidateTokenResponse {
+    bool success = 1;
+    int64 user_id = 2;
 }
 
 message IsAdminRequest {
