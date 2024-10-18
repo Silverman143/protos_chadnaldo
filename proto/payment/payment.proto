@@ -5,29 +5,38 @@ package payment;
 option go_package = "boba.payment.v1;paymentv1";
 
 service PaymentService {
-  rpc CreateTelegramStarsPayment (TelegramStarsPaymentRequest) returns (TelegramStarsPaymentResponse);
-  rpc CreateTonPayment (TonPaymentRequest) returns (TonPaymentResponse);
+  rpc GetPaymentMethods (GetPaymentMethodsRequest) returns (GetPaymentMethodsResponse);
+  rpc GetInvoiceLink (GetInvoiceLinkRequest) returns (GetInvoiceLinkResponse);
   rpc GetPaymentStatus (GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+  rpc HandleTelegramPreCheckoutQuery (HandleTelegramPreCheckoutQueryRequest) returns (HandleTelegramPreCheckoutQueryResponse);
+  // rpc HandleAeonPaymentWebhook (HandleAeonPaymentWebhookRequest) returns (HandleAeonPaymentWebhookResponse);
 }
 
-message TelegramStarsPaymentRequest {
-  string user_id = 1;
-  int64 item_id = 2;
+message GetPaymentMethodsRequest {
+  // Пустой запрос
 }
 
-message TelegramStarsPaymentResponse {
-  string invoice_link = 1;
-  string payment_id = 2;
+message GetPaymentMethodsResponse {
+  repeated PaymentMethod methods = 1;
 }
 
-message TonPaymentRequest {
-  string user_id = 1;
-  int64 item_id = 2;
+message PaymentMethod {
+  int32 id = 1;
+  string name = 2;
+  string type = 3;
 }
 
-message TonPaymentResponse {
+message  GetInvoiceLinkRequest {
+  int64 user_id = 1;
+  int64 payment_method_id = 2;
+  string currency = 3;
+  int64 item_id = 4;
+}
+
+message GetInvoiceLinkResponse {
   string payment_id = 1;
-  string wallet_address = 2;
+  string payment_type = 2;
+  string payment_url = 3;
 }
 
 message GetPaymentStatusRequest {
@@ -35,24 +44,8 @@ message GetPaymentStatusRequest {
 }
 
 message GetPaymentStatusResponse {
-  PaymentInfo payment_info = 1;
-}
-
-message PaymentInfo {
   string payment_id = 1;
-  string user_id = 2;
-  int64 item_id = 3;
-  double amount = 4;
-  string currency = 5;
-  PaymentType type = 6;
-  PaymentStatus status = 7;
-  string created_at = 8;
-}
-
-enum PaymentType {
-  PAYMENT_TYPE_UNSPECIFIED = 0;
-  PAYMENT_TYPE_TELEGRAM_STARS = 1;
-  PAYMENT_TYPE_TON = 2;
+  PaymentStatus status = 2;
 }
 
 enum PaymentStatus {
@@ -60,4 +53,15 @@ enum PaymentStatus {
   PAYMENT_STATUS_PENDING = 1;
   PAYMENT_STATUS_COMPLETED = 2;
   PAYMENT_STATUS_FAILED = 3;
+}
+
+message HandleTelegramPreCheckoutQueryRequest {
+  string query_id = 1;
+  string currency = 2;
+  int64  amount = 3;
+  string payload = 4;
+}
+
+message HandleTelegramPreCheckoutQueryResponse {
+  bool success = 1;
 }

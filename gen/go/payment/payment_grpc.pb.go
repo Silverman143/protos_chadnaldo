@@ -19,18 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PaymentService_CreateTelegramStarsPayment_FullMethodName = "/payment.PaymentService/CreateTelegramStarsPayment"
-	PaymentService_CreateTonPayment_FullMethodName           = "/payment.PaymentService/CreateTonPayment"
-	PaymentService_GetPaymentStatus_FullMethodName           = "/payment.PaymentService/GetPaymentStatus"
+	PaymentService_GetPaymentMethods_FullMethodName              = "/payment.PaymentService/GetPaymentMethods"
+	PaymentService_GetInvoiceLink_FullMethodName                 = "/payment.PaymentService/GetInvoiceLink"
+	PaymentService_GetPaymentStatus_FullMethodName               = "/payment.PaymentService/GetPaymentStatus"
+	PaymentService_HandleTelegramPreCheckoutQuery_FullMethodName = "/payment.PaymentService/HandleTelegramPreCheckoutQuery"
 )
 
 // PaymentServiceClient is the client API for PaymentService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PaymentServiceClient interface {
-	CreateTelegramStarsPayment(ctx context.Context, in *TelegramStarsPaymentRequest, opts ...grpc.CallOption) (*TelegramStarsPaymentResponse, error)
-	CreateTonPayment(ctx context.Context, in *TonPaymentRequest, opts ...grpc.CallOption) (*TonPaymentResponse, error)
+	GetPaymentMethods(ctx context.Context, in *GetPaymentMethodsRequest, opts ...grpc.CallOption) (*GetPaymentMethodsResponse, error)
+	GetInvoiceLink(ctx context.Context, in *GetInvoiceLinkRequest, opts ...grpc.CallOption) (*GetInvoiceLinkResponse, error)
 	GetPaymentStatus(ctx context.Context, in *GetPaymentStatusRequest, opts ...grpc.CallOption) (*GetPaymentStatusResponse, error)
+	HandleTelegramPreCheckoutQuery(ctx context.Context, in *HandleTelegramPreCheckoutQueryRequest, opts ...grpc.CallOption) (*HandleTelegramPreCheckoutQueryResponse, error)
 }
 
 type paymentServiceClient struct {
@@ -41,20 +43,20 @@ func NewPaymentServiceClient(cc grpc.ClientConnInterface) PaymentServiceClient {
 	return &paymentServiceClient{cc}
 }
 
-func (c *paymentServiceClient) CreateTelegramStarsPayment(ctx context.Context, in *TelegramStarsPaymentRequest, opts ...grpc.CallOption) (*TelegramStarsPaymentResponse, error) {
+func (c *paymentServiceClient) GetPaymentMethods(ctx context.Context, in *GetPaymentMethodsRequest, opts ...grpc.CallOption) (*GetPaymentMethodsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TelegramStarsPaymentResponse)
-	err := c.cc.Invoke(ctx, PaymentService_CreateTelegramStarsPayment_FullMethodName, in, out, cOpts...)
+	out := new(GetPaymentMethodsResponse)
+	err := c.cc.Invoke(ctx, PaymentService_GetPaymentMethods_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *paymentServiceClient) CreateTonPayment(ctx context.Context, in *TonPaymentRequest, opts ...grpc.CallOption) (*TonPaymentResponse, error) {
+func (c *paymentServiceClient) GetInvoiceLink(ctx context.Context, in *GetInvoiceLinkRequest, opts ...grpc.CallOption) (*GetInvoiceLinkResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TonPaymentResponse)
-	err := c.cc.Invoke(ctx, PaymentService_CreateTonPayment_FullMethodName, in, out, cOpts...)
+	out := new(GetInvoiceLinkResponse)
+	err := c.cc.Invoke(ctx, PaymentService_GetInvoiceLink_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,13 +73,24 @@ func (c *paymentServiceClient) GetPaymentStatus(ctx context.Context, in *GetPaym
 	return out, nil
 }
 
+func (c *paymentServiceClient) HandleTelegramPreCheckoutQuery(ctx context.Context, in *HandleTelegramPreCheckoutQueryRequest, opts ...grpc.CallOption) (*HandleTelegramPreCheckoutQueryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HandleTelegramPreCheckoutQueryResponse)
+	err := c.cc.Invoke(ctx, PaymentService_HandleTelegramPreCheckoutQuery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PaymentServiceServer is the server API for PaymentService service.
 // All implementations must embed UnimplementedPaymentServiceServer
 // for forward compatibility.
 type PaymentServiceServer interface {
-	CreateTelegramStarsPayment(context.Context, *TelegramStarsPaymentRequest) (*TelegramStarsPaymentResponse, error)
-	CreateTonPayment(context.Context, *TonPaymentRequest) (*TonPaymentResponse, error)
+	GetPaymentMethods(context.Context, *GetPaymentMethodsRequest) (*GetPaymentMethodsResponse, error)
+	GetInvoiceLink(context.Context, *GetInvoiceLinkRequest) (*GetInvoiceLinkResponse, error)
 	GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*GetPaymentStatusResponse, error)
+	HandleTelegramPreCheckoutQuery(context.Context, *HandleTelegramPreCheckoutQueryRequest) (*HandleTelegramPreCheckoutQueryResponse, error)
 	mustEmbedUnimplementedPaymentServiceServer()
 }
 
@@ -88,14 +101,17 @@ type PaymentServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPaymentServiceServer struct{}
 
-func (UnimplementedPaymentServiceServer) CreateTelegramStarsPayment(context.Context, *TelegramStarsPaymentRequest) (*TelegramStarsPaymentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTelegramStarsPayment not implemented")
+func (UnimplementedPaymentServiceServer) GetPaymentMethods(context.Context, *GetPaymentMethodsRequest) (*GetPaymentMethodsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentMethods not implemented")
 }
-func (UnimplementedPaymentServiceServer) CreateTonPayment(context.Context, *TonPaymentRequest) (*TonPaymentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTonPayment not implemented")
+func (UnimplementedPaymentServiceServer) GetInvoiceLink(context.Context, *GetInvoiceLinkRequest) (*GetInvoiceLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInvoiceLink not implemented")
 }
 func (UnimplementedPaymentServiceServer) GetPaymentStatus(context.Context, *GetPaymentStatusRequest) (*GetPaymentStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPaymentStatus not implemented")
+}
+func (UnimplementedPaymentServiceServer) HandleTelegramPreCheckoutQuery(context.Context, *HandleTelegramPreCheckoutQueryRequest) (*HandleTelegramPreCheckoutQueryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HandleTelegramPreCheckoutQuery not implemented")
 }
 func (UnimplementedPaymentServiceServer) mustEmbedUnimplementedPaymentServiceServer() {}
 func (UnimplementedPaymentServiceServer) testEmbeddedByValue()                        {}
@@ -118,38 +134,38 @@ func RegisterPaymentServiceServer(s grpc.ServiceRegistrar, srv PaymentServiceSer
 	s.RegisterService(&PaymentService_ServiceDesc, srv)
 }
 
-func _PaymentService_CreateTelegramStarsPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TelegramStarsPaymentRequest)
+func _PaymentService_GetPaymentMethods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPaymentMethodsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentServiceServer).CreateTelegramStarsPayment(ctx, in)
+		return srv.(PaymentServiceServer).GetPaymentMethods(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PaymentService_CreateTelegramStarsPayment_FullMethodName,
+		FullMethod: PaymentService_GetPaymentMethods_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).CreateTelegramStarsPayment(ctx, req.(*TelegramStarsPaymentRequest))
+		return srv.(PaymentServiceServer).GetPaymentMethods(ctx, req.(*GetPaymentMethodsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PaymentService_CreateTonPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TonPaymentRequest)
+func _PaymentService_GetInvoiceLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInvoiceLinkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PaymentServiceServer).CreateTonPayment(ctx, in)
+		return srv.(PaymentServiceServer).GetInvoiceLink(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PaymentService_CreateTonPayment_FullMethodName,
+		FullMethod: PaymentService_GetInvoiceLink_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PaymentServiceServer).CreateTonPayment(ctx, req.(*TonPaymentRequest))
+		return srv.(PaymentServiceServer).GetInvoiceLink(ctx, req.(*GetInvoiceLinkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -172,6 +188,24 @@ func _PaymentService_GetPaymentStatus_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentService_HandleTelegramPreCheckoutQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HandleTelegramPreCheckoutQueryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentServiceServer).HandleTelegramPreCheckoutQuery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PaymentService_HandleTelegramPreCheckoutQuery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentServiceServer).HandleTelegramPreCheckoutQuery(ctx, req.(*HandleTelegramPreCheckoutQueryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PaymentService_ServiceDesc is the grpc.ServiceDesc for PaymentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,16 +214,20 @@ var PaymentService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PaymentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateTelegramStarsPayment",
-			Handler:    _PaymentService_CreateTelegramStarsPayment_Handler,
+			MethodName: "GetPaymentMethods",
+			Handler:    _PaymentService_GetPaymentMethods_Handler,
 		},
 		{
-			MethodName: "CreateTonPayment",
-			Handler:    _PaymentService_CreateTonPayment_Handler,
+			MethodName: "GetInvoiceLink",
+			Handler:    _PaymentService_GetInvoiceLink_Handler,
 		},
 		{
 			MethodName: "GetPaymentStatus",
 			Handler:    _PaymentService_GetPaymentStatus_Handler,
+		},
+		{
+			MethodName: "HandleTelegramPreCheckoutQuery",
+			Handler:    _PaymentService_HandleTelegramPreCheckoutQuery_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
