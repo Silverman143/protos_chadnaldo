@@ -8,7 +8,9 @@ service PaymentService {
   rpc GetPaymentMethods (GetPaymentMethodsRequest) returns (GetPaymentMethodsResponse);
   rpc GetInvoiceLink (GetInvoiceLinkRequest) returns (GetInvoiceLinkResponse);
   rpc GetPaymentStatus (GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+  // Telegram handlers
   rpc HandleTelegramPreCheckoutQuery (HandleTelegramPreCheckoutQueryRequest) returns (HandleTelegramPreCheckoutQueryResponse);
+  rpc HandleTelegramSuccessfulPayment (HandleTelegramSuccessfulPaymentRequest) returns (HandleTelegramSuccessfulPaymentResponse);
   // rpc HandleAeonPaymentWebhook (HandleAeonPaymentWebhookRequest) returns (HandleAeonPaymentWebhookResponse);
 }
 
@@ -64,5 +66,13 @@ message HandleTelegramPreCheckoutQueryRequest {
 }
 
 message HandleTelegramPreCheckoutQueryResponse {
+  bool success = 1;
+}
+
+message HandleTelegramSuccessfulPaymentRequest {
+  string payload = 1;
+}
+
+message HandleTelegramSuccessfulPaymentResponse {
   bool success = 1;
 }
