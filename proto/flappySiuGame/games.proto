@@ -7,12 +7,16 @@ option go_package = "boba.flappySiuGame.v1;flappySiuGamev1";
 // Service for managing the mining process
 service FlappySiuGame {
 
+    // Create session for siu game
     rpc CreateSession (CreateSessionRequest) returns (CreateSessionResponse);
 
+    // Submit game result 
     rpc SubmitScore (SubmitScoreRequest) returns (SubmitScoreResponse);
 
+    // Get mini bomb game status
     rpc GetBombOrBonusStatus (GetBombOrBonusStatusRequest) returns (GetBombOrBonusStatusResponse);
 
+    // Reveal new card in mini bomb game
     rpc BombOrBonusRevealCard (BombOrBonusRevealCardRequest) returns (BombOrBonusRevealCardResponse);
 }
 
