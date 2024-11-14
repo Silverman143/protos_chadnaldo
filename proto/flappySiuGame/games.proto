@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package flappySiuGame;
+
+option go_package = "boba.flappySiuGame.v1;flappySiuGamev1";
+
+// Service for managing the mining process
+service FlappySiuGame {
+
+    rpc CreateSession (CreateSessionRequest) returns (CreateSessionResponse);
+
+    rpc SubmitScore (SubmitScoreRequest) returns (SubmitScoreResponse);
+
+    rpc GetBombOrBonusStatus (GetBombOrBonusStatusRequest) returns (GetBombOrBonusStatusResponse);
+
+    rpc BombOrBonusRevealCard (BombOrBonusRevealCardRequest) returns (BombOrBonusRevealCardResponse);
+}
+
+message CreateSessionRequest {
+    int64 user_id = 1;
+}
+
+message CreateSessionResponse {
+    int32 game_number = 1;        // Games counter
+    float multiplier = 2;        // Tokens multiplier saved from previous game
+    string session_token = 3;    // Current game session token 
+}
+
+message SubmitScoreRequest {
+    int32 game_number = 1;   
+    int32 score = 2;
+    string session_token = 3;
+    string signature = 4;    // Signature for security validation
+}
+
+message SubmitScoreResponse {
+    bool success = 1;         // Indicates whether the score submission was successful
+    string message = 2;       // Additional information or error details
+}
+
+message GetBombOrBonusStatusRequest {
+    int64 user_id = 1;
+}
+
+message GetBombOrBonusStatusResponse {
+    repeated OpenedCard opened = 1; // List of opened cards and their multipliers
+    int32 price_to_open = 2;        // Price for the next card to open
+}
+
+message OpenedCard {
+    int32 card_number = 1;   // The number of the opened card
+    float multiplier = 2;    // The multiplier value of the opened card
+}
+
+message BombOrBonusRevealCardRequest {
+    int64 user_id = 1;
+    int32 card_number = 2; // The card to reveal
+}
+
+message BombOrBonusRevealCardResponse {
+    float result_multiplier = 1; // Multiplier received from the revealed card
+    int32 next_price = 2;        // Price for the next card to open
+}
