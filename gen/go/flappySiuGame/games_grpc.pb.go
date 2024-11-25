@@ -29,11 +29,15 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// Service for managing the mining process
+// FlappySiuGame service provides endpoints for the main game and bonus mini-game functionality
 type FlappySiuGameClient interface {
+	// CreateSession initializes a new game session and returns session credentials
 	CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error)
+	// SubmitScore validates and processes the game results, potentially unlocking the bonus game
 	SubmitScore(ctx context.Context, in *SubmitScoreRequest, opts ...grpc.CallOption) (*SubmitScoreResponse, error)
+	// GetBombOrBonusStatus retrieves the current state of the bonus mini-game
 	GetBombOrBonusStatus(ctx context.Context, in *GetBombOrBonusStatusRequest, opts ...grpc.CallOption) (*GetBombOrBonusStatusResponse, error)
+	// BombOrBonusRevealCard handles card revelation in the bonus mini-game
 	BombOrBonusRevealCard(ctx context.Context, in *BombOrBonusRevealCardRequest, opts ...grpc.CallOption) (*BombOrBonusRevealCardResponse, error)
 }
 
@@ -89,11 +93,15 @@ func (c *flappySiuGameClient) BombOrBonusRevealCard(ctx context.Context, in *Bom
 // All implementations must embed UnimplementedFlappySiuGameServer
 // for forward compatibility.
 //
-// Service for managing the mining process
+// FlappySiuGame service provides endpoints for the main game and bonus mini-game functionality
 type FlappySiuGameServer interface {
+	// CreateSession initializes a new game session and returns session credentials
 	CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error)
+	// SubmitScore validates and processes the game results, potentially unlocking the bonus game
 	SubmitScore(context.Context, *SubmitScoreRequest) (*SubmitScoreResponse, error)
+	// GetBombOrBonusStatus retrieves the current state of the bonus mini-game
 	GetBombOrBonusStatus(context.Context, *GetBombOrBonusStatusRequest) (*GetBombOrBonusStatusResponse, error)
+	// BombOrBonusRevealCard handles card revelation in the bonus mini-game
 	BombOrBonusRevealCard(context.Context, *BombOrBonusRevealCardRequest) (*BombOrBonusRevealCardResponse, error)
 	mustEmbedUnimplementedFlappySiuGameServer()
 }
