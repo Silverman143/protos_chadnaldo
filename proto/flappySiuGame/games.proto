@@ -25,6 +25,9 @@ service FlappySiuGame {
 
     // BombOrBonusRevealCard handles card revelation in the bonus mini-game
     rpc BombOrBonusRevealCard (BombOrBonusRevealCardRequest) returns (BombOrBonusRevealCardResponse);
+
+    //
+    rpc BombOrBonusPreviewCards (BombOrBonusPreviewCardsRequest) returns (BombOrBonusPreviewCardsResponse);
 }
 
 // Request to create a new game session
@@ -91,10 +94,30 @@ message GetBombOrBonusStatusResponse {
 message BombOrBonusRevealCardRequest {
     int64 user_id = 1;                        // Player's unique identifier
     string session_token = 2;                 // Session token for validation
+    int32 card_number = 3;
 }
 
 // Result of bonus game attempt
 message BombOrBonusRevealCardResponse {
     BaseResponse base = 1;                    // Common response fields
     bool is_bomb = 2;                         // Whether player hit a bomb
+}
+
+// Request to preview multiple cards in the Bomb/Bonus game
+message BombOrBonusPreviewCardsRequest {
+    int64 user_id = 1;              // Player's unique identifier
+    string session_token = 2;        // Current game session token
+    repeated int32 card_numbers = 3; // List of card numbers to preview (e.g., [1, 3, 5])
+}
+
+// Information about a single card in the game
+message CardInfo {
+    int32 number = 1;               // Card's number in the game grid (e.g., 1-25)
+    bool win = 2;                   // True if this is a bonus card, false if it's a bomb
+}
+
+// Response containing preview information for multiple cards
+message BombOrBonusPreviewCardsResponse {
+    BaseResponse base = 1;          // Common response fields like status, error messages etc.
+    repeated CardInfo cards = 2;    // List of previewed cards with their win/lose status
 }
