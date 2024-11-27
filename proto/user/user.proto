@@ -118,6 +118,7 @@ message ReferralInfo {
 message AddCoinsToUserRequest {
     int64 user_id = 1;
     int64 coins_amount = 2;
+    string payload = 3;
 }
 
 message AddCoinsToUserResponse {
