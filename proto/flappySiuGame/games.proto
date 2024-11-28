@@ -4,123 +4,153 @@ package flappySiuGame;
 
 option go_package = "boba.flappySiuGame.v1;flappySiuGamev1";
 
-// Base response structure for common fields
-message BaseResponse {
-    bool success = 1;                         // Operation success status
-    string error_message = 2;                 // Error details if success is false
-    int32 tokens_earned = 3;                  // Tokens earned from operation
-    BombGameStatus bomb_game = 4;             // Current bonus game status
-}
 
-// FlappySiuGame service provides endpoints for the main game and bonus mini-game functionality
+// FlappySiuGame service provides endpoints for main game and bonus mini-game
 service FlappySiuGame {
-    // CreateSession initializes a new game session and returns session credentials
-    rpc CreateSession (CreateSessionRequest) returns (CreateSessionResponse);
+    // Creates new game session and returns session credentials
+    rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+    
+    // Validates and processes game results, may unlock bonus game
+    rpc SubmitScore(SubmitScoreRequest) returns (SubmitScoreResponse);
+    
+    // Gets current state of bonus mini-game
+    rpc GetBombOrBonusStatus(GetBombOrBonusStatusRequest) returns (GetBombOrBonusStatusResponse);
+    
+    // Handles revealing a card in bonus mini-game
+    rpc BombOrBonusRevealCard(BombOrBonusRevealCardRequest) returns (BombOrBonusRevealCardResponse);
+    
+    // Provides preview information for multiple cards in bonus game
+    rpc BombOrBonusPreviewCards(BombOrBonusPreviewCardsRequest) returns (BombOrBonusPreviewCardsResponse);
+ }
 
-    // SubmitScore validates and processes the game results, potentially unlocking the bonus game
-    rpc SubmitScore (SubmitScoreRequest) returns (SubmitScoreResponse);
+ 
+//-----------------------------------------------------------------------------
+// Common Messages
+//-----------------------------------------------------------------------------
 
-    // GetBombOrBonusStatus retrieves the current state of the bonus mini-game
-    rpc GetBombOrBonusStatus (GetBombOrBonusStatusRequest) returns (GetBombOrBonusStatusResponse);
-
-    // BombOrBonusRevealCard handles card revelation in the bonus mini-game
-    rpc BombOrBonusRevealCard (BombOrBonusRevealCardRequest) returns (BombOrBonusRevealCardResponse);
-
-    //
-    rpc BombOrBonusPreviewCards (BombOrBonusPreviewCardsRequest) returns (BombOrBonusPreviewCardsResponse);
-}
-
-// Request to create a new game session
-message CreateSessionRequest {
-    int64 user_id = 1;            // Unique identifier of the player
-}
-
-// Response containing session details and initial game state
-message CreateSessionResponse {
-    int32 game_number = 1;        // Sequential number of games played by the user
-    string session_token = 2;     // JWT token for session validation
-    int64 timestamp = 3;          // UTC timestamp when session was created (in milliseconds)
-    BombGameStatus bomb_game = 4; // Initial bonus game status if available
-}
-
-// Statistical data collected during gameplay for validation
-message GameStats {
-    int32 total_jumps = 1;                    // Total number of jump actions performed
-    float average_points_per_second = 2;       // Average score gain rate
-    float average_jump_interval = 3;           // Average time between jumps in milliseconds
-    bytes event_fingerprint = 4;               // Hash of critical game events for validation
-}
-
-// Request to submit game results
-message SubmitScoreRequest {
-    int64 user_id = 1;                        // Player's unique identifier
-    string session_token = 2;                  // Session token from CreateSessionResponse
-    int32 game_number = 3;                    // Should match game_number from CreateSessionResponse
-    int32 score = 4;                          // Final score achieved
-    int64 time_start = 5;                     // Game start timestamp (UTC in milliseconds)
-    int64 time_end = 6;                       // Game end timestamp (UTC in milliseconds)
-    GameStats game_stats = 7;                 // Gameplay statistics for validation
-    string signature = 8;                     // HMAC signature of game data for security
-}
-
-// Response after score submission
-message SubmitScoreResponse {
-    BaseResponse base = 1;                    // Common response fields
-}
-
-// Status information about the bonus mini-game
-message BombGameStatus {
-    int32 level = 1;                          // Current level in the bonus game (0 is first level)
-    int32 total_levels = 2;                   // Maximum number of levels available
-    int32 price_to_open = 3;                  // Token cost to open next card
-    bool is_available = 4;                    // Whether the bonus game can be played
-    int32 multiplier = 5;                     // Current level multiplier (increases with each level)
-    int32 total_tokens_earned = 6;            // Total tokens earned in this bonus game session
-    bool is_completed = 7;                    // Whether the bonus game is completed
-    map<string, string> attempts_history = 8; // History of attempts for each level ("0": "win", "1": "lose")
-    map<string, CardResults> previews_history = 9; // History of card previews for each level
-}
-
-// Request to get current bonus game state
-message GetBombOrBonusStatusRequest {
-    int64 user_id = 1;                        // Player's unique identifier
-    string session_token = 2;                 // Session token for validation
-}
-
-// Current state of the bonus game
-message GetBombOrBonusStatusResponse {
-    BaseResponse base = 1;                    // Common response fields
-    string message = 2;
-}
-
-// Request to try bonus game
-message BombOrBonusRevealCardRequest {
-    int64 user_id = 1;                        // Player's unique identifier
-    string session_token = 2;                 // Session token for validation
-    int32 card_number = 3;
-}
-
-// Result of bonus game attempt
-message BombOrBonusRevealCardResponse {
-    BaseResponse base = 1;                    // Common response fields
-    bool is_bomb = 2;                         // Whether player hit a bomb
-}
-
-// Request to preview multiple cards in the Bomb/Bonus game
-message BombOrBonusPreviewCardsRequest {
-    int64 user_id = 1;              // Player's unique identifier
-    string session_token = 2;        // Current game session token
-    repeated int32 card_numbers = 3; // List of card numbers to preview (e.g., [1, 3, 5])
-}
-
-// Information about a single card in the game
-message CardInfo {
-    int32 number = 1;               // Card's number in the game grid (e.g., 1-25)
-    bool win = 2;                   // True if this is a bonus card, false if it's a bomb
-}
-
-// Response containing preview information for multiple cards
-message BombOrBonusPreviewCardsResponse {
-    BaseResponse base = 1;          // Common response fields like status, error messages etc.
-    repeated CardInfo cards = 2;    // List of previewed cards with their win/lose status
-}
+// Common status response containing operation result and error details if any
+message OperationStatus {
+    bool success = 1;                    // Whether the operation succeeded
+    optional string error_message = 2;    // Error details if operation failed
+ }
+ 
+ //-----------------------------------------------------------------------------
+ // Game Session Messages 
+ //-----------------------------------------------------------------------------
+ 
+ // Request to create a new game session for a player
+ message CreateSessionRequest {
+    int64 user_id = 1;                   // Unique identifier of the player
+ }
+ 
+ // Response containing new session details and initial game state
+ message CreateSessionResponse {
+    OperationStatus status = 1;          // Operation result
+    SessionInfo session = 2;             // Session details
+ }
+ 
+ // Information about a game session
+ message SessionInfo {
+    int32 game_number = 1;               // Sequential number of games played by user
+    string session_token = 2;            // JWT token for session validation
+    int64 timestamp = 3;                 // UTC timestamp when session was created (milliseconds)
+ }
+ 
+ //-----------------------------------------------------------------------------
+ // Main Game Messages
+ //-----------------------------------------------------------------------------
+ 
+ // Statistical data collected during gameplay for validation
+ message GameStats {
+    int32 total_jumps = 1;               // Total number of jump actions performed
+    float average_points_per_second = 2;  // Average score gain rate
+    float average_jump_interval = 3;      // Average time between jumps (milliseconds)
+    bytes event_fingerprint = 4;          // Hash of critical game events for validation
+ }
+ 
+ // Request to submit game results for scoring and validation
+ message SubmitScoreRequest {
+    int64 user_id = 1;                   // Player's unique identifier
+    string session_token = 2;            // Session token from CreateSessionResponse
+    int32 game_number = 3;               // Should match game_number from CreateSessionResponse
+    int32 score = 4;                     // Final score achieved
+    int64 time_start = 5;                // Game start timestamp (UTC milliseconds)
+    int64 time_end = 6;                  // Game end timestamp (UTC milliseconds)
+    GameStats game_stats = 7;            // Gameplay statistics for validation
+    string signature = 8;                // HMAC signature of game data for security
+ }
+ 
+ // Response after score submission with rewards and bonus game status
+ message SubmitScoreResponse {
+    OperationStatus status = 1;          // Operation result
+    optional int32 tokens_earned = 2;     // Tokens awarded for this game
+    optional BombGameStatus bonus_game = 3; // Bonus game status if unlocked
+ }
+ 
+ //-----------------------------------------------------------------------------
+ // Bonus Game Messages 
+ //-----------------------------------------------------------------------------
+ 
+ // Complete status information about the bonus mini-game
+ message BombGameStatus {
+    int32 level = 1;                     // Current level (0 is first level)
+    int32 total_levels = 2;              // Maximum number of levels available
+    int32 price_to_open = 3;             // Token cost to open next card
+    bool is_available = 4;               // Whether bonus game can be played
+    int32 multiplier = 5;                // Current level multiplier (increases with level)
+    int32 total_tokens_earned = 6;       // Total tokens earned in this bonus session
+    bool is_completed = 7;               // Whether bonus game is completed
+    map<string, string> attempts_history = 8;     // History of attempts by level ("0":"win")
+    map<string, CardResults> previews_history = 9; // History of previewed cards by level
+ }
+ 
+ // Results of card previews for a specific level
+ message CardResults {
+    map<string, string> cards = 1;       // Map of card numbers to results ("1":"win")
+ }
+ 
+ // Information about a single card's preview result
+ message CardInfo {
+    int32 number = 1;                    // Card number in game grid (1-25)
+    bool win = 2;                        // True for bonus, false for bomb
+ }
+ 
+ // Request to get current bonus game state
+ message GetBombOrBonusStatusRequest {
+    int64 user_id = 1;                   // Player's unique identifier
+    string session_token = 2;            // Session token for validation
+ }
+ 
+ // Response containing current bonus game status
+ message GetBombOrBonusStatusResponse {
+    OperationStatus status = 1;          // Operation result
+    BombGameStatus game_status = 2;      // Current bonus game state
+ }
+ 
+ // Request to reveal a card in bonus game
+ message BombOrBonusRevealCardRequest {
+    int64 user_id = 1;                   // Player's unique identifier
+    string session_token = 2;            // Session token for validation
+    int32 card_number = 3;               // Number of card to reveal (1-25)
+ }
+ 
+ // Response with result of card reveal attempt
+ message BombOrBonusRevealCardResponse {
+    OperationStatus status = 1;          // Operation result
+    bool is_bomb = 2;                    // Whether revealed card was a bomb
+    optional int32 tokens_earned = 3;     // Tokens earned if card was bonus
+    optional BombGameStatus game_status = 4; // Updated game status
+ }
+ 
+ // Request to preview multiple cards in bonus game
+ message BombOrBonusPreviewCardsRequest {
+    int64 user_id = 1;                   // Player's unique identifier
+    string session_token = 2;            // Session token for validation
+    repeated int32 card_numbers = 3;      // Card numbers to preview ([1,3,5])
+ }
+ 
+ // Response containing preview results for requested cards
+ message BombOrBonusPreviewCardsResponse {
+    OperationStatus status = 1;          // Operation result  
+    repeated CardInfo cards = 2;         // Preview results for each card
+ }

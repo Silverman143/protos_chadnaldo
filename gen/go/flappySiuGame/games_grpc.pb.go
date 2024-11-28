@@ -30,16 +30,17 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// FlappySiuGame service provides endpoints for the main game and bonus mini-game functionality
+// FlappySiuGame service provides endpoints for main game and bonus mini-game
 type FlappySiuGameClient interface {
-	// CreateSession initializes a new game session and returns session credentials
+	// Creates new game session and returns session credentials
 	CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error)
-	// SubmitScore validates and processes the game results, potentially unlocking the bonus game
+	// Validates and processes game results, may unlock bonus game
 	SubmitScore(ctx context.Context, in *SubmitScoreRequest, opts ...grpc.CallOption) (*SubmitScoreResponse, error)
-	// GetBombOrBonusStatus retrieves the current state of the bonus mini-game
+	// Gets current state of bonus mini-game
 	GetBombOrBonusStatus(ctx context.Context, in *GetBombOrBonusStatusRequest, opts ...grpc.CallOption) (*GetBombOrBonusStatusResponse, error)
-	// BombOrBonusRevealCard handles card revelation in the bonus mini-game
+	// Handles revealing a card in bonus mini-game
 	BombOrBonusRevealCard(ctx context.Context, in *BombOrBonusRevealCardRequest, opts ...grpc.CallOption) (*BombOrBonusRevealCardResponse, error)
+	// Provides preview information for multiple cards in bonus game
 	BombOrBonusPreviewCards(ctx context.Context, in *BombOrBonusPreviewCardsRequest, opts ...grpc.CallOption) (*BombOrBonusPreviewCardsResponse, error)
 }
 
@@ -105,16 +106,17 @@ func (c *flappySiuGameClient) BombOrBonusPreviewCards(ctx context.Context, in *B
 // All implementations must embed UnimplementedFlappySiuGameServer
 // for forward compatibility.
 //
-// FlappySiuGame service provides endpoints for the main game and bonus mini-game functionality
+// FlappySiuGame service provides endpoints for main game and bonus mini-game
 type FlappySiuGameServer interface {
-	// CreateSession initializes a new game session and returns session credentials
+	// Creates new game session and returns session credentials
 	CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error)
-	// SubmitScore validates and processes the game results, potentially unlocking the bonus game
+	// Validates and processes game results, may unlock bonus game
 	SubmitScore(context.Context, *SubmitScoreRequest) (*SubmitScoreResponse, error)
-	// GetBombOrBonusStatus retrieves the current state of the bonus mini-game
+	// Gets current state of bonus mini-game
 	GetBombOrBonusStatus(context.Context, *GetBombOrBonusStatusRequest) (*GetBombOrBonusStatusResponse, error)
-	// BombOrBonusRevealCard handles card revelation in the bonus mini-game
+	// Handles revealing a card in bonus mini-game
 	BombOrBonusRevealCard(context.Context, *BombOrBonusRevealCardRequest) (*BombOrBonusRevealCardResponse, error)
+	// Provides preview information for multiple cards in bonus game
 	BombOrBonusPreviewCards(context.Context, *BombOrBonusPreviewCardsRequest) (*BombOrBonusPreviewCardsResponse, error)
 	mustEmbedUnimplementedFlappySiuGameServer()
 }
