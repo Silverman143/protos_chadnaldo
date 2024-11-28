@@ -76,6 +76,9 @@ message BombGameStatus {
     bool is_available = 4;                    // Whether the bonus game can be played
     int32 multiplier = 5;                     // Current level multiplier (increases with each level)
     int32 total_tokens_earned = 6;            // Total tokens earned in this bonus game session
+    bool is_completed = 7;                    // Whether the bonus game is completed
+    map<string, string> attempts_history = 8; // History of attempts for each level ("0": "win", "1": "lose")
+    map<string, CardResults> previews_history = 9; // History of card previews for each level
 }
 
 // Request to get current bonus game state
