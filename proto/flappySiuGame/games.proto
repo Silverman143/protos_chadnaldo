@@ -72,12 +72,11 @@ message OperationStatus {
  message SubmitScoreRequest {
     int64 user_id = 1;                   // Player's unique identifier
     string session_token = 2;            // Session token from CreateSessionResponse
-    int32 game_number = 3;               // Should match game_number from CreateSessionResponse
-    int32 score = 4;                     // Final score achieved
-    int64 time_start = 5;                // Game start timestamp (UTC milliseconds)
-    int64 time_end = 6;                  // Game end timestamp (UTC milliseconds)
-    GameStats game_stats = 7;            // Gameplay statistics for validation
-    string signature = 8;                // HMAC signature of game data for security
+    int32 score = 3;                     // Final score achieved
+    int64 time_start = 4;                // Game start timestamp (UTC milliseconds)
+    int64 time_end = 5;                  // Game end timestamp (UTC milliseconds)
+    GameStats game_stats = 6;            // Gameplay statistics for validation
+    string signature = 7;                // HMAC signature of game data for security
  }
  
  // Response after score submission with rewards and bonus game status
