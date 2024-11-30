@@ -9,13 +9,16 @@ option go_package = "boba.user.v1;userv1";
 
 service User{
     // Get user data
-    rpc GetUserData (GetUserRequest) returns (GetUserResponse);
+    rpc GetUserData (DefaultRequest) returns (GetUserResponse);
 
     // Create new user in database
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
     
     // Get coins balance
-    rpc GetUserCoinsBalance (GetUserCoinsBalanceRequest) returns (GetUserCoinsBalanceResponse);
+    rpc GetUserCoinsBalance (DefaultRequest) returns (GetUserCoinsBalanceResponse);
+
+    // Get gems balance
+    rpc GetUserGemsBalance (DefaultRequest) returns (GetUserGemsBalanceResponse);
 
     // Partial data update user data
     rpc PartialUpdateUser (PartialUpdateUserRequest) returns (PartialUpdateUserResponse);
@@ -34,7 +37,7 @@ service User{
     
 }
 
-message GetUserRequest {
+message DefaultRequest {
     int64 user_id = 1; // Идентификатор пользователя
 }
 
@@ -50,12 +53,12 @@ message CreateUserResponse{
     bool success = 1;           // Indicates if creation of user was successful 
 }
 
-message GetUserCoinsBalanceRequest {
-    int64 user_id = 1; // User ID
-}
-
 message GetUserCoinsBalanceResponse {
     int64 coins = 1; // User coins balance
+}
+
+message GetUserGemsBalanceResponse {
+    int64 gems = 1; // User gems balance
 }
 
 message PartialUpdateUserRequest {
@@ -79,10 +82,17 @@ message UserData {
     bool is_premium = 8;
 }
 
+enum Currency {
+    CURRENCY_UNSPECIFIED = 0; // Значение по умолчанию, если не указано
+    COINS = 1;                // Валюта "coins"
+    GEMS = 2;                 // Валюта "gems"
+}
+
 message InitiatePaymentRequest {
     int64 user_id = 1;
     int64 amount = 2;
-    string transaction_id = 3;
+    Currency currency = 3;
+    string transaction_id = 4;
 }
 
 message InitiatePaymentResponse {
@@ -92,7 +102,8 @@ message InitiatePaymentResponse {
 
 message FinalizePaymentRequest {
     string payment_id = 1;
-    bool complete = 2;  // true to complete the transaction, false to cancel
+    Currency currency = 2;
+    bool complete = 3;  // true to complete the transaction, false to cancel
 }
 
 message FinalizePaymentResponse {
