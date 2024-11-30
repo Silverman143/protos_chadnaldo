@@ -111,7 +111,7 @@ message OperationStatus {
  // Information about a single card's preview result
  message CardInfo {
     int32 number = 1;                    // Card number in game grid (1-25)
-    bool win = 2;                        // True for bonus, false for bomb
+    string value = 2;                      
  }
  
  // Request to get current bonus game state
