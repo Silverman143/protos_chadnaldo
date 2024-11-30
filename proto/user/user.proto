@@ -34,6 +34,9 @@ service User{
 
     // Add coins to user
     rpc AddCoinsToUser (AddCoinsToUserRequest) returns (AddCoinsToUserResponse);
+
+    // Add gems to user
+    rpc AddGemsToUser (AddGemsToUserRequest) returns (AddGemsToUserResponse);
     
 }
 
@@ -134,4 +137,14 @@ message AddCoinsToUserRequest {
 
 message AddCoinsToUserResponse {
     int64 coins_total = 1;
+}
+
+message AddGemsToUserRequest {
+    int64 user_id = 1;
+    int64 gems_amount = 2;
+    string payload = 3;
+}
+
+message AddGemsToUserResponse {
+    int64 gems_total = 1;
 }

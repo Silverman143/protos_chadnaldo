@@ -28,6 +28,7 @@ const (
 	User_FinalizePayment_FullMethodName     = "/user.User/FinalizePayment"
 	User_GetReferralsInfo_FullMethodName    = "/user.User/GetReferralsInfo"
 	User_AddCoinsToUser_FullMethodName      = "/user.User/AddCoinsToUser"
+	User_AddGemsToUser_FullMethodName       = "/user.User/AddGemsToUser"
 )
 
 // UserClient is the client API for User service.
@@ -52,6 +53,8 @@ type UserClient interface {
 	GetReferralsInfo(ctx context.Context, in *GetReferralsInfoRequest, opts ...grpc.CallOption) (*GetReferralsInfoResponse, error)
 	// Add coins to user
 	AddCoinsToUser(ctx context.Context, in *AddCoinsToUserRequest, opts ...grpc.CallOption) (*AddCoinsToUserResponse, error)
+	// Add gems to user
+	AddGemsToUser(ctx context.Context, in *AddGemsToUserRequest, opts ...grpc.CallOption) (*AddGemsToUserResponse, error)
 }
 
 type userClient struct {
@@ -152,6 +155,16 @@ func (c *userClient) AddCoinsToUser(ctx context.Context, in *AddCoinsToUserReque
 	return out, nil
 }
 
+func (c *userClient) AddGemsToUser(ctx context.Context, in *AddGemsToUserRequest, opts ...grpc.CallOption) (*AddGemsToUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddGemsToUserResponse)
+	err := c.cc.Invoke(ctx, User_AddGemsToUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -174,6 +187,8 @@ type UserServer interface {
 	GetReferralsInfo(context.Context, *GetReferralsInfoRequest) (*GetReferralsInfoResponse, error)
 	// Add coins to user
 	AddCoinsToUser(context.Context, *AddCoinsToUserRequest) (*AddCoinsToUserResponse, error)
+	// Add gems to user
+	AddGemsToUser(context.Context, *AddGemsToUserRequest) (*AddGemsToUserResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -210,6 +225,9 @@ func (UnimplementedUserServer) GetReferralsInfo(context.Context, *GetReferralsIn
 }
 func (UnimplementedUserServer) AddCoinsToUser(context.Context, *AddCoinsToUserRequest) (*AddCoinsToUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddCoinsToUser not implemented")
+}
+func (UnimplementedUserServer) AddGemsToUser(context.Context, *AddGemsToUserRequest) (*AddGemsToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddGemsToUser not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -394,6 +412,24 @@ func _User_AddCoinsToUser_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_AddGemsToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddGemsToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).AddGemsToUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_AddGemsToUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).AddGemsToUser(ctx, req.(*AddGemsToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -436,6 +472,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddCoinsToUser",
 			Handler:    _User_AddCoinsToUser_Handler,
+		},
+		{
+			MethodName: "AddGemsToUser",
+			Handler:    _User_AddGemsToUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
