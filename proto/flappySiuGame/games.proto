@@ -142,11 +142,15 @@ message OperationStatus {
     optional BombGameStatus game_status = 4; // Updated game status
  }
  
+ enum PreviewType {
+   X_RAY = 0; // Значение по умолчанию, если не указано
+   ULTRA_RAY = 1;               // Валюта "gems"
+}
  // Request to preview multiple cards in bonus game
  message BombOrBonusPreviewCardsRequest {
     int64 user_id = 1;                   // Player's unique identifier
     string session_token = 2;            // Session token for validation
-    repeated int32 card_numbers = 3;      // Card numbers to preview ([1,3,5])
+    repeated PreviewType preview_type = 3;      // Card numbers to preview ([1,3,5])
  }
  
  // Response containing preview results for requested cards
