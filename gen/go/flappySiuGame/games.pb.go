@@ -1020,9 +1020,9 @@ type BombOrBonusPreviewCardsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId       int64         `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                                                      // Player's unique identifier
-	SessionToken string        `protobuf:"bytes,2,opt,name=session_token,json=sessionToken,proto3" json:"session_token,omitempty"`                                     // Session token for validation
-	PreviewType  []PreviewType `protobuf:"varint,3,rep,packed,name=preview_type,json=previewType,proto3,enum=flappySiuGame.PreviewType" json:"preview_type,omitempty"` // Card numbers to preview ([1,3,5])
+	UserId       int64       `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                                               // Player's unique identifier
+	SessionToken string      `protobuf:"bytes,2,opt,name=session_token,json=sessionToken,proto3" json:"session_token,omitempty"`                              // Session token for validation
+	PreviewType  PreviewType `protobuf:"varint,3,opt,name=preview_type,json=previewType,proto3,enum=flappySiuGame.PreviewType" json:"preview_type,omitempty"` // Card numbers to preview ([1,3,5])
 }
 
 func (x *BombOrBonusPreviewCardsRequest) Reset() {
@@ -1069,11 +1069,11 @@ func (x *BombOrBonusPreviewCardsRequest) GetSessionToken() string {
 	return ""
 }
 
-func (x *BombOrBonusPreviewCardsRequest) GetPreviewType() []PreviewType {
+func (x *BombOrBonusPreviewCardsRequest) GetPreviewType() PreviewType {
 	if x != nil {
 		return x.PreviewType
 	}
-	return nil
+	return PreviewType_UNSPECIFIED
 }
 
 // Response containing preview results for requested cards
@@ -1404,7 +1404,7 @@ var file_flappySiuGame_games_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x54, 0x6f,
 	0x6b, 0x65, 0x6e, 0x12, 0x3d, 0x0a, 0x0c, 0x70, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x5f, 0x74,
-	0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0e, 0x32, 0x1a, 0x2e, 0x66, 0x6c, 0x61, 0x70,
+	0x79, 0x70, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1a, 0x2e, 0x66, 0x6c, 0x61, 0x70,
 	0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65,
 	0x77, 0x54, 0x79, 0x70, 0x65, 0x52, 0x0b, 0x70, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x54, 0x79,
 	0x70, 0x65, 0x22, 0x88, 0x01, 0x0a, 0x1f, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e,
