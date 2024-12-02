@@ -91,17 +91,22 @@ message OperationStatus {
  // Bonus Game Messages 
  //-----------------------------------------------------------------------------
  
+message UserGameData{
+   int32 games_total = 1;
+   int32 x_ray_amount = 2;
+   int32 ultra_ray_amount =3;
+   int32 extra_lifes =4;
+}
+
  // Complete status information about the bonus mini-game
  message BombGameStatus {
     int32 level = 1;                     // Current level (0 is first level)
     int32 total_levels = 2;              // Maximum number of levels available
-    int32 price_to_open = 3;             // Token cost to open next card
-    bool is_available = 4;               // Whether bonus game can be played
-    int32 multiplier = 5;                // Current level multiplier (increases with level)
-    int32 total_tokens_earned = 6;       // Total tokens earned in this bonus session
-    bool is_completed = 7;               // Whether bonus game is completed
-    map<string, string> attempts_history = 8;     // History of attempts by level ("0":"win")
-    map<string, CardResults> previews_history = 9; // History of previewed cards by level
+    bool is_available = 3;               // Whether bonus game can be played
+    int32 multiplier = 4;                // Current level multiplier (increases with level)
+    int32 total_tokens_earned = 5;       // Total tokens earned in this bonus session
+    bool is_completed = 6;               // Whether bonus game is completed
+    UserGameData user_game_data = 7;
  }
  
  // Results of card previews for a specific level
