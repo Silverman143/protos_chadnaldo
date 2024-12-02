@@ -148,8 +148,9 @@ message UserGameData{
  }
  
  enum PreviewType {
-   X_RAY = 0; // Значение по умолчанию, если не указано
-   ULTRA_RAY = 1;               // Валюта "gems"
+   UNSPECIFIED = 0;
+   X_RAY = 1; // Значение по умолчанию, если не указано
+   ULTRA_RAY = 2;               // Валюта "gems"
 }
  // Request to preview multiple cards in bonus game
  message BombOrBonusPreviewCardsRequest {
