@@ -24,6 +24,7 @@ const (
 	FlappySiuGame_GetBombOrBonusStatus_FullMethodName    = "/flappySiuGame.FlappySiuGame/GetBombOrBonusStatus"
 	FlappySiuGame_BombOrBonusRevealCard_FullMethodName   = "/flappySiuGame.FlappySiuGame/BombOrBonusRevealCard"
 	FlappySiuGame_BombOrBonusPreviewCards_FullMethodName = "/flappySiuGame.FlappySiuGame/BombOrBonusPreviewCards"
+	FlappySiuGame_BombOrBonusExtraLife_FullMethodName    = "/flappySiuGame.FlappySiuGame/BombOrBonusExtraLife"
 )
 
 // FlappySiuGameClient is the client API for FlappySiuGame service.
@@ -42,6 +43,7 @@ type FlappySiuGameClient interface {
 	BombOrBonusRevealCard(ctx context.Context, in *BombOrBonusRevealCardRequest, opts ...grpc.CallOption) (*BombOrBonusRevealCardResponse, error)
 	// Provides preview information for multiple cards in bonus game
 	BombOrBonusPreviewCards(ctx context.Context, in *BombOrBonusPreviewCardsRequest, opts ...grpc.CallOption) (*BombOrBonusPreviewCardsResponse, error)
+	BombOrBonusExtraLife(ctx context.Context, in *BombOrBonusExtraLifeRequest, opts ...grpc.CallOption) (*BombOrBonusExtraLifeResponse, error)
 }
 
 type flappySiuGameClient struct {
@@ -102,6 +104,16 @@ func (c *flappySiuGameClient) BombOrBonusPreviewCards(ctx context.Context, in *B
 	return out, nil
 }
 
+func (c *flappySiuGameClient) BombOrBonusExtraLife(ctx context.Context, in *BombOrBonusExtraLifeRequest, opts ...grpc.CallOption) (*BombOrBonusExtraLifeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BombOrBonusExtraLifeResponse)
+	err := c.cc.Invoke(ctx, FlappySiuGame_BombOrBonusExtraLife_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FlappySiuGameServer is the server API for FlappySiuGame service.
 // All implementations must embed UnimplementedFlappySiuGameServer
 // for forward compatibility.
@@ -118,6 +130,7 @@ type FlappySiuGameServer interface {
 	BombOrBonusRevealCard(context.Context, *BombOrBonusRevealCardRequest) (*BombOrBonusRevealCardResponse, error)
 	// Provides preview information for multiple cards in bonus game
 	BombOrBonusPreviewCards(context.Context, *BombOrBonusPreviewCardsRequest) (*BombOrBonusPreviewCardsResponse, error)
+	BombOrBonusExtraLife(context.Context, *BombOrBonusExtraLifeRequest) (*BombOrBonusExtraLifeResponse, error)
 	mustEmbedUnimplementedFlappySiuGameServer()
 }
 
@@ -142,6 +155,9 @@ func (UnimplementedFlappySiuGameServer) BombOrBonusRevealCard(context.Context, *
 }
 func (UnimplementedFlappySiuGameServer) BombOrBonusPreviewCards(context.Context, *BombOrBonusPreviewCardsRequest) (*BombOrBonusPreviewCardsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BombOrBonusPreviewCards not implemented")
+}
+func (UnimplementedFlappySiuGameServer) BombOrBonusExtraLife(context.Context, *BombOrBonusExtraLifeRequest) (*BombOrBonusExtraLifeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BombOrBonusExtraLife not implemented")
 }
 func (UnimplementedFlappySiuGameServer) mustEmbedUnimplementedFlappySiuGameServer() {}
 func (UnimplementedFlappySiuGameServer) testEmbeddedByValue()                       {}
@@ -254,6 +270,24 @@ func _FlappySiuGame_BombOrBonusPreviewCards_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FlappySiuGame_BombOrBonusExtraLife_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BombOrBonusExtraLifeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FlappySiuGameServer).BombOrBonusExtraLife(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FlappySiuGame_BombOrBonusExtraLife_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FlappySiuGameServer).BombOrBonusExtraLife(ctx, req.(*BombOrBonusExtraLifeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FlappySiuGame_ServiceDesc is the grpc.ServiceDesc for FlappySiuGame service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -280,6 +314,10 @@ var FlappySiuGame_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BombOrBonusPreviewCards",
 			Handler:    _FlappySiuGame_BombOrBonusPreviewCards_Handler,
+		},
+		{
+			MethodName: "BombOrBonusExtraLife",
+			Handler:    _FlappySiuGame_BombOrBonusExtraLife_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

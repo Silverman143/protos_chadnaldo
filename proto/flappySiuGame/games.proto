@@ -21,8 +21,9 @@ service FlappySiuGame {
     
     // Provides preview information for multiple cards in bonus game
     rpc BombOrBonusPreviewCards(BombOrBonusPreviewCardsRequest) returns (BombOrBonusPreviewCardsResponse);
- }
 
+    rpc BombOrBonusExtraLife(BombOrBonusExtraLifeRequest) returns (BombOrBonusExtraLifeResponse);
+ }
  
 //-----------------------------------------------------------------------------
 // Common Messages
@@ -153,3 +154,14 @@ message OperationStatus {
     OperationStatus status = 1;          // Operation result  
     repeated CardInfo cards = 2;         // Preview results for each card
  }
+
+ message BombOrBonusExtraLifeRequest {
+   int64 user_id = 1;  
+   string session_token = 2; 
+}
+
+message BombOrBonusExtraLifeResponse {
+   OperationStatus status = 1;
+   bool extra_life_granted = 2;  
+   string error_details = 3;  
+}
