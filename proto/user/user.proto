@@ -96,6 +96,7 @@ message InitiatePaymentRequest {
     int64 amount = 2;
     Currency currency = 3;
     string transaction_id = 4;
+    string payload = 5;
 }
 
 message InitiatePaymentResponse {
