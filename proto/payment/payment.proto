@@ -33,6 +33,8 @@ message  GetInvoiceLinkRequest {
   int64 payment_method_id = 2;
   string currency = 3;
   int64 item_id = 4;
+  float price_usd = 5;
+  string payload = 6;
 }
 
 message GetInvoiceLinkResponse {
