@@ -26,6 +26,9 @@ const (
 	FlappySiuGame_BombOrBonusPreviewCards_FullMethodName = "/flappySiuGame.FlappySiuGame/BombOrBonusPreviewCards"
 	FlappySiuGame_BombOrBonusExtraLife_FullMethodName    = "/flappySiuGame.FlappySiuGame/BombOrBonusExtraLife"
 	FlappySiuGame_GetGemsStoreItems_FullMethodName       = "/flappySiuGame.FlappySiuGame/GetGemsStoreItems"
+	FlappySiuGame_BuyGemsStoreItems_FullMethodName       = "/flappySiuGame.FlappySiuGame/BuyGemsStoreItems"
+	FlappySiuGame_GetPaidStoreItems_FullMethodName       = "/flappySiuGame.FlappySiuGame/GetPaidStoreItems"
+	FlappySiuGame_GetPaidStoreInvoiceLink_FullMethodName = "/flappySiuGame.FlappySiuGame/GetPaidStoreInvoiceLink"
 )
 
 // FlappySiuGameClient is the client API for FlappySiuGame service.
@@ -47,7 +50,13 @@ type FlappySiuGameClient interface {
 	// Activate extra life if exists
 	BombOrBonusExtraLife(ctx context.Context, in *BombOrBonusExtraLifeRequest, opts ...grpc.CallOption) (*BombOrBonusExtraLifeResponse, error)
 	// Return gems store items
-	GetGemsStoreItems(ctx context.Context, in *GetGemsStoreItemsRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error)
+	GetGemsStoreItems(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error)
+	// Buy gems store items
+	BuyGemsStoreItems(ctx context.Context, in *BuyGemsStoreItemsResquse, opts ...grpc.CallOption) (*BuyGemsStoreItemsResponse, error)
+	// Returns paid store items
+	GetPaidStoreItems(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*GetPaidStoreItemsResponse, error)
+	// Returns payment invoice link
+	GetPaidStoreInvoiceLink(ctx context.Context, in *GetPaidStoreInvoiceLinkRequest, opts ...grpc.CallOption) (*GetPaidStoreInvoiceLinkResponse, error)
 }
 
 type flappySiuGameClient struct {
@@ -118,10 +127,40 @@ func (c *flappySiuGameClient) BombOrBonusExtraLife(ctx context.Context, in *Bomb
 	return out, nil
 }
 
-func (c *flappySiuGameClient) GetGemsStoreItems(ctx context.Context, in *GetGemsStoreItemsRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error) {
+func (c *flappySiuGameClient) GetGemsStoreItems(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetGemsStoreItemsResponse)
 	err := c.cc.Invoke(ctx, FlappySiuGame_GetGemsStoreItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *flappySiuGameClient) BuyGemsStoreItems(ctx context.Context, in *BuyGemsStoreItemsResquse, opts ...grpc.CallOption) (*BuyGemsStoreItemsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BuyGemsStoreItemsResponse)
+	err := c.cc.Invoke(ctx, FlappySiuGame_BuyGemsStoreItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *flappySiuGameClient) GetPaidStoreItems(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*GetPaidStoreItemsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPaidStoreItemsResponse)
+	err := c.cc.Invoke(ctx, FlappySiuGame_GetPaidStoreItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *flappySiuGameClient) GetPaidStoreInvoiceLink(ctx context.Context, in *GetPaidStoreInvoiceLinkRequest, opts ...grpc.CallOption) (*GetPaidStoreInvoiceLinkResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPaidStoreInvoiceLinkResponse)
+	err := c.cc.Invoke(ctx, FlappySiuGame_GetPaidStoreInvoiceLink_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -147,7 +186,13 @@ type FlappySiuGameServer interface {
 	// Activate extra life if exists
 	BombOrBonusExtraLife(context.Context, *BombOrBonusExtraLifeRequest) (*BombOrBonusExtraLifeResponse, error)
 	// Return gems store items
-	GetGemsStoreItems(context.Context, *GetGemsStoreItemsRequest) (*GetGemsStoreItemsResponse, error)
+	GetGemsStoreItems(context.Context, *EmptyRequest) (*GetGemsStoreItemsResponse, error)
+	// Buy gems store items
+	BuyGemsStoreItems(context.Context, *BuyGemsStoreItemsResquse) (*BuyGemsStoreItemsResponse, error)
+	// Returns paid store items
+	GetPaidStoreItems(context.Context, *EmptyRequest) (*GetPaidStoreItemsResponse, error)
+	// Returns payment invoice link
+	GetPaidStoreInvoiceLink(context.Context, *GetPaidStoreInvoiceLinkRequest) (*GetPaidStoreInvoiceLinkResponse, error)
 	mustEmbedUnimplementedFlappySiuGameServer()
 }
 
@@ -176,8 +221,17 @@ func (UnimplementedFlappySiuGameServer) BombOrBonusPreviewCards(context.Context,
 func (UnimplementedFlappySiuGameServer) BombOrBonusExtraLife(context.Context, *BombOrBonusExtraLifeRequest) (*BombOrBonusExtraLifeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BombOrBonusExtraLife not implemented")
 }
-func (UnimplementedFlappySiuGameServer) GetGemsStoreItems(context.Context, *GetGemsStoreItemsRequest) (*GetGemsStoreItemsResponse, error) {
+func (UnimplementedFlappySiuGameServer) GetGemsStoreItems(context.Context, *EmptyRequest) (*GetGemsStoreItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGemsStoreItems not implemented")
+}
+func (UnimplementedFlappySiuGameServer) BuyGemsStoreItems(context.Context, *BuyGemsStoreItemsResquse) (*BuyGemsStoreItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuyGemsStoreItems not implemented")
+}
+func (UnimplementedFlappySiuGameServer) GetPaidStoreItems(context.Context, *EmptyRequest) (*GetPaidStoreItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPaidStoreItems not implemented")
+}
+func (UnimplementedFlappySiuGameServer) GetPaidStoreInvoiceLink(context.Context, *GetPaidStoreInvoiceLinkRequest) (*GetPaidStoreInvoiceLinkResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPaidStoreInvoiceLink not implemented")
 }
 func (UnimplementedFlappySiuGameServer) mustEmbedUnimplementedFlappySiuGameServer() {}
 func (UnimplementedFlappySiuGameServer) testEmbeddedByValue()                       {}
@@ -309,7 +363,7 @@ func _FlappySiuGame_BombOrBonusExtraLife_Handler(srv interface{}, ctx context.Co
 }
 
 func _FlappySiuGame_GetGemsStoreItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGemsStoreItemsRequest)
+	in := new(EmptyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -321,7 +375,61 @@ func _FlappySiuGame_GetGemsStoreItems_Handler(srv interface{}, ctx context.Conte
 		FullMethod: FlappySiuGame_GetGemsStoreItems_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FlappySiuGameServer).GetGemsStoreItems(ctx, req.(*GetGemsStoreItemsRequest))
+		return srv.(FlappySiuGameServer).GetGemsStoreItems(ctx, req.(*EmptyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FlappySiuGame_BuyGemsStoreItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuyGemsStoreItemsResquse)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FlappySiuGameServer).BuyGemsStoreItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FlappySiuGame_BuyGemsStoreItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FlappySiuGameServer).BuyGemsStoreItems(ctx, req.(*BuyGemsStoreItemsResquse))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FlappySiuGame_GetPaidStoreItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FlappySiuGameServer).GetPaidStoreItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FlappySiuGame_GetPaidStoreItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FlappySiuGameServer).GetPaidStoreItems(ctx, req.(*EmptyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FlappySiuGame_GetPaidStoreInvoiceLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPaidStoreInvoiceLinkRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FlappySiuGameServer).GetPaidStoreInvoiceLink(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FlappySiuGame_GetPaidStoreInvoiceLink_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FlappySiuGameServer).GetPaidStoreInvoiceLink(ctx, req.(*GetPaidStoreInvoiceLinkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -360,6 +468,18 @@ var FlappySiuGame_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGemsStoreItems",
 			Handler:    _FlappySiuGame_GetGemsStoreItems_Handler,
+		},
+		{
+			MethodName: "BuyGemsStoreItems",
+			Handler:    _FlappySiuGame_BuyGemsStoreItems_Handler,
+		},
+		{
+			MethodName: "GetPaidStoreItems",
+			Handler:    _FlappySiuGame_GetPaidStoreItems_Handler,
+		},
+		{
+			MethodName: "GetPaidStoreInvoiceLink",
+			Handler:    _FlappySiuGame_GetPaidStoreInvoiceLink_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -26,9 +26,22 @@ service FlappySiuGame {
     rpc BombOrBonusExtraLife(BombOrBonusExtraLifeRequest) returns (BombOrBonusExtraLifeResponse);
 
     // Return gems store items
-    rpc GetGemsStoreItems(GetGemsStoreItemsRequest) returns (GetGemsStoreItemsResponse);
+    rpc GetGemsStoreItems(EmptyRequest) returns (GetGemsStoreItemsResponse);
+
+    // Buy gems store items
+    rpc BuyGemsStoreItems(BuyGemsStoreItemsResquse) returns (BuyGemsStoreItemsResponse);
+
+    // Returns paid store items
+    rpc GetPaidStoreItems(EmptyRequest) returns (GetPaidStoreItemsResponse);
+
+    // Returns payment invoice link
+    rpc GetPaidStoreInvoiceLink(GetPaidStoreInvoiceLinkRequest) returns (GetPaidStoreInvoiceLinkResponse);
  }
  
+message EmptyRequest{
+
+}
+
 //-----------------------------------------------------------------------------
 // Common Messages
 //-----------------------------------------------------------------------------
@@ -180,6 +193,8 @@ message BombOrBonusExtraLifeResponse {
    string error_details = 3;  
 }
 
+// Gems store 
+
 enum GemsStoreItemName {
    STORE_ITEM_UNSPECIFIED = 0;
    STORE_ITEM_X_RAY = 1;
@@ -193,10 +208,50 @@ message GemsStoreItem {
    int64 price = 3;
 }
 
-message GetGemsStoreItemsRequest{
-}
-
 message GetGemsStoreItemsResponse{
    OperationStatus status = 1;
    repeated GemsStoreItem items = 2;
+}
+
+message BuyGemsStoreItemsResquse {
+   int64 user_id = 1;
+   int64 item_id = 2;
+   int64 amount = 3;
+}
+
+message BuyGemsStoreItemsResponse {
+   OperationStatus status = 1;
+   int64 total_amount = 2;
+}
+
+// Paid store
+
+message PaidStoreItem{
+   int64 item_id = 1;
+   string item_type = 2;
+   float price_usd = 3;
+   string item_name = 4;
+   int64 items_amount = 5;
+}
+
+message GetPaidStoreItemsResponse {
+   OperationStatus status = 1;
+   repeated PaidStoreItem items = 2;
+}
+
+message GetPaidStoreInvoiceLinkRequest {
+   int64 user_id = 1;
+   int64 item_id = 2;
+   int64 payment_method_id = 3;
+}
+
+message PaymentInvoice{
+   string payment_id = 1;
+   string payment_type = 2;
+   string payment_url = 3;
+}
+
+message GetPaidStoreInvoiceLinkResponse {
+   OperationStatus status = 1;
+   PaymentInvoice invoice = 2;
 }

@@ -121,6 +121,42 @@ func (GemsStoreItemName) EnumDescriptor() ([]byte, []int) {
 	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{1}
 }
 
+type EmptyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *EmptyRequest) Reset() {
+	*x = EmptyRequest{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EmptyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EmptyRequest) ProtoMessage() {}
+
+func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
+func (*EmptyRequest) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{0}
+}
+
 // Common status response containing operation result and error details if any
 type OperationStatus struct {
 	state         protoimpl.MessageState
@@ -133,7 +169,7 @@ type OperationStatus struct {
 
 func (x *OperationStatus) Reset() {
 	*x = OperationStatus{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[0]
+	mi := &file_flappySiuGame_games_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -145,7 +181,7 @@ func (x *OperationStatus) String() string {
 func (*OperationStatus) ProtoMessage() {}
 
 func (x *OperationStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[0]
+	mi := &file_flappySiuGame_games_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +194,7 @@ func (x *OperationStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OperationStatus.ProtoReflect.Descriptor instead.
 func (*OperationStatus) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{0}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *OperationStatus) GetSuccess() bool {
@@ -186,7 +222,7 @@ type CreateSessionRequest struct {
 
 func (x *CreateSessionRequest) Reset() {
 	*x = CreateSessionRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[1]
+	mi := &file_flappySiuGame_games_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -198,7 +234,7 @@ func (x *CreateSessionRequest) String() string {
 func (*CreateSessionRequest) ProtoMessage() {}
 
 func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[1]
+	mi := &file_flappySiuGame_games_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -211,7 +247,7 @@ func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionRequest.ProtoReflect.Descriptor instead.
 func (*CreateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{1}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateSessionRequest) GetUserId() int64 {
@@ -233,7 +269,7 @@ type CreateSessionResponse struct {
 
 func (x *CreateSessionResponse) Reset() {
 	*x = CreateSessionResponse{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[2]
+	mi := &file_flappySiuGame_games_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -245,7 +281,7 @@ func (x *CreateSessionResponse) String() string {
 func (*CreateSessionResponse) ProtoMessage() {}
 
 func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[2]
+	mi := &file_flappySiuGame_games_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +294,7 @@ func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{2}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateSessionResponse) GetStatus() *OperationStatus {
@@ -288,7 +324,7 @@ type SessionInfo struct {
 
 func (x *SessionInfo) Reset() {
 	*x = SessionInfo{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[3]
+	mi := &file_flappySiuGame_games_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -300,7 +336,7 @@ func (x *SessionInfo) String() string {
 func (*SessionInfo) ProtoMessage() {}
 
 func (x *SessionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[3]
+	mi := &file_flappySiuGame_games_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,7 +349,7 @@ func (x *SessionInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionInfo.ProtoReflect.Descriptor instead.
 func (*SessionInfo) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{3}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SessionInfo) GetGameNumber() int32 {
@@ -351,7 +387,7 @@ type GameStats struct {
 
 func (x *GameStats) Reset() {
 	*x = GameStats{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[4]
+	mi := &file_flappySiuGame_games_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -363,7 +399,7 @@ func (x *GameStats) String() string {
 func (*GameStats) ProtoMessage() {}
 
 func (x *GameStats) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[4]
+	mi := &file_flappySiuGame_games_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -376,7 +412,7 @@ func (x *GameStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GameStats.ProtoReflect.Descriptor instead.
 func (*GameStats) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{4}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GameStats) GetTotalJumps() int32 {
@@ -424,7 +460,7 @@ type SubmitScoreRequest struct {
 
 func (x *SubmitScoreRequest) Reset() {
 	*x = SubmitScoreRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[5]
+	mi := &file_flappySiuGame_games_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -436,7 +472,7 @@ func (x *SubmitScoreRequest) String() string {
 func (*SubmitScoreRequest) ProtoMessage() {}
 
 func (x *SubmitScoreRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[5]
+	mi := &file_flappySiuGame_games_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -449,7 +485,7 @@ func (x *SubmitScoreRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitScoreRequest.ProtoReflect.Descriptor instead.
 func (*SubmitScoreRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{5}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SubmitScoreRequest) GetUserId() int64 {
@@ -514,7 +550,7 @@ type SubmitScoreResponse struct {
 
 func (x *SubmitScoreResponse) Reset() {
 	*x = SubmitScoreResponse{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[6]
+	mi := &file_flappySiuGame_games_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -526,7 +562,7 @@ func (x *SubmitScoreResponse) String() string {
 func (*SubmitScoreResponse) ProtoMessage() {}
 
 func (x *SubmitScoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[6]
+	mi := &file_flappySiuGame_games_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -539,7 +575,7 @@ func (x *SubmitScoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitScoreResponse.ProtoReflect.Descriptor instead.
 func (*SubmitScoreResponse) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{6}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SubmitScoreResponse) GetStatus() *OperationStatus {
@@ -576,7 +612,7 @@ type UserGameData struct {
 
 func (x *UserGameData) Reset() {
 	*x = UserGameData{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[7]
+	mi := &file_flappySiuGame_games_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -588,7 +624,7 @@ func (x *UserGameData) String() string {
 func (*UserGameData) ProtoMessage() {}
 
 func (x *UserGameData) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[7]
+	mi := &file_flappySiuGame_games_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -601,7 +637,7 @@ func (x *UserGameData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGameData.ProtoReflect.Descriptor instead.
 func (*UserGameData) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{7}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UserGameData) GetGamesTotal() int32 {
@@ -649,7 +685,7 @@ type BombGameStatus struct {
 
 func (x *BombGameStatus) Reset() {
 	*x = BombGameStatus{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[8]
+	mi := &file_flappySiuGame_games_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -661,7 +697,7 @@ func (x *BombGameStatus) String() string {
 func (*BombGameStatus) ProtoMessage() {}
 
 func (x *BombGameStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[8]
+	mi := &file_flappySiuGame_games_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,7 +710,7 @@ func (x *BombGameStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombGameStatus.ProtoReflect.Descriptor instead.
 func (*BombGameStatus) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{8}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *BombGameStatus) GetLevel() int32 {
@@ -737,7 +773,7 @@ type CardResults struct {
 
 func (x *CardResults) Reset() {
 	*x = CardResults{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[9]
+	mi := &file_flappySiuGame_games_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -749,7 +785,7 @@ func (x *CardResults) String() string {
 func (*CardResults) ProtoMessage() {}
 
 func (x *CardResults) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[9]
+	mi := &file_flappySiuGame_games_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -762,7 +798,7 @@ func (x *CardResults) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CardResults.ProtoReflect.Descriptor instead.
 func (*CardResults) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{9}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CardResults) GetCards() map[string]string {
@@ -784,7 +820,7 @@ type CardInfo struct {
 
 func (x *CardInfo) Reset() {
 	*x = CardInfo{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[10]
+	mi := &file_flappySiuGame_games_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -796,7 +832,7 @@ func (x *CardInfo) String() string {
 func (*CardInfo) ProtoMessage() {}
 
 func (x *CardInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[10]
+	mi := &file_flappySiuGame_games_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -809,7 +845,7 @@ func (x *CardInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CardInfo.ProtoReflect.Descriptor instead.
 func (*CardInfo) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{10}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CardInfo) GetNumber() int32 {
@@ -838,7 +874,7 @@ type GetBombOrBonusStatusRequest struct {
 
 func (x *GetBombOrBonusStatusRequest) Reset() {
 	*x = GetBombOrBonusStatusRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[11]
+	mi := &file_flappySiuGame_games_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -850,7 +886,7 @@ func (x *GetBombOrBonusStatusRequest) String() string {
 func (*GetBombOrBonusStatusRequest) ProtoMessage() {}
 
 func (x *GetBombOrBonusStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[11]
+	mi := &file_flappySiuGame_games_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -863,7 +899,7 @@ func (x *GetBombOrBonusStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBombOrBonusStatusRequest.ProtoReflect.Descriptor instead.
 func (*GetBombOrBonusStatusRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{11}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetBombOrBonusStatusRequest) GetUserId() int64 {
@@ -892,7 +928,7 @@ type GetBombOrBonusStatusResponse struct {
 
 func (x *GetBombOrBonusStatusResponse) Reset() {
 	*x = GetBombOrBonusStatusResponse{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[12]
+	mi := &file_flappySiuGame_games_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -904,7 +940,7 @@ func (x *GetBombOrBonusStatusResponse) String() string {
 func (*GetBombOrBonusStatusResponse) ProtoMessage() {}
 
 func (x *GetBombOrBonusStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[12]
+	mi := &file_flappySiuGame_games_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -917,7 +953,7 @@ func (x *GetBombOrBonusStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBombOrBonusStatusResponse.ProtoReflect.Descriptor instead.
 func (*GetBombOrBonusStatusResponse) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{12}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetBombOrBonusStatusResponse) GetStatus() *OperationStatus {
@@ -947,7 +983,7 @@ type BombOrBonusRevealCardRequest struct {
 
 func (x *BombOrBonusRevealCardRequest) Reset() {
 	*x = BombOrBonusRevealCardRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[13]
+	mi := &file_flappySiuGame_games_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -959,7 +995,7 @@ func (x *BombOrBonusRevealCardRequest) String() string {
 func (*BombOrBonusRevealCardRequest) ProtoMessage() {}
 
 func (x *BombOrBonusRevealCardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[13]
+	mi := &file_flappySiuGame_games_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -972,7 +1008,7 @@ func (x *BombOrBonusRevealCardRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombOrBonusRevealCardRequest.ProtoReflect.Descriptor instead.
 func (*BombOrBonusRevealCardRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{13}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *BombOrBonusRevealCardRequest) GetUserId() int64 {
@@ -1010,7 +1046,7 @@ type BombOrBonusRevealCardResponse struct {
 
 func (x *BombOrBonusRevealCardResponse) Reset() {
 	*x = BombOrBonusRevealCardResponse{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[14]
+	mi := &file_flappySiuGame_games_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1022,7 +1058,7 @@ func (x *BombOrBonusRevealCardResponse) String() string {
 func (*BombOrBonusRevealCardResponse) ProtoMessage() {}
 
 func (x *BombOrBonusRevealCardResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[14]
+	mi := &file_flappySiuGame_games_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1035,7 +1071,7 @@ func (x *BombOrBonusRevealCardResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombOrBonusRevealCardResponse.ProtoReflect.Descriptor instead.
 func (*BombOrBonusRevealCardResponse) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{14}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *BombOrBonusRevealCardResponse) GetStatus() *OperationStatus {
@@ -1079,7 +1115,7 @@ type BombOrBonusPreviewCardsRequest struct {
 
 func (x *BombOrBonusPreviewCardsRequest) Reset() {
 	*x = BombOrBonusPreviewCardsRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[15]
+	mi := &file_flappySiuGame_games_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1091,7 +1127,7 @@ func (x *BombOrBonusPreviewCardsRequest) String() string {
 func (*BombOrBonusPreviewCardsRequest) ProtoMessage() {}
 
 func (x *BombOrBonusPreviewCardsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[15]
+	mi := &file_flappySiuGame_games_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1104,7 +1140,7 @@ func (x *BombOrBonusPreviewCardsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombOrBonusPreviewCardsRequest.ProtoReflect.Descriptor instead.
 func (*BombOrBonusPreviewCardsRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{15}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *BombOrBonusPreviewCardsRequest) GetUserId() int64 {
@@ -1140,7 +1176,7 @@ type BombOrBonusPreviewCardsResponse struct {
 
 func (x *BombOrBonusPreviewCardsResponse) Reset() {
 	*x = BombOrBonusPreviewCardsResponse{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[16]
+	mi := &file_flappySiuGame_games_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1152,7 +1188,7 @@ func (x *BombOrBonusPreviewCardsResponse) String() string {
 func (*BombOrBonusPreviewCardsResponse) ProtoMessage() {}
 
 func (x *BombOrBonusPreviewCardsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[16]
+	mi := &file_flappySiuGame_games_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1165,7 +1201,7 @@ func (x *BombOrBonusPreviewCardsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombOrBonusPreviewCardsResponse.ProtoReflect.Descriptor instead.
 func (*BombOrBonusPreviewCardsResponse) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{16}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *BombOrBonusPreviewCardsResponse) GetStatus() *OperationStatus {
@@ -1193,7 +1229,7 @@ type BombOrBonusExtraLifeRequest struct {
 
 func (x *BombOrBonusExtraLifeRequest) Reset() {
 	*x = BombOrBonusExtraLifeRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[17]
+	mi := &file_flappySiuGame_games_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1205,7 +1241,7 @@ func (x *BombOrBonusExtraLifeRequest) String() string {
 func (*BombOrBonusExtraLifeRequest) ProtoMessage() {}
 
 func (x *BombOrBonusExtraLifeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[17]
+	mi := &file_flappySiuGame_games_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1218,7 +1254,7 @@ func (x *BombOrBonusExtraLifeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombOrBonusExtraLifeRequest.ProtoReflect.Descriptor instead.
 func (*BombOrBonusExtraLifeRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{17}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *BombOrBonusExtraLifeRequest) GetUserId() int64 {
@@ -1247,7 +1283,7 @@ type BombOrBonusExtraLifeResponse struct {
 
 func (x *BombOrBonusExtraLifeResponse) Reset() {
 	*x = BombOrBonusExtraLifeResponse{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[18]
+	mi := &file_flappySiuGame_games_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1259,7 +1295,7 @@ func (x *BombOrBonusExtraLifeResponse) String() string {
 func (*BombOrBonusExtraLifeResponse) ProtoMessage() {}
 
 func (x *BombOrBonusExtraLifeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[18]
+	mi := &file_flappySiuGame_games_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1272,7 +1308,7 @@ func (x *BombOrBonusExtraLifeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BombOrBonusExtraLifeResponse.ProtoReflect.Descriptor instead.
 func (*BombOrBonusExtraLifeResponse) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{18}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *BombOrBonusExtraLifeResponse) GetStatus() *OperationStatus {
@@ -1308,7 +1344,7 @@ type GemsStoreItem struct {
 
 func (x *GemsStoreItem) Reset() {
 	*x = GemsStoreItem{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[19]
+	mi := &file_flappySiuGame_games_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1320,7 +1356,7 @@ func (x *GemsStoreItem) String() string {
 func (*GemsStoreItem) ProtoMessage() {}
 
 func (x *GemsStoreItem) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[19]
+	mi := &file_flappySiuGame_games_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1333,7 +1369,7 @@ func (x *GemsStoreItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GemsStoreItem.ProtoReflect.Descriptor instead.
 func (*GemsStoreItem) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{19}
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GemsStoreItem) GetId() int64 {
@@ -1355,42 +1391,6 @@ func (x *GemsStoreItem) GetPrice() int64 {
 		return x.Price
 	}
 	return 0
-}
-
-type GetGemsStoreItemsRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *GetGemsStoreItemsRequest) Reset() {
-	*x = GetGemsStoreItemsRequest{}
-	mi := &file_flappySiuGame_games_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetGemsStoreItemsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGemsStoreItemsRequest) ProtoMessage() {}
-
-func (x *GetGemsStoreItemsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_flappySiuGame_games_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGemsStoreItemsRequest.ProtoReflect.Descriptor instead.
-func (*GetGemsStoreItemsRequest) Descriptor() ([]byte, []int) {
-	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{20}
 }
 
 type GetGemsStoreItemsResponse struct {
@@ -1446,12 +1446,432 @@ func (x *GetGemsStoreItemsResponse) GetItems() []*GemsStoreItem {
 	return nil
 }
 
+type BuyGemsStoreItemsResquse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ItemId int64 `protobuf:"varint,2,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	Amount int64 `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
+}
+
+func (x *BuyGemsStoreItemsResquse) Reset() {
+	*x = BuyGemsStoreItemsResquse{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BuyGemsStoreItemsResquse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuyGemsStoreItemsResquse) ProtoMessage() {}
+
+func (x *BuyGemsStoreItemsResquse) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BuyGemsStoreItemsResquse.ProtoReflect.Descriptor instead.
+func (*BuyGemsStoreItemsResquse) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *BuyGemsStoreItemsResquse) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *BuyGemsStoreItemsResquse) GetItemId() int64 {
+	if x != nil {
+		return x.ItemId
+	}
+	return 0
+}
+
+func (x *BuyGemsStoreItemsResquse) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+type BuyGemsStoreItemsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status      *OperationStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	TotalAmount int64            `protobuf:"varint,2,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
+}
+
+func (x *BuyGemsStoreItemsResponse) Reset() {
+	*x = BuyGemsStoreItemsResponse{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BuyGemsStoreItemsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BuyGemsStoreItemsResponse) ProtoMessage() {}
+
+func (x *BuyGemsStoreItemsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BuyGemsStoreItemsResponse.ProtoReflect.Descriptor instead.
+func (*BuyGemsStoreItemsResponse) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *BuyGemsStoreItemsResponse) GetStatus() *OperationStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+func (x *BuyGemsStoreItemsResponse) GetTotalAmount() int64 {
+	if x != nil {
+		return x.TotalAmount
+	}
+	return 0
+}
+
+type PaidStoreItem struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ItemId      int64   `protobuf:"varint,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	ItemType    string  `protobuf:"bytes,2,opt,name=item_type,json=itemType,proto3" json:"item_type,omitempty"`
+	PriceUsd    float32 `protobuf:"fixed32,3,opt,name=price_usd,json=priceUsd,proto3" json:"price_usd,omitempty"`
+	ItemName    string  `protobuf:"bytes,4,opt,name=item_name,json=itemName,proto3" json:"item_name,omitempty"`
+	ItemsAmount int64   `protobuf:"varint,5,opt,name=items_amount,json=itemsAmount,proto3" json:"items_amount,omitempty"`
+}
+
+func (x *PaidStoreItem) Reset() {
+	*x = PaidStoreItem{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PaidStoreItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaidStoreItem) ProtoMessage() {}
+
+func (x *PaidStoreItem) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaidStoreItem.ProtoReflect.Descriptor instead.
+func (*PaidStoreItem) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *PaidStoreItem) GetItemId() int64 {
+	if x != nil {
+		return x.ItemId
+	}
+	return 0
+}
+
+func (x *PaidStoreItem) GetItemType() string {
+	if x != nil {
+		return x.ItemType
+	}
+	return ""
+}
+
+func (x *PaidStoreItem) GetPriceUsd() float32 {
+	if x != nil {
+		return x.PriceUsd
+	}
+	return 0
+}
+
+func (x *PaidStoreItem) GetItemName() string {
+	if x != nil {
+		return x.ItemName
+	}
+	return ""
+}
+
+func (x *PaidStoreItem) GetItemsAmount() int64 {
+	if x != nil {
+		return x.ItemsAmount
+	}
+	return 0
+}
+
+type GetPaidStoreItemsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status *OperationStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Items  []*PaidStoreItem `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+}
+
+func (x *GetPaidStoreItemsResponse) Reset() {
+	*x = GetPaidStoreItemsResponse{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPaidStoreItemsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPaidStoreItemsResponse) ProtoMessage() {}
+
+func (x *GetPaidStoreItemsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPaidStoreItemsResponse.ProtoReflect.Descriptor instead.
+func (*GetPaidStoreItemsResponse) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetPaidStoreItemsResponse) GetStatus() *OperationStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+func (x *GetPaidStoreItemsResponse) GetItems() []*PaidStoreItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type GetPaidStoreInvoiceLinkRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId          int64 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ItemId          int64 `protobuf:"varint,2,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	PaymentMethodId int64 `protobuf:"varint,3,opt,name=payment_method_id,json=paymentMethodId,proto3" json:"payment_method_id,omitempty"`
+}
+
+func (x *GetPaidStoreInvoiceLinkRequest) Reset() {
+	*x = GetPaidStoreInvoiceLinkRequest{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPaidStoreInvoiceLinkRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPaidStoreInvoiceLinkRequest) ProtoMessage() {}
+
+func (x *GetPaidStoreInvoiceLinkRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPaidStoreInvoiceLinkRequest.ProtoReflect.Descriptor instead.
+func (*GetPaidStoreInvoiceLinkRequest) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *GetPaidStoreInvoiceLinkRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *GetPaidStoreInvoiceLinkRequest) GetItemId() int64 {
+	if x != nil {
+		return x.ItemId
+	}
+	return 0
+}
+
+func (x *GetPaidStoreInvoiceLinkRequest) GetPaymentMethodId() int64 {
+	if x != nil {
+		return x.PaymentMethodId
+	}
+	return 0
+}
+
+type PaymentInvoice struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PaymentId   string `protobuf:"bytes,1,opt,name=payment_id,json=paymentId,proto3" json:"payment_id,omitempty"`
+	PaymentType string `protobuf:"bytes,2,opt,name=payment_type,json=paymentType,proto3" json:"payment_type,omitempty"`
+	PaymentUrl  string `protobuf:"bytes,3,opt,name=payment_url,json=paymentUrl,proto3" json:"payment_url,omitempty"`
+}
+
+func (x *PaymentInvoice) Reset() {
+	*x = PaymentInvoice{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PaymentInvoice) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaymentInvoice) ProtoMessage() {}
+
+func (x *PaymentInvoice) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaymentInvoice.ProtoReflect.Descriptor instead.
+func (*PaymentInvoice) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *PaymentInvoice) GetPaymentId() string {
+	if x != nil {
+		return x.PaymentId
+	}
+	return ""
+}
+
+func (x *PaymentInvoice) GetPaymentType() string {
+	if x != nil {
+		return x.PaymentType
+	}
+	return ""
+}
+
+func (x *PaymentInvoice) GetPaymentUrl() string {
+	if x != nil {
+		return x.PaymentUrl
+	}
+	return ""
+}
+
+type GetPaidStoreInvoiceLinkResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status  *OperationStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Invoice *PaymentInvoice  `protobuf:"bytes,2,opt,name=invoice,proto3" json:"invoice,omitempty"`
+}
+
+func (x *GetPaidStoreInvoiceLinkResponse) Reset() {
+	*x = GetPaidStoreInvoiceLinkResponse{}
+	mi := &file_flappySiuGame_games_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPaidStoreInvoiceLinkResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPaidStoreInvoiceLinkResponse) ProtoMessage() {}
+
+func (x *GetPaidStoreInvoiceLinkResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_flappySiuGame_games_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPaidStoreInvoiceLinkResponse.ProtoReflect.Descriptor instead.
+func (*GetPaidStoreInvoiceLinkResponse) Descriptor() ([]byte, []int) {
+	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *GetPaidStoreInvoiceLinkResponse) GetStatus() *OperationStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+func (x *GetPaidStoreInvoiceLinkResponse) GetInvoice() *PaymentInvoice {
+	if x != nil {
+		return x.Invoice
+	}
+	return nil
+}
+
 var File_flappySiuGame_games_proto protoreflect.FileDescriptor
 
 var file_flappySiuGame_games_proto_rawDesc = []byte{
 	0x0a, 0x19, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2f,
 	0x67, 0x61, 0x6d, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x66, 0x6c, 0x61,
-	0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x22, 0x67, 0x0a, 0x0f, 0x4f, 0x70,
+	0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x22, 0x0e, 0x0a, 0x0c, 0x45, 0x6d,
+	0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x67, 0x0a, 0x0f, 0x4f, 0x70,
 	0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x18, 0x0a,
 	0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07,
 	0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x28, 0x0a, 0x0d, 0x65, 0x72, 0x72, 0x6f, 0x72,
@@ -1641,79 +2061,154 @@ var file_flappySiuGame_games_proto_rawDesc = []byte{
 	0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49,
 	0x74, 0x65, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x04, 0x69, 0x74, 0x65, 0x6d, 0x12, 0x14, 0x0a,
 	0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x70, 0x72,
-	0x69, 0x63, 0x65, 0x22, 0x1a, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74,
-	0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
-	0x87, 0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65,
-	0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a,
-	0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e,
-	0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x4f, 0x70,
-	0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73,
-	0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x02,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75,
-	0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74,
-	0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x2a, 0x38, 0x0a, 0x0b, 0x50, 0x72, 0x65,
-	0x76, 0x69, 0x65, 0x77, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0f, 0x0a, 0x0b, 0x55, 0x4e, 0x53, 0x50,
-	0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x58, 0x5f, 0x52,
-	0x41, 0x59, 0x10, 0x01, 0x12, 0x0d, 0x0a, 0x09, 0x55, 0x4c, 0x54, 0x52, 0x41, 0x5f, 0x52, 0x41,
-	0x59, 0x10, 0x02, 0x2a, 0x7a, 0x0a, 0x11, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65,
-	0x49, 0x74, 0x65, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x16, 0x53, 0x54, 0x4f, 0x52,
-	0x45, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49,
-	0x45, 0x44, 0x10, 0x00, 0x12, 0x14, 0x0a, 0x10, 0x53, 0x54, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x54,
-	0x45, 0x4d, 0x5f, 0x58, 0x5f, 0x52, 0x41, 0x59, 0x10, 0x01, 0x12, 0x18, 0x0a, 0x14, 0x53, 0x54,
-	0x4f, 0x52, 0x45, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x55, 0x4c, 0x54, 0x52, 0x41, 0x5f, 0x52,
-	0x41, 0x59, 0x10, 0x02, 0x12, 0x19, 0x0a, 0x15, 0x53, 0x54, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x54,
-	0x45, 0x4d, 0x5f, 0x45, 0x58, 0x54, 0x52, 0x41, 0x5f, 0x4c, 0x49, 0x46, 0x45, 0x10, 0x03, 0x32,
-	0xf9, 0x05, 0x0a, 0x0d, 0x46, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d,
-	0x65, 0x12, 0x5a, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x73, 0x73, 0x69,
-	0x6f, 0x6e, 0x12, 0x23, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61,
+	0x69, 0x63, 0x65, 0x22, 0x87, 0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53,
+	0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x36, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1e, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d,
+	0x65, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x69, 0x74, 0x65,
+	0x6d, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
+	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f,
+	0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x64, 0x0a,
+	0x18, 0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65,
+	0x6d, 0x73, 0x52, 0x65, 0x73, 0x71, 0x75, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
+	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
+	0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x61,
+	0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x61, 0x6d, 0x6f,
+	0x75, 0x6e, 0x74, 0x22, 0x76, 0x0a, 0x19, 0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74,
+	0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x36, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1e, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65,
+	0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0xa2, 0x01, 0x0a, 0x0d,
+	0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x17, 0x0a,
+	0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06,
+	0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x74,
+	0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x69, 0x74, 0x65, 0x6d, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x72, 0x69, 0x63, 0x65, 0x5f, 0x75, 0x73, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x02, 0x52, 0x08, 0x70, 0x72, 0x69, 0x63, 0x65, 0x55, 0x73, 0x64,
+	0x12, 0x1b, 0x0a, 0x09, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x69, 0x74, 0x65, 0x6d, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x21, 0x0a,
+	0x0c, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0b, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
+	0x22, 0x87, 0x01, 0x0a, 0x19, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72,
+	0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36,
+	0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e,
+	0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x4f,
+	0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x32, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69,
+	0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49,
+	0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x7e, 0x0a, 0x1e, 0x47, 0x65,
+	0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63,
+	0x65, 0x4c, 0x69, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07,
+	0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75,
+	0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x2a,
+	0x0a, 0x11, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64,
+	0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x70, 0x61, 0x79, 0x6d, 0x65,
+	0x6e, 0x74, 0x4d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x49, 0x64, 0x22, 0x73, 0x0a, 0x0e, 0x50, 0x61,
+	0x79, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x12, 0x1d, 0x0a, 0x0a,
+	0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x70,
+	0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0b, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x1f,
+	0x0a, 0x0b, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x75, 0x72, 0x6c, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0a, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x55, 0x72, 0x6c, 0x22,
+	0x92, 0x01, 0x0a, 0x1f, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72, 0x65,
+	0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x4c, 0x69, 0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47,
+	0x61, 0x6d, 0x65, 0x2e, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x37, 0x0a, 0x07, 0x69,
+	0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x66,
+	0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x50, 0x61, 0x79,
+	0x6d, 0x65, 0x6e, 0x74, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x52, 0x07, 0x69, 0x6e, 0x76,
+	0x6f, 0x69, 0x63, 0x65, 0x2a, 0x38, 0x0a, 0x0b, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x54,
+	0x79, 0x70, 0x65, 0x12, 0x0f, 0x0a, 0x0b, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49,
+	0x45, 0x44, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x58, 0x5f, 0x52, 0x41, 0x59, 0x10, 0x01, 0x12,
+	0x0d, 0x0a, 0x09, 0x55, 0x4c, 0x54, 0x52, 0x41, 0x5f, 0x52, 0x41, 0x59, 0x10, 0x02, 0x2a, 0x7a,
+	0x0a, 0x11, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x4e,
+	0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x16, 0x53, 0x54, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x54, 0x45,
+	0x4d, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12,
+	0x14, 0x0a, 0x10, 0x53, 0x54, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x58, 0x5f,
+	0x52, 0x41, 0x59, 0x10, 0x01, 0x12, 0x18, 0x0a, 0x14, 0x53, 0x54, 0x4f, 0x52, 0x45, 0x5f, 0x49,
+	0x54, 0x45, 0x4d, 0x5f, 0x55, 0x4c, 0x54, 0x52, 0x41, 0x5f, 0x52, 0x41, 0x59, 0x10, 0x02, 0x12,
+	0x19, 0x0a, 0x15, 0x53, 0x54, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x45, 0x58,
+	0x54, 0x52, 0x41, 0x5f, 0x4c, 0x49, 0x46, 0x45, 0x10, 0x03, 0x32, 0xab, 0x08, 0x0a, 0x0d, 0x46,
+	0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x12, 0x5a, 0x0a, 0x0d,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x23, 0x2e,
+	0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x24, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61,
 	0x6d, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79,
-	0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65,
-	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x54, 0x0a,
-	0x0b, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x21, 0x2e, 0x66,
-	0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x53, 0x75, 0x62,
-	0x6d, 0x69, 0x74, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x22, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e,
-	0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72,
-	0x42, 0x6f, 0x6e, 0x75, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x2a, 0x2e, 0x66, 0x6c,
-	0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42,
-	0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79,
-	0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6d, 0x62, 0x4f,
-	0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x72, 0x0a, 0x15, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f,
-	0x6e, 0x75, 0x73, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x64, 0x12, 0x2b, 0x2e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x54, 0x0a, 0x0b, 0x53, 0x75, 0x62, 0x6d,
+	0x69, 0x74, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x21, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79,
+	0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x6d, 0x69, 0x74, 0x53, 0x63,
+	0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x66, 0x6c, 0x61,
+	0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x6d, 0x69,
+	0x74, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f,
+	0x0a, 0x14, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x2a, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53,
+	0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72,
+	0x42, 0x6f, 0x6e, 0x75, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61,
+	0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75,
+	0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x72, 0x0a, 0x15, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x52, 0x65,
+	0x76, 0x65, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x64, 0x12, 0x2b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
+	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42,
+	0x6f, 0x6e, 0x75, 0x73, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69,
+	0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75,
+	0x73, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x78, 0x0a, 0x17, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e,
+	0x75, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x43, 0x61, 0x72, 0x64, 0x73, 0x12, 0x2d,
+	0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42,
+	0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65,
+	0x77, 0x43, 0x61, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e,
 	0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f,
-	0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x43,
-	0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x66, 0x6c, 0x61,
-	0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f,
-	0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x43, 0x61, 0x72, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78, 0x0a, 0x17, 0x42, 0x6f, 0x6d, 0x62,
-	0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x43, 0x61,
-	0x72, 0x64, 0x73, 0x12, 0x2d, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47,
-	0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x50,
-	0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x43, 0x61, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61,
-	0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x50, 0x72,
-	0x65, 0x76, 0x69, 0x65, 0x77, 0x43, 0x61, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x6f, 0x0a, 0x14, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75,
-	0x73, 0x45, 0x78, 0x74, 0x72, 0x61, 0x4c, 0x69, 0x66, 0x65, 0x12, 0x2a, 0x2e, 0x66, 0x6c, 0x61,
-	0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f,
-	0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x45, 0x78, 0x74, 0x72, 0x61, 0x4c, 0x69, 0x66, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53,
-	0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e,
-	0x75, 0x73, 0x45, 0x78, 0x74, 0x72, 0x61, 0x4c, 0x69, 0x66, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x66, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74,
-	0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x12, 0x27, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
-	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73,
-	0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x28, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d,
-	0x65, 0x2e, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74,
-	0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x27, 0x5a, 0x25, 0x62,
-	0x6f, 0x62, 0x61, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d,
-	0x65, 0x2e, 0x76, 0x31, 0x3b, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61,
-	0x6d, 0x65, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77,
+	0x43, 0x61, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a,
+	0x14, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x45, 0x78, 0x74, 0x72,
+	0x61, 0x4c, 0x69, 0x66, 0x65, 0x12, 0x2a, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69,
+	0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75,
+	0x73, 0x45, 0x78, 0x74, 0x72, 0x61, 0x4c, 0x69, 0x66, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d,
+	0x65, 0x2e, 0x42, 0x6f, 0x6d, 0x62, 0x4f, 0x72, 0x42, 0x6f, 0x6e, 0x75, 0x73, 0x45, 0x78, 0x74,
+	0x72, 0x61, 0x4c, 0x69, 0x66, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a,
+	0x0a, 0x11, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74,
+	0x65, 0x6d, 0x73, 0x12, 0x1b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47,
+	0x61, 0x6d, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x28, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65,
+	0x2e, 0x47, 0x65, 0x74, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65,
+	0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x66, 0x0a, 0x11, 0x42, 0x75,
+	0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x12,
+	0x27, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e,
+	0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d,
+	0x73, 0x52, 0x65, 0x73, 0x71, 0x75, 0x73, 0x65, 0x1a, 0x28, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
+	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73,
+	0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x5a, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f,
+	0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x12, 0x1b, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79,
+	0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75,
+	0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72,
+	0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x78,
+	0x0a, 0x17, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x6e,
+	0x76, 0x6f, 0x69, 0x63, 0x65, 0x4c, 0x69, 0x6e, 0x6b, 0x12, 0x2d, 0x2e, 0x66, 0x6c, 0x61, 0x70,
+	0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69,
+	0x64, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x4c, 0x69, 0x6e,
+	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
+	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64,
+	0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x6e, 0x76, 0x6f, 0x69, 0x63, 0x65, 0x4c, 0x69, 0x6e, 0x6b,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x27, 0x5a, 0x25, 0x62, 0x6f, 0x62, 0x61,
+	0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x76,
+	0x31, 0x3b, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x76,
+	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1729,72 +2224,90 @@ func file_flappySiuGame_games_proto_rawDescGZIP() []byte {
 }
 
 var file_flappySiuGame_games_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_flappySiuGame_games_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_flappySiuGame_games_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
 var file_flappySiuGame_games_proto_goTypes = []any{
 	(PreviewType)(0),                        // 0: flappySiuGame.PreviewType
 	(GemsStoreItemName)(0),                  // 1: flappySiuGame.GemsStoreItemName
-	(*OperationStatus)(nil),                 // 2: flappySiuGame.OperationStatus
-	(*CreateSessionRequest)(nil),            // 3: flappySiuGame.CreateSessionRequest
-	(*CreateSessionResponse)(nil),           // 4: flappySiuGame.CreateSessionResponse
-	(*SessionInfo)(nil),                     // 5: flappySiuGame.SessionInfo
-	(*GameStats)(nil),                       // 6: flappySiuGame.GameStats
-	(*SubmitScoreRequest)(nil),              // 7: flappySiuGame.SubmitScoreRequest
-	(*SubmitScoreResponse)(nil),             // 8: flappySiuGame.SubmitScoreResponse
-	(*UserGameData)(nil),                    // 9: flappySiuGame.UserGameData
-	(*BombGameStatus)(nil),                  // 10: flappySiuGame.BombGameStatus
-	(*CardResults)(nil),                     // 11: flappySiuGame.CardResults
-	(*CardInfo)(nil),                        // 12: flappySiuGame.CardInfo
-	(*GetBombOrBonusStatusRequest)(nil),     // 13: flappySiuGame.GetBombOrBonusStatusRequest
-	(*GetBombOrBonusStatusResponse)(nil),    // 14: flappySiuGame.GetBombOrBonusStatusResponse
-	(*BombOrBonusRevealCardRequest)(nil),    // 15: flappySiuGame.BombOrBonusRevealCardRequest
-	(*BombOrBonusRevealCardResponse)(nil),   // 16: flappySiuGame.BombOrBonusRevealCardResponse
-	(*BombOrBonusPreviewCardsRequest)(nil),  // 17: flappySiuGame.BombOrBonusPreviewCardsRequest
-	(*BombOrBonusPreviewCardsResponse)(nil), // 18: flappySiuGame.BombOrBonusPreviewCardsResponse
-	(*BombOrBonusExtraLifeRequest)(nil),     // 19: flappySiuGame.BombOrBonusExtraLifeRequest
-	(*BombOrBonusExtraLifeResponse)(nil),    // 20: flappySiuGame.BombOrBonusExtraLifeResponse
-	(*GemsStoreItem)(nil),                   // 21: flappySiuGame.GemsStoreItem
-	(*GetGemsStoreItemsRequest)(nil),        // 22: flappySiuGame.GetGemsStoreItemsRequest
+	(*EmptyRequest)(nil),                    // 2: flappySiuGame.EmptyRequest
+	(*OperationStatus)(nil),                 // 3: flappySiuGame.OperationStatus
+	(*CreateSessionRequest)(nil),            // 4: flappySiuGame.CreateSessionRequest
+	(*CreateSessionResponse)(nil),           // 5: flappySiuGame.CreateSessionResponse
+	(*SessionInfo)(nil),                     // 6: flappySiuGame.SessionInfo
+	(*GameStats)(nil),                       // 7: flappySiuGame.GameStats
+	(*SubmitScoreRequest)(nil),              // 8: flappySiuGame.SubmitScoreRequest
+	(*SubmitScoreResponse)(nil),             // 9: flappySiuGame.SubmitScoreResponse
+	(*UserGameData)(nil),                    // 10: flappySiuGame.UserGameData
+	(*BombGameStatus)(nil),                  // 11: flappySiuGame.BombGameStatus
+	(*CardResults)(nil),                     // 12: flappySiuGame.CardResults
+	(*CardInfo)(nil),                        // 13: flappySiuGame.CardInfo
+	(*GetBombOrBonusStatusRequest)(nil),     // 14: flappySiuGame.GetBombOrBonusStatusRequest
+	(*GetBombOrBonusStatusResponse)(nil),    // 15: flappySiuGame.GetBombOrBonusStatusResponse
+	(*BombOrBonusRevealCardRequest)(nil),    // 16: flappySiuGame.BombOrBonusRevealCardRequest
+	(*BombOrBonusRevealCardResponse)(nil),   // 17: flappySiuGame.BombOrBonusRevealCardResponse
+	(*BombOrBonusPreviewCardsRequest)(nil),  // 18: flappySiuGame.BombOrBonusPreviewCardsRequest
+	(*BombOrBonusPreviewCardsResponse)(nil), // 19: flappySiuGame.BombOrBonusPreviewCardsResponse
+	(*BombOrBonusExtraLifeRequest)(nil),     // 20: flappySiuGame.BombOrBonusExtraLifeRequest
+	(*BombOrBonusExtraLifeResponse)(nil),    // 21: flappySiuGame.BombOrBonusExtraLifeResponse
+	(*GemsStoreItem)(nil),                   // 22: flappySiuGame.GemsStoreItem
 	(*GetGemsStoreItemsResponse)(nil),       // 23: flappySiuGame.GetGemsStoreItemsResponse
-	nil,                                     // 24: flappySiuGame.CardResults.CardsEntry
+	(*BuyGemsStoreItemsResquse)(nil),        // 24: flappySiuGame.BuyGemsStoreItemsResquse
+	(*BuyGemsStoreItemsResponse)(nil),       // 25: flappySiuGame.BuyGemsStoreItemsResponse
+	(*PaidStoreItem)(nil),                   // 26: flappySiuGame.PaidStoreItem
+	(*GetPaidStoreItemsResponse)(nil),       // 27: flappySiuGame.GetPaidStoreItemsResponse
+	(*GetPaidStoreInvoiceLinkRequest)(nil),  // 28: flappySiuGame.GetPaidStoreInvoiceLinkRequest
+	(*PaymentInvoice)(nil),                  // 29: flappySiuGame.PaymentInvoice
+	(*GetPaidStoreInvoiceLinkResponse)(nil), // 30: flappySiuGame.GetPaidStoreInvoiceLinkResponse
+	nil,                                     // 31: flappySiuGame.CardResults.CardsEntry
 }
 var file_flappySiuGame_games_proto_depIdxs = []int32{
-	2,  // 0: flappySiuGame.CreateSessionResponse.status:type_name -> flappySiuGame.OperationStatus
-	5,  // 1: flappySiuGame.CreateSessionResponse.session:type_name -> flappySiuGame.SessionInfo
-	6,  // 2: flappySiuGame.SubmitScoreRequest.game_stats:type_name -> flappySiuGame.GameStats
-	2,  // 3: flappySiuGame.SubmitScoreResponse.status:type_name -> flappySiuGame.OperationStatus
-	10, // 4: flappySiuGame.SubmitScoreResponse.bonus_game:type_name -> flappySiuGame.BombGameStatus
-	9,  // 5: flappySiuGame.BombGameStatus.user_game_data:type_name -> flappySiuGame.UserGameData
-	24, // 6: flappySiuGame.CardResults.cards:type_name -> flappySiuGame.CardResults.CardsEntry
-	2,  // 7: flappySiuGame.GetBombOrBonusStatusResponse.status:type_name -> flappySiuGame.OperationStatus
-	10, // 8: flappySiuGame.GetBombOrBonusStatusResponse.game_status:type_name -> flappySiuGame.BombGameStatus
-	2,  // 9: flappySiuGame.BombOrBonusRevealCardResponse.status:type_name -> flappySiuGame.OperationStatus
-	10, // 10: flappySiuGame.BombOrBonusRevealCardResponse.game_status:type_name -> flappySiuGame.BombGameStatus
+	3,  // 0: flappySiuGame.CreateSessionResponse.status:type_name -> flappySiuGame.OperationStatus
+	6,  // 1: flappySiuGame.CreateSessionResponse.session:type_name -> flappySiuGame.SessionInfo
+	7,  // 2: flappySiuGame.SubmitScoreRequest.game_stats:type_name -> flappySiuGame.GameStats
+	3,  // 3: flappySiuGame.SubmitScoreResponse.status:type_name -> flappySiuGame.OperationStatus
+	11, // 4: flappySiuGame.SubmitScoreResponse.bonus_game:type_name -> flappySiuGame.BombGameStatus
+	10, // 5: flappySiuGame.BombGameStatus.user_game_data:type_name -> flappySiuGame.UserGameData
+	31, // 6: flappySiuGame.CardResults.cards:type_name -> flappySiuGame.CardResults.CardsEntry
+	3,  // 7: flappySiuGame.GetBombOrBonusStatusResponse.status:type_name -> flappySiuGame.OperationStatus
+	11, // 8: flappySiuGame.GetBombOrBonusStatusResponse.game_status:type_name -> flappySiuGame.BombGameStatus
+	3,  // 9: flappySiuGame.BombOrBonusRevealCardResponse.status:type_name -> flappySiuGame.OperationStatus
+	11, // 10: flappySiuGame.BombOrBonusRevealCardResponse.game_status:type_name -> flappySiuGame.BombGameStatus
 	0,  // 11: flappySiuGame.BombOrBonusPreviewCardsRequest.preview_type:type_name -> flappySiuGame.PreviewType
-	2,  // 12: flappySiuGame.BombOrBonusPreviewCardsResponse.status:type_name -> flappySiuGame.OperationStatus
-	12, // 13: flappySiuGame.BombOrBonusPreviewCardsResponse.cards:type_name -> flappySiuGame.CardInfo
-	2,  // 14: flappySiuGame.BombOrBonusExtraLifeResponse.status:type_name -> flappySiuGame.OperationStatus
+	3,  // 12: flappySiuGame.BombOrBonusPreviewCardsResponse.status:type_name -> flappySiuGame.OperationStatus
+	13, // 13: flappySiuGame.BombOrBonusPreviewCardsResponse.cards:type_name -> flappySiuGame.CardInfo
+	3,  // 14: flappySiuGame.BombOrBonusExtraLifeResponse.status:type_name -> flappySiuGame.OperationStatus
 	1,  // 15: flappySiuGame.GemsStoreItem.item:type_name -> flappySiuGame.GemsStoreItemName
-	2,  // 16: flappySiuGame.GetGemsStoreItemsResponse.status:type_name -> flappySiuGame.OperationStatus
-	21, // 17: flappySiuGame.GetGemsStoreItemsResponse.items:type_name -> flappySiuGame.GemsStoreItem
-	3,  // 18: flappySiuGame.FlappySiuGame.CreateSession:input_type -> flappySiuGame.CreateSessionRequest
-	7,  // 19: flappySiuGame.FlappySiuGame.SubmitScore:input_type -> flappySiuGame.SubmitScoreRequest
-	13, // 20: flappySiuGame.FlappySiuGame.GetBombOrBonusStatus:input_type -> flappySiuGame.GetBombOrBonusStatusRequest
-	15, // 21: flappySiuGame.FlappySiuGame.BombOrBonusRevealCard:input_type -> flappySiuGame.BombOrBonusRevealCardRequest
-	17, // 22: flappySiuGame.FlappySiuGame.BombOrBonusPreviewCards:input_type -> flappySiuGame.BombOrBonusPreviewCardsRequest
-	19, // 23: flappySiuGame.FlappySiuGame.BombOrBonusExtraLife:input_type -> flappySiuGame.BombOrBonusExtraLifeRequest
-	22, // 24: flappySiuGame.FlappySiuGame.GetGemsStoreItems:input_type -> flappySiuGame.GetGemsStoreItemsRequest
-	4,  // 25: flappySiuGame.FlappySiuGame.CreateSession:output_type -> flappySiuGame.CreateSessionResponse
-	8,  // 26: flappySiuGame.FlappySiuGame.SubmitScore:output_type -> flappySiuGame.SubmitScoreResponse
-	14, // 27: flappySiuGame.FlappySiuGame.GetBombOrBonusStatus:output_type -> flappySiuGame.GetBombOrBonusStatusResponse
-	16, // 28: flappySiuGame.FlappySiuGame.BombOrBonusRevealCard:output_type -> flappySiuGame.BombOrBonusRevealCardResponse
-	18, // 29: flappySiuGame.FlappySiuGame.BombOrBonusPreviewCards:output_type -> flappySiuGame.BombOrBonusPreviewCardsResponse
-	20, // 30: flappySiuGame.FlappySiuGame.BombOrBonusExtraLife:output_type -> flappySiuGame.BombOrBonusExtraLifeResponse
-	23, // 31: flappySiuGame.FlappySiuGame.GetGemsStoreItems:output_type -> flappySiuGame.GetGemsStoreItemsResponse
-	25, // [25:32] is the sub-list for method output_type
-	18, // [18:25] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	3,  // 16: flappySiuGame.GetGemsStoreItemsResponse.status:type_name -> flappySiuGame.OperationStatus
+	22, // 17: flappySiuGame.GetGemsStoreItemsResponse.items:type_name -> flappySiuGame.GemsStoreItem
+	3,  // 18: flappySiuGame.BuyGemsStoreItemsResponse.status:type_name -> flappySiuGame.OperationStatus
+	3,  // 19: flappySiuGame.GetPaidStoreItemsResponse.status:type_name -> flappySiuGame.OperationStatus
+	26, // 20: flappySiuGame.GetPaidStoreItemsResponse.items:type_name -> flappySiuGame.PaidStoreItem
+	3,  // 21: flappySiuGame.GetPaidStoreInvoiceLinkResponse.status:type_name -> flappySiuGame.OperationStatus
+	29, // 22: flappySiuGame.GetPaidStoreInvoiceLinkResponse.invoice:type_name -> flappySiuGame.PaymentInvoice
+	4,  // 23: flappySiuGame.FlappySiuGame.CreateSession:input_type -> flappySiuGame.CreateSessionRequest
+	8,  // 24: flappySiuGame.FlappySiuGame.SubmitScore:input_type -> flappySiuGame.SubmitScoreRequest
+	14, // 25: flappySiuGame.FlappySiuGame.GetBombOrBonusStatus:input_type -> flappySiuGame.GetBombOrBonusStatusRequest
+	16, // 26: flappySiuGame.FlappySiuGame.BombOrBonusRevealCard:input_type -> flappySiuGame.BombOrBonusRevealCardRequest
+	18, // 27: flappySiuGame.FlappySiuGame.BombOrBonusPreviewCards:input_type -> flappySiuGame.BombOrBonusPreviewCardsRequest
+	20, // 28: flappySiuGame.FlappySiuGame.BombOrBonusExtraLife:input_type -> flappySiuGame.BombOrBonusExtraLifeRequest
+	2,  // 29: flappySiuGame.FlappySiuGame.GetGemsStoreItems:input_type -> flappySiuGame.EmptyRequest
+	24, // 30: flappySiuGame.FlappySiuGame.BuyGemsStoreItems:input_type -> flappySiuGame.BuyGemsStoreItemsResquse
+	2,  // 31: flappySiuGame.FlappySiuGame.GetPaidStoreItems:input_type -> flappySiuGame.EmptyRequest
+	28, // 32: flappySiuGame.FlappySiuGame.GetPaidStoreInvoiceLink:input_type -> flappySiuGame.GetPaidStoreInvoiceLinkRequest
+	5,  // 33: flappySiuGame.FlappySiuGame.CreateSession:output_type -> flappySiuGame.CreateSessionResponse
+	9,  // 34: flappySiuGame.FlappySiuGame.SubmitScore:output_type -> flappySiuGame.SubmitScoreResponse
+	15, // 35: flappySiuGame.FlappySiuGame.GetBombOrBonusStatus:output_type -> flappySiuGame.GetBombOrBonusStatusResponse
+	17, // 36: flappySiuGame.FlappySiuGame.BombOrBonusRevealCard:output_type -> flappySiuGame.BombOrBonusRevealCardResponse
+	19, // 37: flappySiuGame.FlappySiuGame.BombOrBonusPreviewCards:output_type -> flappySiuGame.BombOrBonusPreviewCardsResponse
+	21, // 38: flappySiuGame.FlappySiuGame.BombOrBonusExtraLife:output_type -> flappySiuGame.BombOrBonusExtraLifeResponse
+	23, // 39: flappySiuGame.FlappySiuGame.GetGemsStoreItems:output_type -> flappySiuGame.GetGemsStoreItemsResponse
+	25, // 40: flappySiuGame.FlappySiuGame.BuyGemsStoreItems:output_type -> flappySiuGame.BuyGemsStoreItemsResponse
+	27, // 41: flappySiuGame.FlappySiuGame.GetPaidStoreItems:output_type -> flappySiuGame.GetPaidStoreItemsResponse
+	30, // 42: flappySiuGame.FlappySiuGame.GetPaidStoreInvoiceLink:output_type -> flappySiuGame.GetPaidStoreInvoiceLinkResponse
+	33, // [33:43] is the sub-list for method output_type
+	23, // [23:33] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_flappySiuGame_games_proto_init() }
@@ -1802,16 +2315,16 @@ func file_flappySiuGame_games_proto_init() {
 	if File_flappySiuGame_games_proto != nil {
 		return
 	}
-	file_flappySiuGame_games_proto_msgTypes[0].OneofWrappers = []any{}
-	file_flappySiuGame_games_proto_msgTypes[6].OneofWrappers = []any{}
-	file_flappySiuGame_games_proto_msgTypes[14].OneofWrappers = []any{}
+	file_flappySiuGame_games_proto_msgTypes[1].OneofWrappers = []any{}
+	file_flappySiuGame_games_proto_msgTypes[7].OneofWrappers = []any{}
+	file_flappySiuGame_games_proto_msgTypes[15].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_flappySiuGame_games_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   23,
+			NumMessages:   30,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
