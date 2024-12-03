@@ -1446,7 +1446,7 @@ func (x *GetGemsStoreItemsResponse) GetItems() []*GemsStoreItem {
 	return nil
 }
 
-type BuyGemsStoreItemsResquse struct {
+type BuyGemsStoreItemsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1456,20 +1456,20 @@ type BuyGemsStoreItemsResquse struct {
 	Amount int64 `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
 }
 
-func (x *BuyGemsStoreItemsResquse) Reset() {
-	*x = BuyGemsStoreItemsResquse{}
+func (x *BuyGemsStoreItemsRequest) Reset() {
+	*x = BuyGemsStoreItemsRequest{}
 	mi := &file_flappySiuGame_games_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *BuyGemsStoreItemsResquse) String() string {
+func (x *BuyGemsStoreItemsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BuyGemsStoreItemsResquse) ProtoMessage() {}
+func (*BuyGemsStoreItemsRequest) ProtoMessage() {}
 
-func (x *BuyGemsStoreItemsResquse) ProtoReflect() protoreflect.Message {
+func (x *BuyGemsStoreItemsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_flappySiuGame_games_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1481,26 +1481,26 @@ func (x *BuyGemsStoreItemsResquse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use BuyGemsStoreItemsResquse.ProtoReflect.Descriptor instead.
-func (*BuyGemsStoreItemsResquse) Descriptor() ([]byte, []int) {
+// Deprecated: Use BuyGemsStoreItemsRequest.ProtoReflect.Descriptor instead.
+func (*BuyGemsStoreItemsRequest) Descriptor() ([]byte, []int) {
 	return file_flappySiuGame_games_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *BuyGemsStoreItemsResquse) GetUserId() int64 {
+func (x *BuyGemsStoreItemsRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *BuyGemsStoreItemsResquse) GetItemId() int64 {
+func (x *BuyGemsStoreItemsRequest) GetItemId() int64 {
 	if x != nil {
 		return x.ItemId
 	}
 	return 0
 }
 
-func (x *BuyGemsStoreItemsResquse) GetAmount() int64 {
+func (x *BuyGemsStoreItemsRequest) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
 	}
@@ -2071,7 +2071,7 @@ var file_flappySiuGame_games_proto_rawDesc = []byte{
 	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f,
 	0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x64, 0x0a,
 	0x18, 0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65,
-	0x6d, 0x73, 0x52, 0x65, 0x73, 0x71, 0x75, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
+	0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65,
 	0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
 	0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x03, 0x52, 0x06, 0x69, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x61,
@@ -2189,7 +2189,7 @@ var file_flappySiuGame_games_proto_rawDesc = []byte{
 	0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x12,
 	0x27, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70, 0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e,
 	0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d,
-	0x73, 0x52, 0x65, 0x73, 0x71, 0x75, 0x73, 0x65, 0x1a, 0x28, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x66, 0x6c, 0x61, 0x70, 0x70,
 	0x79, 0x53, 0x69, 0x75, 0x47, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x75, 0x79, 0x47, 0x65, 0x6d, 0x73,
 	0x53, 0x74, 0x6f, 0x72, 0x65, 0x49, 0x74, 0x65, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x5a, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x64, 0x53, 0x74, 0x6f,
@@ -2250,7 +2250,7 @@ var file_flappySiuGame_games_proto_goTypes = []any{
 	(*BombOrBonusExtraLifeResponse)(nil),    // 21: flappySiuGame.BombOrBonusExtraLifeResponse
 	(*GemsStoreItem)(nil),                   // 22: flappySiuGame.GemsStoreItem
 	(*GetGemsStoreItemsResponse)(nil),       // 23: flappySiuGame.GetGemsStoreItemsResponse
-	(*BuyGemsStoreItemsResquse)(nil),        // 24: flappySiuGame.BuyGemsStoreItemsResquse
+	(*BuyGemsStoreItemsRequest)(nil),        // 24: flappySiuGame.BuyGemsStoreItemsRequest
 	(*BuyGemsStoreItemsResponse)(nil),       // 25: flappySiuGame.BuyGemsStoreItemsResponse
 	(*PaidStoreItem)(nil),                   // 26: flappySiuGame.PaidStoreItem
 	(*GetPaidStoreItemsResponse)(nil),       // 27: flappySiuGame.GetPaidStoreItemsResponse
@@ -2290,7 +2290,7 @@ var file_flappySiuGame_games_proto_depIdxs = []int32{
 	18, // 27: flappySiuGame.FlappySiuGame.BombOrBonusPreviewCards:input_type -> flappySiuGame.BombOrBonusPreviewCardsRequest
 	20, // 28: flappySiuGame.FlappySiuGame.BombOrBonusExtraLife:input_type -> flappySiuGame.BombOrBonusExtraLifeRequest
 	2,  // 29: flappySiuGame.FlappySiuGame.GetGemsStoreItems:input_type -> flappySiuGame.EmptyRequest
-	24, // 30: flappySiuGame.FlappySiuGame.BuyGemsStoreItems:input_type -> flappySiuGame.BuyGemsStoreItemsResquse
+	24, // 30: flappySiuGame.FlappySiuGame.BuyGemsStoreItems:input_type -> flappySiuGame.BuyGemsStoreItemsRequest
 	2,  // 31: flappySiuGame.FlappySiuGame.GetPaidStoreItems:input_type -> flappySiuGame.EmptyRequest
 	28, // 32: flappySiuGame.FlappySiuGame.GetPaidStoreInvoiceLink:input_type -> flappySiuGame.GetPaidStoreInvoiceLinkRequest
 	5,  // 33: flappySiuGame.FlappySiuGame.CreateSession:output_type -> flappySiuGame.CreateSessionResponse

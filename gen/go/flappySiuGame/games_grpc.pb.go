@@ -52,7 +52,7 @@ type FlappySiuGameClient interface {
 	// Return gems store items
 	GetGemsStoreItems(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error)
 	// Buy gems store items
-	BuyGemsStoreItems(ctx context.Context, in *BuyGemsStoreItemsResquse, opts ...grpc.CallOption) (*BuyGemsStoreItemsResponse, error)
+	BuyGemsStoreItems(ctx context.Context, in *BuyGemsStoreItemsRequest, opts ...grpc.CallOption) (*BuyGemsStoreItemsResponse, error)
 	// Returns paid store items
 	GetPaidStoreItems(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*GetPaidStoreItemsResponse, error)
 	// Returns payment invoice link
@@ -137,7 +137,7 @@ func (c *flappySiuGameClient) GetGemsStoreItems(ctx context.Context, in *EmptyRe
 	return out, nil
 }
 
-func (c *flappySiuGameClient) BuyGemsStoreItems(ctx context.Context, in *BuyGemsStoreItemsResquse, opts ...grpc.CallOption) (*BuyGemsStoreItemsResponse, error) {
+func (c *flappySiuGameClient) BuyGemsStoreItems(ctx context.Context, in *BuyGemsStoreItemsRequest, opts ...grpc.CallOption) (*BuyGemsStoreItemsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(BuyGemsStoreItemsResponse)
 	err := c.cc.Invoke(ctx, FlappySiuGame_BuyGemsStoreItems_FullMethodName, in, out, cOpts...)
@@ -188,7 +188,7 @@ type FlappySiuGameServer interface {
 	// Return gems store items
 	GetGemsStoreItems(context.Context, *EmptyRequest) (*GetGemsStoreItemsResponse, error)
 	// Buy gems store items
-	BuyGemsStoreItems(context.Context, *BuyGemsStoreItemsResquse) (*BuyGemsStoreItemsResponse, error)
+	BuyGemsStoreItems(context.Context, *BuyGemsStoreItemsRequest) (*BuyGemsStoreItemsResponse, error)
 	// Returns paid store items
 	GetPaidStoreItems(context.Context, *EmptyRequest) (*GetPaidStoreItemsResponse, error)
 	// Returns payment invoice link
@@ -224,7 +224,7 @@ func (UnimplementedFlappySiuGameServer) BombOrBonusExtraLife(context.Context, *B
 func (UnimplementedFlappySiuGameServer) GetGemsStoreItems(context.Context, *EmptyRequest) (*GetGemsStoreItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGemsStoreItems not implemented")
 }
-func (UnimplementedFlappySiuGameServer) BuyGemsStoreItems(context.Context, *BuyGemsStoreItemsResquse) (*BuyGemsStoreItemsResponse, error) {
+func (UnimplementedFlappySiuGameServer) BuyGemsStoreItems(context.Context, *BuyGemsStoreItemsRequest) (*BuyGemsStoreItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuyGemsStoreItems not implemented")
 }
 func (UnimplementedFlappySiuGameServer) GetPaidStoreItems(context.Context, *EmptyRequest) (*GetPaidStoreItemsResponse, error) {
@@ -381,7 +381,7 @@ func _FlappySiuGame_GetGemsStoreItems_Handler(srv interface{}, ctx context.Conte
 }
 
 func _FlappySiuGame_BuyGemsStoreItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BuyGemsStoreItemsResquse)
+	in := new(BuyGemsStoreItemsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _FlappySiuGame_BuyGemsStoreItems_Handler(srv interface{}, ctx context.Conte
 		FullMethod: FlappySiuGame_BuyGemsStoreItems_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FlappySiuGameServer).BuyGemsStoreItems(ctx, req.(*BuyGemsStoreItemsResquse))
+		return srv.(FlappySiuGameServer).BuyGemsStoreItems(ctx, req.(*BuyGemsStoreItemsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

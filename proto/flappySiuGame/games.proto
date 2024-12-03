@@ -29,7 +29,7 @@ service FlappySiuGame {
     rpc GetGemsStoreItems(EmptyRequest) returns (GetGemsStoreItemsResponse);
 
     // Buy gems store items
-    rpc BuyGemsStoreItems(BuyGemsStoreItemsResquse) returns (BuyGemsStoreItemsResponse);
+    rpc BuyGemsStoreItems(BuyGemsStoreItemsRequest) returns (BuyGemsStoreItemsResponse);
 
     // Returns paid store items
     rpc GetPaidStoreItems(EmptyRequest) returns (GetPaidStoreItemsResponse);
@@ -213,7 +213,7 @@ message GetGemsStoreItemsResponse{
    repeated GemsStoreItem items = 2;
 }
 
-message BuyGemsStoreItemsResquse {
+message BuyGemsStoreItemsRequest {
    int64 user_id = 1;
    int64 item_id = 2;
    int64 amount = 3;
