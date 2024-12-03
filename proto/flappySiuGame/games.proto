@@ -222,6 +222,7 @@ message BuyGemsStoreItemsRequest {
 message BuyGemsStoreItemsResponse {
    OperationStatus status = 1;
    int64 total_amount = 2;
+   int64 gems_left = 3;
 }
 
 // Paid store
