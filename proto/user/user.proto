@@ -112,7 +112,8 @@ message FinalizePaymentRequest {
 
 message FinalizePaymentResponse {
     bool success = 1;
-    string error_message = 2;
+    int64 left_amount = 2; 
+    string error_message = 3;
 }
 
 message GetReferralsInfoRequest {
