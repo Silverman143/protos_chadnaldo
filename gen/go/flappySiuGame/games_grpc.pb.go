@@ -25,6 +25,7 @@ const (
 	FlappySiuGame_BombOrBonusRevealCard_FullMethodName   = "/flappySiuGame.FlappySiuGame/BombOrBonusRevealCard"
 	FlappySiuGame_BombOrBonusPreviewCards_FullMethodName = "/flappySiuGame.FlappySiuGame/BombOrBonusPreviewCards"
 	FlappySiuGame_BombOrBonusExtraLife_FullMethodName    = "/flappySiuGame.FlappySiuGame/BombOrBonusExtraLife"
+	FlappySiuGame_GetGemsStoreItems_FullMethodName       = "/flappySiuGame.FlappySiuGame/GetGemsStoreItems"
 )
 
 // FlappySiuGameClient is the client API for FlappySiuGame service.
@@ -43,7 +44,10 @@ type FlappySiuGameClient interface {
 	BombOrBonusRevealCard(ctx context.Context, in *BombOrBonusRevealCardRequest, opts ...grpc.CallOption) (*BombOrBonusRevealCardResponse, error)
 	// Provides preview information for multiple cards in bonus game
 	BombOrBonusPreviewCards(ctx context.Context, in *BombOrBonusPreviewCardsRequest, opts ...grpc.CallOption) (*BombOrBonusPreviewCardsResponse, error)
+	// Activate extra life if exists
 	BombOrBonusExtraLife(ctx context.Context, in *BombOrBonusExtraLifeRequest, opts ...grpc.CallOption) (*BombOrBonusExtraLifeResponse, error)
+	// Return gems store items
+	GetGemsStoreItems(ctx context.Context, in *GetGemsStoreItemsRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error)
 }
 
 type flappySiuGameClient struct {
@@ -114,6 +118,16 @@ func (c *flappySiuGameClient) BombOrBonusExtraLife(ctx context.Context, in *Bomb
 	return out, nil
 }
 
+func (c *flappySiuGameClient) GetGemsStoreItems(ctx context.Context, in *GetGemsStoreItemsRequest, opts ...grpc.CallOption) (*GetGemsStoreItemsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGemsStoreItemsResponse)
+	err := c.cc.Invoke(ctx, FlappySiuGame_GetGemsStoreItems_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FlappySiuGameServer is the server API for FlappySiuGame service.
 // All implementations must embed UnimplementedFlappySiuGameServer
 // for forward compatibility.
@@ -130,7 +144,10 @@ type FlappySiuGameServer interface {
 	BombOrBonusRevealCard(context.Context, *BombOrBonusRevealCardRequest) (*BombOrBonusRevealCardResponse, error)
 	// Provides preview information for multiple cards in bonus game
 	BombOrBonusPreviewCards(context.Context, *BombOrBonusPreviewCardsRequest) (*BombOrBonusPreviewCardsResponse, error)
+	// Activate extra life if exists
 	BombOrBonusExtraLife(context.Context, *BombOrBonusExtraLifeRequest) (*BombOrBonusExtraLifeResponse, error)
+	// Return gems store items
+	GetGemsStoreItems(context.Context, *GetGemsStoreItemsRequest) (*GetGemsStoreItemsResponse, error)
 	mustEmbedUnimplementedFlappySiuGameServer()
 }
 
@@ -158,6 +175,9 @@ func (UnimplementedFlappySiuGameServer) BombOrBonusPreviewCards(context.Context,
 }
 func (UnimplementedFlappySiuGameServer) BombOrBonusExtraLife(context.Context, *BombOrBonusExtraLifeRequest) (*BombOrBonusExtraLifeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BombOrBonusExtraLife not implemented")
+}
+func (UnimplementedFlappySiuGameServer) GetGemsStoreItems(context.Context, *GetGemsStoreItemsRequest) (*GetGemsStoreItemsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGemsStoreItems not implemented")
 }
 func (UnimplementedFlappySiuGameServer) mustEmbedUnimplementedFlappySiuGameServer() {}
 func (UnimplementedFlappySiuGameServer) testEmbeddedByValue()                       {}
@@ -288,6 +308,24 @@ func _FlappySiuGame_BombOrBonusExtraLife_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FlappySiuGame_GetGemsStoreItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGemsStoreItemsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FlappySiuGameServer).GetGemsStoreItems(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FlappySiuGame_GetGemsStoreItems_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FlappySiuGameServer).GetGemsStoreItems(ctx, req.(*GetGemsStoreItemsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FlappySiuGame_ServiceDesc is the grpc.ServiceDesc for FlappySiuGame service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -318,6 +356,10 @@ var FlappySiuGame_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BombOrBonusExtraLife",
 			Handler:    _FlappySiuGame_BombOrBonusExtraLife_Handler,
+		},
+		{
+			MethodName: "GetGemsStoreItems",
+			Handler:    _FlappySiuGame_GetGemsStoreItems_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

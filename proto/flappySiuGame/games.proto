@@ -22,7 +22,11 @@ service FlappySiuGame {
     // Provides preview information for multiple cards in bonus game
     rpc BombOrBonusPreviewCards(BombOrBonusPreviewCardsRequest) returns (BombOrBonusPreviewCardsResponse);
 
+    // Activate extra life if exists
     rpc BombOrBonusExtraLife(BombOrBonusExtraLifeRequest) returns (BombOrBonusExtraLifeResponse);
+
+    // Return gems store items
+    rpc GetGemsStoreItems(GetGemsStoreItemsRequest) returns (GetGemsStoreItemsResponse);
  }
  
 //-----------------------------------------------------------------------------
@@ -174,4 +178,25 @@ message BombOrBonusExtraLifeResponse {
    OperationStatus status = 1;
    bool extra_life_granted = 2;  
    string error_details = 3;  
+}
+
+enum GemsStoreItemName {
+   STORE_ITEM_UNSPECIFIED = 0;
+   STORE_ITEM_X_RAY = 1;
+   STORE_ITEM_ULTRA_RAY = 2;
+   STORE_ITEM_EXTRA_LIFE = 3;
+}
+
+message GemsStoreItem {
+   int64 id = 1;
+   GemsStoreItemName item = 2;
+   int64 price = 3;
+}
+
+message GetGemsStoreItemsRequest{
+}
+
+message GetGemsStoreItemsResponse{
+   OperationStatus status = 1;
+   repeated GemsStoreItem items = 2;
 }
