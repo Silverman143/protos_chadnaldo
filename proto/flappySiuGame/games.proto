@@ -9,6 +9,9 @@ option go_package = "boba.flappySiuGame.v1;flappySiuGamev1";
 service FlappySiuGame {
     // Creates new game session and returns session credentials
     rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+
+    // Creates new game session and returns session credentials
+    rpc CloseSessions(CloseSessionsRequest) returns (CloseSessionsResponse);
     
     // Validates and processes game results, may unlock bonus game
     rpc SubmitScore(SubmitScoreRequest) returns (SubmitScoreResponse);
@@ -72,6 +75,14 @@ message OperationStatus {
     int32 game_number = 1;               // Sequential number of games played by user
     string session_token = 2;            // JWT token for session validation
     int64 timestamp = 3;                 // UTC timestamp when session was created (milliseconds)
+ }
+
+ message CloseSessionsRequest {
+   int64 user_id = 1;   
+ }
+ 
+ message CloseSessionsResponse {
+   OperationStatus status = 1; 
  }
  
  //-----------------------------------------------------------------------------

@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	FlappySiuGame_CreateSession_FullMethodName           = "/flappySiuGame.FlappySiuGame/CreateSession"
+	FlappySiuGame_CloseSessions_FullMethodName           = "/flappySiuGame.FlappySiuGame/CloseSessions"
 	FlappySiuGame_SubmitScore_FullMethodName             = "/flappySiuGame.FlappySiuGame/SubmitScore"
 	FlappySiuGame_GetBombOrBonusStatus_FullMethodName    = "/flappySiuGame.FlappySiuGame/GetBombOrBonusStatus"
 	FlappySiuGame_BombOrBonusRevealCard_FullMethodName   = "/flappySiuGame.FlappySiuGame/BombOrBonusRevealCard"
@@ -39,6 +40,8 @@ const (
 type FlappySiuGameClient interface {
 	// Creates new game session and returns session credentials
 	CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error)
+	// Creates new game session and returns session credentials
+	CloseSessions(ctx context.Context, in *CloseSessionsRequest, opts ...grpc.CallOption) (*CloseSessionsResponse, error)
 	// Validates and processes game results, may unlock bonus game
 	SubmitScore(ctx context.Context, in *SubmitScoreRequest, opts ...grpc.CallOption) (*SubmitScoreResponse, error)
 	// Gets current state of bonus mini-game
@@ -71,6 +74,16 @@ func (c *flappySiuGameClient) CreateSession(ctx context.Context, in *CreateSessi
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateSessionResponse)
 	err := c.cc.Invoke(ctx, FlappySiuGame_CreateSession_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *flappySiuGameClient) CloseSessions(ctx context.Context, in *CloseSessionsRequest, opts ...grpc.CallOption) (*CloseSessionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CloseSessionsResponse)
+	err := c.cc.Invoke(ctx, FlappySiuGame_CloseSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -175,6 +188,8 @@ func (c *flappySiuGameClient) GetPaidStoreInvoiceLink(ctx context.Context, in *G
 type FlappySiuGameServer interface {
 	// Creates new game session and returns session credentials
 	CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error)
+	// Creates new game session and returns session credentials
+	CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error)
 	// Validates and processes game results, may unlock bonus game
 	SubmitScore(context.Context, *SubmitScoreRequest) (*SubmitScoreResponse, error)
 	// Gets current state of bonus mini-game
@@ -205,6 +220,9 @@ type UnimplementedFlappySiuGameServer struct{}
 
 func (UnimplementedFlappySiuGameServer) CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateSession not implemented")
+}
+func (UnimplementedFlappySiuGameServer) CloseSessions(context.Context, *CloseSessionsRequest) (*CloseSessionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CloseSessions not implemented")
 }
 func (UnimplementedFlappySiuGameServer) SubmitScore(context.Context, *SubmitScoreRequest) (*SubmitScoreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitScore not implemented")
@@ -268,6 +286,24 @@ func _FlappySiuGame_CreateSession_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FlappySiuGameServer).CreateSession(ctx, req.(*CreateSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FlappySiuGame_CloseSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseSessionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FlappySiuGameServer).CloseSessions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FlappySiuGame_CloseSessions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FlappySiuGameServer).CloseSessions(ctx, req.(*CloseSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -444,6 +480,10 @@ var FlappySiuGame_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateSession",
 			Handler:    _FlappySiuGame_CreateSession_Handler,
+		},
+		{
+			MethodName: "CloseSessions",
+			Handler:    _FlappySiuGame_CloseSessions_Handler,
 		},
 		{
 			MethodName: "SubmitScore",
