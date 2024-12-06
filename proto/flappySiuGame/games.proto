@@ -210,7 +210,7 @@ enum GemsStoreItemName {
    STORE_ITEM_UNSPECIFIED = 0;
    STORE_ITEM_X_RAY = 1;
    STORE_ITEM_ULTRA_RAY = 2;
-   STORE_ITEM_EXTRA_LIFE = 3;
+   STORE_ITEM_EXTRA_FLIP = 3;
 }
 
 message GemsStoreItem {
